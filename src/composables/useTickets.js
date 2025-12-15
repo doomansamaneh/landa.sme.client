@@ -110,9 +110,11 @@ export function useTickets() {
   };
 
   // Initialize polling with 5 second interval
+  // Skip immediate execution to avoid duplicate API call on initial mount
   const { start: startPolling, clear: stopPolling } = usePolling(
     checkUnreadCount,
-    5000 // 5 seconds
+    5000, // 5 seconds
+    true // skip immediate execution
   );
 
   const selectTicket = async (item) => {
@@ -132,9 +134,8 @@ export function useTickets() {
   }
 
   function initializeTicketList() {
-    if (loadableDataGrid.value?.loadData) {
-      loadableDataGrid.value.loadData();
-    }
+    // Note: Initial data load is handled by the first-load prop on LoadableDataGrid
+    // Start polling (with skipImmediate=true, it won't execute immediately)
     startPolling();
   }
 

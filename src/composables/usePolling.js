@@ -1,7 +1,11 @@
 // src/composables/usePolling.js
 import { ref, onMounted, onUnmounted } from "vue";
 
-export function usePolling(method, timeInterval = 10000) {
+export function usePolling(
+  method,
+  timeInterval = 10000,
+  skipImmediate = false
+) {
   const interval = ref(null);
   const isPolling = ref(false);
 
@@ -23,7 +27,14 @@ export function usePolling(method, timeInterval = 10000) {
   const start = () => {
     clear();
     isPolling.value = true;
-    fetchData();
+    if (skipImmediate) {
+      // Skip immediate execution, only set up the interval
+      interval.value = setInterval(() => {
+        method();
+      }, timeInterval);
+    } else {
+      fetchData();
+    }
   };
 
   onMounted(() => {

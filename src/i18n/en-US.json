@@ -904,7 +904,8 @@
       "information": "Information",
       "modifyStockEnterSLCode": "Modify Stock Default Code: addition",
       "modifyStockExitSLCode": "Modify Stock Default Code: deduction",
-      "version": "Version"
+      "version": "Version",
+      "templateName": "Template Name"
     },
 
     "productType": {

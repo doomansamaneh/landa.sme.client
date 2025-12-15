@@ -5,35 +5,36 @@
   />
 
   <q-form ref="form" autofocus>
-    <div class="row q-gutter-md q-mb-md">
-      <div class="col-md-4">
-        <custom-input
-          :label="$t('shared.columns.title')"
-          v-model="model.title"
-          required
-        />
-      </div>
-    </div>
-    <div class="row q-gutter-md q-mb-md">
-      <q-checkbox
-        dense
-        size="48px"
-        v-model="model.isDefault"
-        :label="$t('shared.labels.default')"
-      />
-    </div>
-    <div class="row q-gutter-md q-mb-md">
-      <q-checkbox
-        dense
-        size="48px"
-        v-model="model.isActive"
-        :label="$t('shared.labels.isActive')"
-      />
-    </div>
-
     <div class="row q-col-gutter-md">
       <div class="col-md-4">
         <div class="column q-gutter-md">
+          <q-card bordered>
+            <q-card-section>
+              <custom-input
+                :label="$t('shared.labels.templateName')"
+                v-model="model.title"
+                required
+              />
+              <div class="column q-gutter-sm q-pt-md">
+                <div>
+                  <q-checkbox
+                    dense
+                    size="48px"
+                    v-model="model.isDefault"
+                    :label="$t('shared.labels.default')"
+                  />
+                </div>
+                <div>
+                  <q-checkbox
+                    dense
+                    size="48px"
+                    v-model="model.isActive"
+                    :label="$t('shared.labels.isActive')"
+                  />
+                </div>
+              </div>
+            </q-card-section>
+          </q-card>
           <q-card bordered>
             <q-card-section>
               <q-list separator class="rounded-borders">
@@ -61,12 +62,6 @@
                         label="شماره و تاریخ"
                       />
                     </div>
-                    <q-input
-                      v-model="designer.headerTitle"
-                      dense
-                      outlined
-                      label="عنوان سربرگ"
-                    />
                   </q-card-section>
                 </q-expansion-item>
 
@@ -197,22 +192,12 @@
                         v-model="designer.showContract"
                         label="قرارداد"
                       />
-
                       <q-toggle
                         dense
                         v-model="designer.showSignature"
                         label="امضا"
                       />
                     </div>
-                    <q-input
-                      v-model="designer.footerNote"
-                      dense
-                      outlined
-                      label="یادداشت "
-                      type="textarea"
-                      autogrow
-                      class="q-mt-md"
-                    />
                   </q-card-section>
                 </q-expansion-item>
               </q-list>
@@ -241,12 +226,37 @@
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
-  import CodeOutputDialog from "./CodeOutputDialog.vue";
 
+  // -------------------------
+  // Props
+  // -------------------------
   const props = defineProps({
     action: String,
     title: String,
   });
+
+  // -------------------------
+  // Constants
+  // -------------------------
+  const LOGO_SIZE = { width: 120, height: 55 };
+  const SIGNATURE_SIZE = { width: 300, height: 200 };
+
+  const defaultColumns = [
+    { field: "rowNo", label: "ردیف" },
+    { field: "productDisplay", label: "کالا / خدمت" },
+    { field: "quantity", label: "تعداد/مقدار" },
+    { field: "price", label: "مبلغ واحد" },
+    { field: "totalPrice", label: "جمع کل (ریال)" },
+  ];
+
+  const defaultTemplate = `<div class="q-card__section q-card__section--vert q-pb-none" name="header"><table style="width: 100%;"><tbody><tr><td style="width: 25%;" name="logo"><img src="{{logoSrc}}" alt="logo"></td><td><div class="text-center text-body2 text-bold">{{headerTitle}}</div></td><td style="width: 25%;" name="invoiceInfo"><div><span>شماره:</span><span class="q-px-sm text-weight-600">{{no}}</span></div><div><span>تاریخ:</span><span class="q-px-sm text-weight-600">{{date}}</span></div></td></tr></tbody></table></div><div class="q-card__section q-card__section--vert q-gutter-y-sm"><div class="q-table__middle scroll"><table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 13px;"><tbody name="sellerInfo"><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div>فروشنده: <strong>{{sellerName}}</strong></div><div>نشانی: <strong>{{sellerLocation}} - </strong><span class="text-wrap">{{sellerAddress}}</span></div></td></tr></tbody><tbody name="customerInfo"><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div>مشتری: <strong>{{customerName}}</strong><span> / شناسه ملی: {{customerNationalNo}}</span></div><div>نشانی: <strong>{{customerLocation}} - </strong><span class="text-wrap">{{customerAddress}}</span><span> / <strong>کد پستی:</strong> {{customerPostalCode}}</span></div><div>تلفن: {{customerPhone}}</div></td></tr></tbody></table></div><div class="q-table__middle scroll" name="invoiceItems"><table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 12.4px;"><thead><tr><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">ردیف</th><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">کالا / خدمت</th><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">تعداد/مقدار</th><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">مبلغ واحد</th><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">جمع کل (ریال) </th></tr></thead><tbody>{{#items}}<tr><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{rowNo}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><div class="text-wrap">{{productDisplay}} <small>{{commentDisplay}}</small></div></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantity}} <small>({{productUnitTitle}})</small></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{price}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{totalPrice}}</td></tr>{{/items}}<tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">سرجمع: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalNetPrice}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">تخفیف: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalDiscount}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">ارزش افزوده: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalVat}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">جمع مقدار: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalQuantity}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;"><strong>جمع کل:</strong></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalPrice}}</strong> {{currencyTitle}}</td></tr></tbody></table></div><div class="q-table__middle scroll" name="footer"><table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 13px;"><tbody><tr name="remained"><td colspan="100%" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: left;"><span><strong style="padding: 0px 5px;">جمع دریافتی</strong> {{remainedPayedAmount}}</span><span><strong style="padding: 0px 5px;">مانده</strong><span class="text-weight-600">{{remainedAmount}}</span></span><span><strong style="padding: 0px 5px;">مانده از قبل</strong><span class="text-weight-600">{{remainedOtherRemained}}</span></span><span><strong style="padding: 0px 5px;">جمع مانده</strong> {{remainedTotalRemained}}</span></td></tr><tr name="summary"><td colspan="100%" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>شرح</strong><div><strong name="contract">{{contractTitle}}<span style="padding: 5px;"> / </span></strong><span class="text-wrap">{{summary}}</span></div><div class="text-wrap">{{footerNote}}</div></td></tr><tr name="signature"><td colspan="100%" class="text-body2 vertical-top" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; width: 50%; height: 90px;">مهر و امضا فروشنده <div><img src="{{signatureSrc}}" alt="signature" style="width: 120px;"></div></td></tr></tbody></table></div></div>`;
+
+  // -------------------------
+  // Composables & Stores
+  // -------------------------
+  const { t } = useI18n();
+  const $q = useQuasar();
+  const appConfigStore = useAppConfigModel();
 
   const form = ref(null);
   const model = ref({
@@ -261,13 +271,9 @@
     baseRoute: "cmn/documentTemplate",
   });
 
-  const LOGO_SIZE = { width: 120, height: 55 };
-  const SIGNATURE_SIZE = { width: 300, height: 200 };
-
-  const { t } = useI18n();
-  const $q = useQuasar();
-  const appConfigStore = useAppConfigModel();
-
+  // -------------------------
+  // Refs
+  // -------------------------
   const logoSrc = ref("");
   const signatureSrc = ref("");
   const draggedColumnIndex = ref(null);
@@ -286,8 +292,6 @@
     showRemained: true,
     showSummary: true,
     showContract: true,
-    headerTitle: "",
-    footerNote: "",
     columns: [],
     customColumns: [],
   });
@@ -363,15 +367,20 @@
     },
   });
 
-  const defaultTemplate = `<div class="q-card__section q-card__section--vert q-pb-none" name="header"><table style="width: 100%;"><tbody><tr><td style="width: 25%;" name="logo"><img src="{{logoSrc}}" alt="logo"></td><td><div class="text-center text-body2 text-bold">{{headerTitle}}</div></td><td style="width: 25%;" name="invoiceInfo"><div><span>شماره:</span><span class="q-px-sm text-weight-600">{{no}}</span></div><div><span>تاریخ:</span><span class="q-px-sm text-weight-600">{{date}}</span></div></td></tr></tbody></table></div><div class="q-card__section q-card__section--vert q-gutter-y-sm"><div class="q-table__middle scroll"><table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 13px;"><tbody name="sellerInfo"><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div>فروشنده: <strong>{{sellerName}}</strong></div><div>نشانی: <strong>{{sellerLocation}} - </strong><span class="text-wrap">{{sellerAddress}}</span></div></td></tr></tbody><tbody name="customerInfo"><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div>مشتری: <strong>{{customerName}}</strong><span> / شناسه ملی: {{customerNationalNo}}</span></div><div>نشانی: <strong>{{customerLocation}} - </strong><span class="text-wrap">{{customerAddress}}</span><span> / <strong>کد پستی:</strong> {{customerPostalCode}}</span></div><div>تلفن: {{customerPhone}}</div></td></tr></tbody></table></div><div class="q-table__middle scroll" name="invoiceItems"><table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 12.4px;"><thead><tr><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">ردیف</th><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">کالا / خدمت</th><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">تعداد/مقدار</th><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">مبلغ واحد</th><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">جمع کل (ریال) </th></tr></thead><tbody>{{#items}}<tr><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{rowNo}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><div class="text-wrap">{{productDisplay}} <small>{{commentDisplay}}</small></div></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantity}} <small>({{productUnitTitle}})</small></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{price}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{totalPrice}}</td></tr>{{/items}}<tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">سرجمع: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalNetPrice}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">تخفیف: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalDiscount}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">ارزش افزوده: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalVat}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">جمع مقدار: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalQuantity}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;"><strong>جمع کل:</strong></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalPrice}}</strong> {{currencyTitle}}</td></tr></tbody></table></div><div class="q-table__middle scroll" name="footer"><table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 13px;"><tbody><tr name="remained"><td colspan="100%" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: left;"><span><strong style="padding: 0px 5px;">جمع دریافتی</strong> {{remainedPayedAmount}}</span><span><strong style="padding: 0px 5px;">مانده</strong><span class="text-weight-600">{{remainedAmount}}</span></span><span><strong style="padding: 0px 5px;">مانده از قبل</strong><span class="text-weight-600">{{remainedOtherRemained}}</span></span><span><strong style="padding: 0px 5px;">جمع مانده</strong> {{remainedTotalRemained}}</span></td></tr><tr name="summary"><td colspan="100%" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>شرح</strong><div><strong name="contract">{{contractTitle}}<span style="padding: 5px;"> / </span></strong><span class="text-wrap">{{summary}}</span></div><div class="text-wrap">{{footerNote}}</div></td></tr><tr name="signature"><td colspan="100%" class="text-body2 vertical-top" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; width: 50%; height: 90px;">مهر و امضا فروشنده <div><img src="{{signatureSrc}}" alt="signature" style="width: 120px;"></div></td></tr></tbody></table></div></div>`;
+  // Initialize default columns if empty
+  if (
+    !designer.value.columns ||
+    designer.value.columns.length === 0
+  ) {
+    designer.value.columns = defaultColumns.map((col) => ({
+      field: col.field,
+      label: col.label,
+    }));
+  }
 
-  const headerTitle = computed(() => {
-    if (designer.value.headerTitle) return designer.value.headerTitle;
-    if (appConfigStore.model?.value?.companySetting?.invoiceTitle)
-      return appConfigStore.model.value.companySetting.invoiceTitle;
-    return t("shared.labels.invoice");
-  });
-
+  // -------------------------
+  // Computed
+  // -------------------------
   const companyInfo = computed(
     () => appConfigStore.model?.value?.companySetting
   );
@@ -395,24 +404,6 @@
       totalQuantity,
     };
   });
-
-  const defaultColumns = [
-    { field: "rowNo", label: "ردیف" },
-    { field: "productDisplay", label: "کالا / خدمت" },
-    { field: "quantity", label: "تعداد/مقدار" },
-    { field: "price", label: "مبلغ واحد" },
-    { field: "totalPrice", label: "جمع کل (ریال)" },
-  ];
-
-  if (
-    !designer.value.columns ||
-    designer.value.columns.length === 0
-  ) {
-    designer.value.columns = defaultColumns.map((col) => ({
-      field: col.field,
-      label: col.label,
-    }));
-  }
 
   const allColumns = computed(() => {
     const defaultCols = defaultColumns.map((col) => ({ ...col }));
@@ -488,30 +479,117 @@
     return state;
   });
 
-  const formatNumber = (value) => {
+  const renderedTemplate = computed(() => {
+    const {
+      invoice,
+      remained,
+      customer,
+      invoiceItems,
+      totalQuantity,
+    } = invoiceData.value;
+    const company = companyInfo.value;
+
+    const templateData = {
+      customerName: invoice.customerName || "",
+      date: invoice.date || "",
+      dueDate: invoice.dueDate || "",
+      no: invoice.no || "",
+      subject: invoice.subject || "",
+      summary: invoice.summary || "",
+      contractTitle: invoice.contractTitle || "",
+      currencyTitle: invoice.currencyTitle || "ریال",
+      totalNetPrice: formatNumber(invoice.totalNetPrice),
+      totalDiscount: formatNumber(invoice.totalDiscount),
+      totalVat: formatNumber(invoice.totalVat),
+      totalPrice: formatNumber(invoice.totalPrice),
+      totalQuantity: formatNumber(totalQuantity),
+      customerNationalNo: customer?.business?.nationalNo ?? "",
+      customerTaxNo: customer?.business?.taxNo ?? "",
+      customerAddress: customer?.address?.address ?? "",
+      customerLocation: customer?.address?.locationTitle ?? "",
+      customerPostalCode: customer?.address?.postalCode ?? "",
+      customerPhone: customer?.phone?.value ?? "",
+      sellerName: company?.name || "",
+      sellerNationalNo: company?.nationalNo || "",
+      sellerTaxNo: company?.taxNo || "",
+      sellerAddress: company?.address || "",
+      sellerLocation: company?.location || "",
+      sellerPostalCode: company?.postalCode || "",
+      sellerPhone: company?.phone || "",
+      logoSrc: logoSrc.value,
+      signatureSrc: signatureSrc.value,
+      taxId: invoice?.lastApiLogModel?.taxId ?? "",
+      remainedPayedAmount: formatNumber(remained.payedAmount),
+      remainedAmount: formatNumber(remained.remained),
+      remainedOtherRemained: formatNumber(remained.otherRemained),
+      remainedTotalRemained: formatNumber(remained.totalRemained),
+      items: invoiceItems.map((item) => {
+        const baseItem = {
+          rowNo: item.rowNo || "",
+          productCode: item.productCode || "",
+          productTitle: item.productTitle || "",
+          productDisplay: getProductDisplayText(item),
+          quantity: formatNumber(item.quantity),
+          productUnitTitle: item.productUnitTitle || "",
+          price: formatNumber(item.price),
+          totalPrice: formatNumber(item.totalPrice),
+          comment: item.comment || "",
+          commentDisplay: item.comment ? `(${item.comment})` : "",
+        };
+
+        Object.keys(item).forEach((key) => {
+          if (!baseItem.hasOwnProperty(key)) {
+            const value = item[key];
+            baseItem[key] =
+              typeof value === "number"
+                ? formatNumber(value)
+                : value || "";
+          }
+        });
+
+        return baseItem;
+      }),
+    };
+
+    let html = renderTemplateWithData(
+      templateHtml.value,
+      templateData
+    );
+    html = applyVisibilitySettings(html, designer.value);
+
+    return html;
+  });
+
+  // -------------------------
+  // Helper Functions
+  // -------------------------
+  function formatNumber(value) {
     if (typeof value === "number")
       return helper.formatNumber(value ?? 0);
     return value ?? 0;
-  };
+  }
 
-  const replaceTemplateVariable = (template, key, value) => {
+  function replaceTemplateVariable(template, key, value) {
     const regex = new RegExp(`\\{\\{${key}\\}\\}`, "g");
     return template.replace(
       regex,
       value != null ? String(value) : ""
     );
-  };
+  }
 
-  const getProductDisplayText = (item) => {
+  function getProductDisplayText(item) {
     if (item.productDisplay) return item.productDisplay;
     if (item.productCode && item.productTitle)
       return `${item.productCode} - ${item.productTitle}`;
     if (item.productTitle) return item.productTitle;
     if (item.productCode) return item.productCode;
     return "";
-  };
+  }
 
-  const buildTableWithSelectedColumns = (template) => {
+  // -------------------------
+  // Template Processing Functions
+  // -------------------------
+  function buildTableWithSelectedColumns(template) {
     const selectedColumns = designer.value.columns || [];
     if (selectedColumns.length === 0) return template;
 
@@ -581,9 +659,9 @@
       tablePattern,
       `${tableStart}${newTableContent}${tableEnd}`
     );
-  };
+  }
 
-  const renderTemplateWithData = (template, data) => {
+  function renderTemplateWithData(template, data) {
     template = buildTableWithSelectedColumns(template);
 
     const itemsLoopRegex = /\{\{#items\}\}([\s\S]*?)\{\{\/items\}\}/;
@@ -611,9 +689,9 @@
     });
 
     return template;
-  };
+  }
 
-  const toggleHiddenAttribute = (html, elementName, shouldHide) => {
+  function toggleHiddenAttribute(html, elementName, shouldHide) {
     let result = html;
     let previousResult = "";
 
@@ -669,9 +747,9 @@
       }
     }
     return result;
-  };
+  }
 
-  const applyVisibilitySettings = (html, settings) => {
+  function applyVisibilitySettings(html, settings) {
     let processedHtml = html;
 
     const sectionToSettingMap = {
@@ -699,92 +777,12 @@
     );
 
     return processedHtml;
-  };
+  }
 
-  const renderedTemplate = computed(() => {
-    const {
-      invoice,
-      remained,
-      customer,
-      invoiceItems,
-      totalQuantity,
-    } = invoiceData.value;
-    const company = companyInfo.value;
-
-    const templateData = {
-      customerName: invoice.customerName || "",
-      date: invoice.date || "",
-      dueDate: invoice.dueDate || "",
-      no: invoice.no || "",
-      subject: invoice.subject || "",
-      summary: invoice.summary || "",
-      contractTitle: invoice.contractTitle || "",
-      currencyTitle: invoice.currencyTitle || "ریال",
-      totalNetPrice: formatNumber(invoice.totalNetPrice),
-      totalDiscount: formatNumber(invoice.totalDiscount),
-      totalVat: formatNumber(invoice.totalVat),
-      totalPrice: formatNumber(invoice.totalPrice),
-      totalQuantity: formatNumber(totalQuantity),
-      customerNationalNo: customer?.business?.nationalNo ?? "",
-      customerTaxNo: customer?.business?.taxNo ?? "",
-      customerAddress: customer?.address?.address ?? "",
-      customerLocation: customer?.address?.locationTitle ?? "",
-      customerPostalCode: customer?.address?.postalCode ?? "",
-      customerPhone: customer?.phone?.value ?? "",
-      sellerName: company?.name || "",
-      sellerNationalNo: company?.nationalNo || "",
-      sellerTaxNo: company?.taxNo || "",
-      sellerAddress: company?.address || "",
-      sellerLocation: company?.location || "",
-      sellerPostalCode: company?.postalCode || "",
-      sellerPhone: company?.phone || "",
-      logoSrc: logoSrc.value,
-      signatureSrc: signatureSrc.value,
-      headerTitle: headerTitle.value,
-      footerNote: designer.value.footerNote || "",
-      taxId: invoice?.lastApiLogModel?.taxId ?? "",
-      remainedPayedAmount: formatNumber(remained.payedAmount),
-      remainedAmount: formatNumber(remained.remained),
-      remainedOtherRemained: formatNumber(remained.otherRemained),
-      remainedTotalRemained: formatNumber(remained.totalRemained),
-      items: invoiceItems.map((item) => {
-        const baseItem = {
-          rowNo: item.rowNo || "",
-          productCode: item.productCode || "",
-          productTitle: item.productTitle || "",
-          productDisplay: getProductDisplayText(item),
-          quantity: formatNumber(item.quantity),
-          productUnitTitle: item.productUnitTitle || "",
-          price: formatNumber(item.price),
-          totalPrice: formatNumber(item.totalPrice),
-          comment: item.comment || "",
-          commentDisplay: item.comment ? `(${item.comment})` : "",
-        };
-
-        Object.keys(item).forEach((key) => {
-          if (!baseItem.hasOwnProperty(key)) {
-            const value = item[key];
-            baseItem[key] =
-              typeof value === "number"
-                ? formatNumber(value)
-                : value || "";
-          }
-        });
-
-        return baseItem;
-      }),
-    };
-
-    let html = renderTemplateWithData(
-      templateHtml.value,
-      templateData
-    );
-    html = applyVisibilitySettings(html, designer.value);
-
-    return html;
-  });
-
-  const toggleColumn = (col) => {
+  // -------------------------
+  // Column Management Functions
+  // -------------------------
+  function toggleColumn(col) {
     if (isDragging.value) return;
 
     const currentIndex = designer.value.columns.findIndex(
@@ -818,9 +816,9 @@
       });
       columnCheckboxState.value[col.field] = true;
     }
-  };
+  }
 
-  const onColumnDragStart = (index, event) => {
+  function onColumnDragStart(index, event) {
     if (index === -1) return;
     isDragging.value = true;
     draggedColumnIndex.value = index;
@@ -830,9 +828,9 @@
       event.currentTarget.style.opacity = "0.5";
       event.currentTarget.classList.add("dragging");
     }
-  };
+  }
 
-  const onColumnDrop = (dropIndex, event) => {
+  function onColumnDrop(dropIndex, event) {
     event.preventDefault();
     event.stopPropagation();
     if (draggedColumnIndex.value === null || dropIndex === -1) return;
@@ -853,9 +851,9 @@
       draggedColumn
     );
     draggedColumnIndex.value = null;
-  };
+  }
 
-  const onColumnDragEnd = (event) => {
+  function onColumnDragEnd(event) {
     if (event.currentTarget) {
       event.currentTarget.style.opacity = "1";
       event.currentTarget.classList.remove("dragging");
@@ -864,9 +862,93 @@
     setTimeout(() => {
       isDragging.value = false;
     }, 100);
-  };
+  }
 
-  const loadTemplateConfig = async () => {
+  // -------------------------
+  // Template Loading Functions
+  // -------------------------
+  function extractColumnsFromTemplate(template) {
+    const tablePattern =
+      /<div[^>]*name=["']invoiceItems["'][^>]*>[\s\S]*?<table[^>]*>([\s\S]*?)<\/table>[\s\S]*?<\/div>/;
+    const match = template.match(tablePattern);
+    if (!match) return null;
+
+    const tableContent = match[1];
+
+    const theadMatch = tableContent.match(/<thead>[\s\S]*?<\/thead>/);
+    if (!theadMatch) return null;
+
+    const theadContent = theadMatch[0];
+    const thMatches = theadContent.matchAll(
+      /<th[^>]*>([\s\S]*?)<\/th>/g
+    );
+    const columnLabels = [];
+    for (const thMatch of thMatches) {
+      const label = thMatch[1].trim();
+      if (label) columnLabels.push(label);
+    }
+
+    if (columnLabels.length === 0) return null;
+
+    const tbodyMatch = tableContent.match(/<tbody>[\s\S]*?<\/tbody>/);
+    if (!tbodyMatch) return null;
+
+    const tbodyContent = tbodyMatch[0];
+    const itemsRowMatch = tbodyContent.match(
+      /\{\{#items\}\}([\s\S]*?)\{\{\/items\}\}/
+    );
+    if (!itemsRowMatch) return null;
+
+    const rowTemplate = itemsRowMatch[1];
+    const tdMatches = rowTemplate.matchAll(
+      /<td[^>]*>([\s\S]*?)<\/td>/g
+    );
+    const fieldNames = [];
+    for (const tdMatch of tdMatches) {
+      const tdContent = tdMatch[1];
+      if (tdContent.includes("{{productDisplay}}")) {
+        fieldNames.push("productDisplay");
+      } else {
+        const fieldMatch = tdContent.match(/\{\{([^}]+)\}\}/);
+        if (fieldMatch) {
+          const fieldName = fieldMatch[1].trim();
+          if (fieldName !== "commentDisplay") {
+            fieldNames.push(fieldName);
+          }
+        }
+      }
+    }
+
+    const extractedColumns = [];
+    columnLabels.forEach((label, index) => {
+      let matchedColumn = allColumns.value.find(
+        (col) => col.label === label
+      );
+
+      if (!matchedColumn && fieldNames[index]) {
+        matchedColumn = allColumns.value.find(
+          (col) => col.field === fieldNames[index]
+        );
+      }
+
+      if (!matchedColumn) {
+        matchedColumn = allColumns.value.find(
+          (col) => col.label.trim() === label.trim()
+        );
+      }
+
+      if (matchedColumn) {
+        extractedColumns.push({
+          field: matchedColumn.field,
+          label: matchedColumn.label,
+        });
+      }
+    });
+
+    return extractedColumns.length > 0 ? extractedColumns : null;
+  }
+
+  async function loadTemplateConfig() {
     templateHtml.value = model?.value?.body || defaultTemplate;
 
     const template = templateHtml.value;
@@ -898,9 +980,22 @@
         }
       }
     );
-  };
 
-  const loadMediaAssets = async () => {
+    const extractedColumns = extractColumnsFromTemplate(template);
+    if (extractedColumns && extractedColumns.length > 0) {
+      designer.value.columns = extractedColumns;
+    } else if (
+      !designer.value.columns ||
+      designer.value.columns.length === 0
+    ) {
+      designer.value.columns = defaultColumns.map((col) => ({
+        field: col.field,
+        label: col.label,
+      }));
+    }
+  }
+
+  async function loadMediaAssets() {
     try {
       if (!appConfigStore.model.value?.companySetting?.id)
         await appConfigStore.reloadData?.();
@@ -922,9 +1017,12 @@
       logoSrc.value = logo || "";
       signatureSrc.value = signature || "";
     } catch (error) {}
-  };
+  }
 
-  const handleSave = async () => {
+  // -------------------------
+  // Event Handlers
+  // -------------------------
+  async function handleSave() {
     let finalTemplate = buildTableWithSelectedColumns(
       templateHtml.value
     );
@@ -940,31 +1038,17 @@
     );
     finalTemplate = replaceTemplateVariable(
       finalTemplate,
-      "headerTitle",
-      headerTitle.value || ""
-    );
-    finalTemplate = replaceTemplateVariable(
-      finalTemplate,
       "signatureSrc",
       signatureSrc.value || ""
-    );
-    finalTemplate = replaceTemplateVariable(
-      finalTemplate,
-      "footerNote",
-      designer.value.footerNote || ""
     );
 
     model.value.body = finalTemplate;
     formStore.submitForm(form.value, props.action);
+  }
 
-    // $q.dialog({
-    //   component: CodeOutputDialog,
-    //   componentProps: {
-    //     code: finalTemplate,
-    //   },
-    // });
-  };
-
+  // -------------------------
+  // Lifecycle
+  // -------------------------
   onMounted(async () => {
     await loadMediaAssets();
     await loadTemplateConfig();

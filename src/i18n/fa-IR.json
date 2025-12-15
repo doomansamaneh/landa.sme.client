@@ -714,6 +714,7 @@
       "taxMemoryId": "شناسه حافظه مالیاتی",
       "privateKey": "کلید خصوصی",
       "invoicePattern": "الگوی صورتحساب",
+      "templateName": "نام قالب",
       "defaultCustomer": "مشتری پیش‌فرض",
       "defaultVatType": "نوع ارزش افزوده",
       "defaultSaleType": "نوع فروش",
