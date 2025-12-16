@@ -15,7 +15,7 @@
       <tbody v-if="appConfigStore.model?.value?.companySetting">
         <tr
           class="bg-on-dark text-center"
-          style="background-color_: #f0f0f0"
+          style="background-color: #f0f0f0"
         >
           <td
             style="
@@ -128,7 +128,7 @@
       <tbody>
         <tr
           class="bg-on-dark text-center"
-          style="background-color_: #f0f0f0"
+          style="background-color: #f0f0f0"
         >
           <td
             style="

@@ -12,7 +12,10 @@
       class="print-preview-table"
     >
       <thead>
-        <tr class="bg-on-dark text-center">
+        <tr
+          class="bg-on-dark text-center"
+          style="background-color: #f0f0f0"
+        >
           <td
             style="
               border-width: 1px;
