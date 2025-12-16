@@ -128,10 +128,8 @@
 
                     <q-list separator class="rounded-borders q-mt-sm">
                       <template
-                        v-for="(
-                          col, displayIndex
-                        ) in columnsForDisplay"
-                        :key="`col-${col.field}-${displayIndex}`"
+                        v-for="col in columnsForDisplay"
+                        :key="`col-${col.field}`"
                       >
                         <q-item
                           :draggable="col.isSelected"
@@ -224,7 +222,10 @@
       </div>
 
       <div class="col-md">
-        <q-card bordered>
+        <q-card bordered class="preview-card">
+          <q-inner-loading :showing="isLoadingTemplate">
+            <q-spinner size="50px" color="primary" />
+          </q-inner-loading>
           <div v-html="renderedTemplate"></div>
         </q-card>
       </div>
@@ -234,8 +235,6 @@
 
 <script setup>
   import { ref, computed, onMounted } from "vue";
-  import { useI18n } from "vue-i18n";
-  import { useQuasar } from "quasar";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
   import { mediaType } from "src/constants";
   import { helper } from "src/helpers";
@@ -285,8 +284,6 @@
   // -------------------------
   // Composables & Stores
   // -------------------------
-  const { t } = useI18n();
-  const $q = useQuasar();
   const appConfigStore = useAppConfigModel();
 
   const form = ref(null);
@@ -310,6 +307,7 @@
   const draggedColumnIndex = ref(null);
   const isDragging = ref(false);
   const templateHtml = ref("");
+  const isLoadingTemplate = ref(false);
 
   const designer = ref({
     showHeader: true,
@@ -324,59 +322,43 @@
     showSummary: true,
     showContract: true,
     columns: [],
-    customColumns: [],
     isAdvancedModeSellerBuyer: false,
     isAdvancedModeInvoiceItems: false,
   });
 
   const previewData = ref({
     no: "{{no}}",
-    amount: 10.0,
-    vatAmount: 0.0,
-    discountAmount: 0.0,
-    subject: "{{subject}}",
-    summary: "{{summary}}",
-    statusTitle: "{{statusTitle}}",
-    rowNo: "{{document row no}}",
     date: "{{date}}",
     dueDate: "{{due date}}",
-    receivedAmount: 0,
-    typeTitle: "{{sales type}}",
-    paymentTypeId: 1,
-    customerName: "{{customer name}}",
-    inventoryTitle: "{{inventory title}}",
-    currencyTitle: "{{currency}}",
-    voucherNo: "{{voucher no}}",
-    contractNo: "{{contract no}}",
+    subject: "{{subject}}",
+    summary: "{{summary}}",
     contractTitle: "{{contractTitle}}",
+    customerName: "{{customer name}}",
+    currencyTitle: "{{currency}}",
+    totalNetPrice: 0,
+    totalDiscount: 0,
+    totalVat: 0,
+    totalPrice: 0,
     customerSummary: {
-      nationalCode: "{{national code}}",
       address: {
         locationTitle: "{{city}}",
         address: "{{address}}",
         postalCode: "{{post code}}",
-        isPrimary: false,
       },
       phone: {
-        contactTypeTitle: "{{phone type}}",
         value: "{{phoe number}}",
-        isPrimary: false,
       },
       business: {
         taxNo: "{{tax code}}",
-        insuranceWorkNo: "{{insurrance no}}",
         nationalNo: "{{tax inn}}",
         regNo: "{{register no}}",
-        regDate: "{{resgiter date}}",
       },
     },
     invoiceItems: [
       {
         rowNo: 1,
         quantity: 1.0,
-        discountPercent: 0.0,
         discount: 0.0,
-        vatPercent: 0.0,
         vatAmount: 0.0,
         price: 10.0,
         totalPrice: 10.0,
@@ -385,14 +367,11 @@
         productTitle: "{{product name}}",
         productDisplay: "{{product full name}}",
         productUnitTitle: "{{product measure unit}}",
-        vatTitle: "{{vat type}}",
+        productTaxCode: "",
+        productComment: "",
       },
     ],
-    precisionCount: 2,
-    displayFormat: 0,
-    transportationCost: 0,
     invoiceRemained: {
-      amount: 10.0,
       payedAmount: 0.0,
       remained: 0.0,
       otherRemained: 0.0,
@@ -436,18 +415,9 @@
   });
 
   const allColumns = computed(() => {
-    const baseColumns = designer.value.isAdvancedModeInvoiceItems
+    return designer.value.isAdvancedModeInvoiceItems
       ? standardColumns
       : defaultColumns;
-
-    const baseCols = baseColumns.map((col) => ({ ...col }));
-    const customCols = (designer.value.customColumns || []).map(
-      (col) => ({
-        ...col,
-      })
-    );
-
-    return [...baseCols, ...customCols];
   });
 
   const columnsForDisplay = computed(() => {
@@ -576,48 +546,33 @@
       sellerPhone: company?.phone || "",
       logoSrc: logoSrc.value,
       signatureSrc: signatureSrc.value,
-      taxId: invoice?.lastApiLogModel?.taxId ?? "",
       remainedPayedAmount: formatNumber(remained.payedAmount),
       remainedAmount: formatNumber(remained.remained),
       remainedOtherRemained: formatNumber(remained.otherRemained),
       remainedTotalRemained: formatNumber(remained.totalRemained),
-      items: invoiceItems.map((item) => {
-        const baseItem = {
-          rowNo: item.rowNo || "",
-          productCode: item.productCode || "",
-          productTitle: item.productTitle || "",
-          productDisplay: getProductDisplayText(item),
-          productTaxCode: item.productTaxCode || "",
-          quantity: formatNumber(item.quantity),
-          productUnitTitle: item.productUnitTitle || "",
-          price: formatNumber(item.price),
-          quantityPrice: formatNumber(
-            (item.quantity || 0) * (item.price || 0)
-          ),
-          discount: formatNumber(item.discount || 0),
-          netAmount: formatNumber(
-            (item.quantity || 0) * (item.price || 0) -
-              (item.discount || 0)
-          ),
-          vatAmount: formatNumber(item.vatAmount || 0),
-          totalPrice: formatNumber(item.totalPrice),
-          comment: item.comment || "",
-          productComment: item.productComment || "",
-          commentDisplay: item.comment ? `(${item.comment})` : "",
-        };
-
-        Object.keys(item).forEach((key) => {
-          if (!baseItem.hasOwnProperty(key)) {
-            const value = item[key];
-            baseItem[key] =
-              typeof value === "number"
-                ? formatNumber(value)
-                : value || "";
-          }
-        });
-
-        return baseItem;
-      }),
+      items: invoiceItems.map((item) => ({
+        rowNo: item.rowNo || "",
+        productCode: item.productCode || "",
+        productTitle: item.productTitle || "",
+        productDisplay: getProductDisplayText(item),
+        productTaxCode: item.productTaxCode || "",
+        quantity: formatNumber(item.quantity),
+        productUnitTitle: item.productUnitTitle || "",
+        price: formatNumber(item.price),
+        quantityPrice: formatNumber(
+          (item.quantity || 0) * (item.price || 0)
+        ),
+        discount: formatNumber(item.discount || 0),
+        netAmount: formatNumber(
+          (item.quantity || 0) * (item.price || 0) -
+            (item.discount || 0)
+        ),
+        vatAmount: formatNumber(item.vatAmount || 0),
+        totalPrice: formatNumber(item.totalPrice),
+        comment: item.comment || "",
+        productComment: item.productComment || "",
+        commentDisplay: item.comment ? `(${item.comment})` : "",
+      })),
     };
 
     let html = renderTemplateWithData(
@@ -666,6 +621,20 @@
       field: col.field,
       label: col.label,
     }));
+  }
+
+  function setTableDataMode(tableStart, mode) {
+    if (tableStart.includes(`data-mode="${mode}"`)) return tableStart;
+    if (tableStart.includes("data-mode=")) {
+      return tableStart.replace(
+        /data-mode=["'][^"']*["']/,
+        `data-mode="${mode}"`
+      );
+    }
+    return tableStart.replace(
+      /<table([^>]*)>/,
+      `<table$1 data-mode="${mode}">`
+    );
   }
 
   // -------------------------
@@ -781,21 +750,10 @@
         const newTbody = `<tbody><tr>${headerRowHtml}</tr>{{#items}}<tr>${bodyCellsHtml}</tr>{{/items}}${standardSummaryRow}</tbody>`;
         const newTableContent = `${theadTitle}${newTbody}`;
 
-        // Ensure data-mode is preserved in tableStart
-        let finalTableStart = tableStart;
-        if (!finalTableStart.includes("data-mode=")) {
-          finalTableStart = finalTableStart.replace(
-            /<table([^>]*)>/,
-            '<table$1 data-mode="standard">'
-          );
-        } else if (
-          !finalTableStart.includes('data-mode="standard"')
-        ) {
-          finalTableStart = finalTableStart.replace(
-            /data-mode=["']simple["']/,
-            'data-mode="standard"'
-          );
-        }
+        const finalTableStart = setTableDataMode(
+          tableStart,
+          "standard"
+        );
 
         return template.replace(
           tablePattern,
@@ -848,19 +806,7 @@
         );
       }
 
-      // Ensure data-mode is preserved in tableStart for simple mode
-      let finalTableStart = tableStart;
-      if (!finalTableStart.includes("data-mode=")) {
-        finalTableStart = finalTableStart.replace(
-          /<table([^>]*)>/,
-          '<table$1 data-mode="simple">'
-        );
-      } else if (!finalTableStart.includes('data-mode="simple"')) {
-        finalTableStart = finalTableStart.replace(
-          /data-mode=["']standard["']/,
-          'data-mode="simple"'
-        );
-      }
+      const finalTableStart = setTableDataMode(tableStart, "simple");
 
       return template.replace(
         tablePattern,
@@ -895,32 +841,6 @@
       if (key !== "items") {
         template = replaceTemplateVariable(template, key, data[key]);
       }
-    });
-
-    // Clean up only orphaned braces (}} or {{ without proper pairing)
-    // Keep valid Mustache variables like {{no}}, {{date}}, etc. for preview
-    // Strategy: Remove orphaned }} that appear without a matching {{
-    // We'll do this by finding }} that are not preceded by {{
-    // First, mark all valid {{variable}} patterns temporarily
-    const validPatterns = [];
-    let patternIndex = 0;
-    template = template.replace(/\{\{[^}]*\}\}/g, (match) => {
-      const placeholder = `__VALID_PATTERN_${patternIndex}__`;
-      validPatterns.push(match);
-      patternIndex++;
-      return placeholder;
-    });
-
-    // Now remove orphaned }} and {{
-    template = template.replace(/\}\}/g, "");
-    template = template.replace(/\{\{/g, "");
-
-    // Restore valid patterns
-    validPatterns.forEach((pattern, index) => {
-      template = template.replace(
-        `__VALID_PATTERN_${index}__`,
-        pattern
-      );
     });
 
     return template;
@@ -1034,16 +954,7 @@
     // Create standard mode structure based on standard/_HeaderSale.vue
     const standardTableContent = `<tbody name="sellerInfo"><tr class="text-center"><th style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;" colspan="100%"><div class="text-body2 text-weight-500">فروشنده</div></th></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نام: <strong>{{sellerName}}</strong></td><td style="width: 15%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره ثبت: {{sellerRegNo}}</td><td style="width: 21%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره مالیاتی: {{sellerTaxNo}}</td><td style="width: 20%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شناسه ملی: {{sellerNationalNo}}</td></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;" colspan="2">نشانی: <strong>{{sellerLocation}} - </strong><span class="text-wrap">{{sellerAddress}}</span></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">کد پستی: {{sellerPostalCode}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">تلفن: {{sellerPhone}}</td></tr></tbody><tbody name="customerInfo"><tr class="text-center"><th style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;" colspan="100%"><div class="text-body2 text-weight-500">مشتری</div></th></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نام: <strong>{{customerName}}</strong></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره ثبت: {{customerRegNo}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره مالیاتی: {{customerTaxNo}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شناسه ملی: {{customerNationalNo}}</td></tr><tr><td colspan="2" style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نشانی: <strong>{{customerLocation}} - </strong><span class="text-wrap">{{customerAddress}}</span></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">کد پستی: {{customerPostalCode}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">تلفن: {{customerPhone}}</td></tr></tbody>`;
 
-    let newTableStart = tableStart.replace(
-      /data-mode=["']simple["']/,
-      'data-mode="standard"'
-    );
-    if (!newTableStart.includes("data-mode=")) {
-      newTableStart = newTableStart.replace(
-        /<table([^>]*)>/,
-        '<table$1 data-mode="standard">'
-      );
-    }
+    const newTableStart = setTableDataMode(tableStart, "standard");
 
     return template.replace(
       sellerBuyerPattern,
@@ -1067,16 +978,7 @@
     // Create simple mode structure based on simple/_HeaderSale.vue
     const simpleTableContent = `<tbody name="sellerInfo"><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div>فروشنده: <strong>{{sellerName}}</strong><span> / شناسه ملی: {{sellerNationalNo}}</span></div><div>نشانی: <strong>{{sellerLocation}} - </strong><span class="text-wrap">{{sellerAddress}}</span><span> / <strong>کد پستی:</strong> {{sellerPostalCode}}</span><span>تلفن: {{sellerPhone}}</span></div></td></tr></tbody><tbody name="customerInfo"><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div>مشتری: <strong>{{customerName}}</strong><span> / شناسه ملی: {{customerNationalNo}}</span></div><div>نشانی: <strong>{{customerLocation}} - </strong><span class="text-wrap">{{customerAddress}}</span><span> / <strong>کد پستی:</strong> {{customerPostalCode}}</span></div><div>تلفن: {{customerPhone}}</div></td></tr></tbody>`;
 
-    let newTableStart = tableStart.replace(
-      /data-mode=["']standard["']/,
-      'data-mode="simple"'
-    );
-    if (!newTableStart.includes("data-mode=")) {
-      newTableStart = newTableStart.replace(
-        /<table([^>]*)>/,
-        '<table$1 data-mode="simple">'
-      );
-    }
+    const newTableStart = setTableDataMode(tableStart, "simple");
 
     return template.replace(
       sellerBuyerPattern,
@@ -1107,16 +1009,7 @@
     const standardSummaryRow = `<tr><td colspan="6" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;"><strong>جمع کل:</strong> ({{currencyTitle}})</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalNetPrice}}</strong></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalDiscount}}</strong></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalPriceWithoutVat}}</strong></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalVat}}</strong></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalPrice}}</strong></td></tr>`;
 
     const newTableContent = `${standardHeader}${standardBodyHeader}${standardBodyRows}${standardSummaryRow}</tbody>`;
-    let newTableStart = tableStart.replace(
-      /data-mode=["']simple["']/,
-      'data-mode="standard"'
-    );
-    if (!newTableStart.includes("data-mode=")) {
-      newTableStart = newTableStart.replace(
-        /<table([^>]*)>/,
-        '<table$1 data-mode="standard">'
-      );
-    }
+    const newTableStart = setTableDataMode(tableStart, "standard");
 
     // Set default columns for standard mode
     designer.value.columns = standardColumns.map((col) => ({
@@ -1152,9 +1045,7 @@
     const simpleSummaryRows = `<tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">سرجمع: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalNetPrice}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">تخفیف: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalDiscount}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">ارزش افزوده: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalVat}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">جمع مقدار: </td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalQuantity}}</strong></td></tr><tr><td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;"><strong>جمع کل:</strong></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalPrice}}</strong> {{currencyTitle}}</td></tr>`;
 
     const newTableContent = `${simpleHeader}<tbody>${simpleBodyRows}${simpleSummaryRows}</tbody>`;
-    const newTableStart = tableStart
-      .replace(/data-mode=["']standard["']/, 'data-mode="simple"')
-      .replace(/<table([^>]*)>/, '<table$1 data-mode="simple">');
+    const newTableStart = setTableDataMode(tableStart, "simple");
 
     // Set default columns for simple mode
     initializeDefaultColumns();
@@ -1524,8 +1415,13 @@
   // Lifecycle
   // -------------------------
   onMounted(async () => {
-    await loadMediaAssets();
-    await loadTemplateConfig();
+    isLoadingTemplate.value = true;
+    try {
+      await loadMediaAssets();
+      await loadTemplateConfig();
+    } finally {
+      isLoadingTemplate.value = false;
+    }
   });
 </script>
 
@@ -1545,5 +1441,9 @@
 
   [hidden] {
     display: none !important;
+  }
+
+  .preview-card {
+    min-height: 450px;
   }
 </style>
