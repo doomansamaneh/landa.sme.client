@@ -19,15 +19,16 @@
                 <div>
                   <q-checkbox
                     dense
-                    size="48px"
+                    size="44px"
                     v-model="model.isDefault"
                     :label="$t('shared.labels.default')"
                   />
                 </div>
                 <div>
                   <q-checkbox
+                    class="q-pb-sm"
                     dense
-                    size="48px"
+                    size="44px"
                     v-model="model.isActive"
                     :label="$t('shared.labels.isActive')"
                   />
@@ -72,6 +73,16 @@
                 >
                   <q-card-section class="column q-py-sm q-px-none">
                     <div class="column q-gutter-sm">
+                      <q-checkbox
+                        class="q-pb-sm"
+                        dense
+                        size="44px"
+                        v-model="designer.isAdvancedModeSellerBuyer"
+                        label="حالت پیشرفته"
+                        @update:model-value="
+                          onAdvancedModeSellerBuyerChange
+                        "
+                      />
                       <q-toggle
                         dense
                         v-model="designer.showSellerInfo"
@@ -81,14 +92,6 @@
                         dense
                         v-model="designer.showCustomerInfo"
                         label="خریدار"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.isAdvancedModeSellerBuyer"
-                        label="حالت پیشرفته"
-                        @update:model-value="
-                          onAdvancedModeSellerBuyerChange
-                        "
                       />
                     </div>
                   </q-card-section>
@@ -101,6 +104,16 @@
                 >
                   <q-card-section class="column q-py-sm q-px-none">
                     <div class="column q-gutter-sm">
+                      <q-checkbox
+                        class="q-pb-sm"
+                        dense
+                        size="44px"
+                        v-model="designer.isAdvancedModeInvoiceItems"
+                        label="حالت پیشرفته"
+                        @update:model-value="
+                          onAdvancedModeInvoiceItemsChange
+                        "
+                      />
                       <q-toggle
                         dense
                         v-model="designer.showInvoiceItems"
@@ -110,14 +123,6 @@
                         dense
                         v-model="designer.showRemained"
                         label="مانده"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.isAdvancedModeInvoiceItems"
-                        label="حالت پیشرفته"
-                        @update:model-value="
-                          onAdvancedModeInvoiceItemsChange
-                        "
                       />
                     </div>
 
@@ -136,9 +141,7 @@
                           @dragstart="
                             col.isSelected &&
                               onColumnDragStart(
-                                designer.columns.findIndex(
-                                  (c) => c.field === col.field
-                                ),
+                                getColumnIndex(col.field),
                                 $event
                               )
                           "
@@ -146,9 +149,7 @@
                           @drop.prevent="
                             col.isSelected &&
                               onColumnDrop(
-                                designer.columns.findIndex(
-                                  (c) => c.field === col.field
-                                ),
+                                getColumnIndex(col.field),
                                 $event
                               )
                           "
@@ -404,10 +405,7 @@
     !designer.value.columns ||
     designer.value.columns.length === 0
   ) {
-    designer.value.columns = defaultColumns.map((col) => ({
-      field: col.field,
-      label: col.label,
-    }));
+    initializeDefaultColumns();
   }
 
   // -------------------------
@@ -423,10 +421,10 @@
     const customer = invoice.customerSummary || {};
     const invoiceItems = invoice.invoiceItems || [];
 
-    let totalQuantity = 0;
-    invoiceItems.forEach((item) => {
-      totalQuantity += item.quantity || 0;
-    });
+    const totalQuantity = invoiceItems.reduce(
+      (sum, item) => sum + (item.quantity || 0),
+      0
+    );
 
     return {
       invoice,
@@ -438,20 +436,18 @@
   });
 
   const allColumns = computed(() => {
-    // If in advanced mode, use standard columns, otherwise use default columns
-    if (designer.value.isAdvancedModeInvoiceItems) {
-      const standardCols = standardColumns.map((col) => ({ ...col }));
-      const customCols = (designer.value.customColumns || []).map(
-        (col) => ({ ...col })
-      );
-      return [...standardCols, ...customCols];
-    } else {
-      const defaultCols = defaultColumns.map((col) => ({ ...col }));
-      const customCols = (designer.value.customColumns || []).map(
-        (col) => ({ ...col })
-      );
-      return [...defaultCols, ...customCols];
-    }
+    const baseColumns = designer.value.isAdvancedModeInvoiceItems
+      ? standardColumns
+      : defaultColumns;
+
+    const baseCols = baseColumns.map((col) => ({ ...col }));
+    const customCols = (designer.value.customColumns || []).map(
+      (col) => ({
+        ...col,
+      })
+    );
+
+    return [...baseCols, ...customCols];
   });
 
   const columnsForDisplay = computed(() => {
@@ -459,65 +455,81 @@
       designer.value.columns.map((c) => c.field)
     );
 
-    const dragOrderMap = new Map();
-    designer.value.columns.forEach((col, index) => {
-      dragOrderMap.set(col.field, index);
-    });
+    const dragOrderMap = new Map(
+      designer.value.columns.map((col, index) => [col.field, index])
+    );
 
     const result = [];
-    let i = 0;
+    let currentIndex = 0;
 
-    while (i < allColumns.value.length) {
-      const col = allColumns.value[i];
+    while (currentIndex < allColumns.value.length) {
+      const column = allColumns.value[currentIndex];
 
-      if (selectedFields.has(col.field)) {
-        const consecutiveSelected = [];
-        let j = i;
-        while (
-          j < allColumns.value.length &&
-          selectedFields.has(allColumns.value[j].field)
-        ) {
-          consecutiveSelected.push(allColumns.value[j]);
-          j++;
-        }
+      if (selectedFields.has(column.field)) {
+        const consecutiveSelected = collectConsecutiveSelected(
+          currentIndex,
+          selectedFields
+        );
 
-        const sortedConsecutive = consecutiveSelected
-          .map((c) => {
-            const selectedCol = designer.value.columns.find(
-              (sc) => sc.field === c.field
-            );
-            return {
-              ...c,
-              ...(selectedCol || {}),
-              isSelected: true,
-              dragIndex: dragOrderMap.get(c.field),
-            };
-          })
-          .sort((a, b) => a.dragIndex - b.dragIndex);
+        const sortedSelected = sortColumnsByDragOrder(
+          consecutiveSelected,
+          dragOrderMap
+        );
 
-        result.push(...sortedConsecutive);
-        i = j;
+        result.push(...sortedSelected);
+        currentIndex += consecutiveSelected.length;
       } else {
         result.push({
-          ...col,
+          ...column,
           isSelected: false,
         });
-        i++;
+        currentIndex++;
       }
     }
 
     return result;
   });
 
+  function collectConsecutiveSelected(startIndex, selectedFields) {
+    const consecutive = [];
+    let index = startIndex;
+
+    while (
+      index < allColumns.value.length &&
+      selectedFields.has(allColumns.value[index].field)
+    ) {
+      consecutive.push(allColumns.value[index]);
+      index++;
+    }
+
+    return consecutive;
+  }
+
+  function sortColumnsByDragOrder(columns, dragOrderMap) {
+    return columns
+      .map((col) => {
+        const selectedCol = designer.value.columns.find(
+          (sc) => sc.field === col.field
+        );
+        return {
+          ...col,
+          ...(selectedCol || {}),
+          isSelected: true,
+          dragIndex: dragOrderMap.get(col.field),
+        };
+      })
+      .sort((a, b) => a.dragIndex - b.dragIndex);
+  }
+
   const columnCheckboxState = computed(() => {
-    const state = {};
     const selectedFields = new Set(
       designer.value.columns.map((c) => c.field)
     );
-    allColumns.value.forEach((col) => {
+
+    return allColumns.value.reduce((state, col) => {
       state[col.field] = selectedFields.has(col.field);
-    });
-    return state;
+      return state;
+    }, {});
   });
 
   const renderedTemplate = computed(() => {
@@ -621,8 +633,9 @@
   // Helper Functions
   // -------------------------
   function formatNumber(value) {
-    if (typeof value === "number")
+    if (typeof value === "number") {
       return helper.formatNumber(value ?? 0);
+    }
     return value ?? 0;
   }
 
@@ -636,11 +649,23 @@
 
   function getProductDisplayText(item) {
     if (item.productDisplay) return item.productDisplay;
-    if (item.productCode && item.productTitle)
+    if (item.productCode && item.productTitle) {
       return `${item.productCode} - ${item.productTitle}`;
+    }
     if (item.productTitle) return item.productTitle;
     if (item.productCode) return item.productCode;
     return "";
+  }
+
+  function getColumnIndex(field) {
+    return designer.value.columns.findIndex((c) => c.field === field);
+  }
+
+  function initializeDefaultColumns() {
+    designer.value.columns = defaultColumns.map((col) => ({
+      field: col.field,
+      label: col.label,
+    }));
   }
 
   // -------------------------
@@ -679,7 +704,7 @@
 
     if (isStandardMode) {
       // Standard mode: header row is in tbody, and there's a thead with title
-      const theadTitle = `<thead><tr class="text-center" style="background-color: #f0f0f0"><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;" colspan="100%"><div class="text-body2 text-weight-500">جزئیات کالا / خدمت</div></td></tr></thead>`;
+      const theadTitle = `<thead><tr class="text-center"><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;" colspan="100%"><div class="text-body2 text-weight-500">جزئیات کالا / خدمت</div></th></tr></thead>`;
 
       let headerRowHtml = "";
       selectedColumns.forEach(
@@ -1007,7 +1032,7 @@
     if (tableStart.includes('data-mode="standard"')) return template;
 
     // Create standard mode structure based on standard/_HeaderSale.vue
-    const standardTableContent = `<tbody name="sellerInfo"><tr class="bg-on-dark text-center" style="background-color: #f0f0f0"><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;" colspan="100%"><div class="text-body2 text-weight-500">فروشنده</div></td></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نام: <strong>{{sellerName}}</strong></td><td style="width: 15%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره ثبت: {{sellerRegNo}}</td><td style="width: 21%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره مالیاتی: {{sellerTaxNo}}</td><td style="width: 20%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شناسه ملی: {{sellerNationalNo}}</td></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;" colspan="2">نشانی: <strong>{{sellerLocation}} - </strong><span class="text-wrap">{{sellerAddress}}</span></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">کد پستی: {{sellerPostalCode}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">تلفن: {{sellerPhone}}</td></tr></tbody><tbody name="customerInfo"><tr class="bg-on-dark text-center" style="background-color: #f0f0f0"><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;" colspan="100%"><div class="text-body2 text-weight-500">مشتری</div></td></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نام: <strong>{{customerName}}</strong></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره ثبت: {{customerRegNo}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره مالیاتی: {{customerTaxNo}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شناسه ملی: {{customerNationalNo}}</td></tr><tr><td colspan="2" style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نشانی: <strong>{{customerLocation}} - </strong><span class="text-wrap">{{customerAddress}}</span></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">کد پستی: {{customerPostalCode}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">تلفن: {{customerPhone}}</td></tr></tbody>`;
+    const standardTableContent = `<tbody name="sellerInfo"><tr class="text-center"><th style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;" colspan="100%"><div class="text-body2 text-weight-500">فروشنده</div></th></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نام: <strong>{{sellerName}}</strong></td><td style="width: 15%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره ثبت: {{sellerRegNo}}</td><td style="width: 21%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره مالیاتی: {{sellerTaxNo}}</td><td style="width: 20%; border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شناسه ملی: {{sellerNationalNo}}</td></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;" colspan="2">نشانی: <strong>{{sellerLocation}} - </strong><span class="text-wrap">{{sellerAddress}}</span></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">کد پستی: {{sellerPostalCode}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">تلفن: {{sellerPhone}}</td></tr></tbody><tbody name="customerInfo"><tr class="text-center"><th style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;" colspan="100%"><div class="text-body2 text-weight-500">مشتری</div></th></tr><tr><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نام: <strong>{{customerName}}</strong></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره ثبت: {{customerRegNo}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شماره مالیاتی: {{customerTaxNo}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">شناسه ملی: {{customerNationalNo}}</td></tr><tr><td colspan="2" style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">نشانی: <strong>{{customerLocation}} - </strong><span class="text-wrap">{{customerAddress}}</span></td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">کد پستی: {{customerPostalCode}}</td><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;">تلفن: {{customerPhone}}</td></tr></tbody>`;
 
     let newTableStart = tableStart.replace(
       /data-mode=["']simple["']/,
@@ -1073,7 +1098,7 @@
     // This ensures the template is always in the correct state
 
     // Create standard mode header and body based on standard/_BodySection.vue
-    const standardHeader = `<thead><tr class="bg-on-dark text-center"><td style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;" colspan="100%"><div class="text-body2 text-weight-500">جزئیات کالا / خدمت</div></td></tr></thead>`;
+    const standardHeader = `<thead><tr class="text-center"><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;" colspan="100%"><div class="text-body2 text-weight-500">جزئیات کالا / خدمت</div></th></tr></thead>`;
     const standardBodyHeader = `<tbody><tr><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">ردیف</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">کد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">عنوان کالا</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">تعداد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">واحد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ واحد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">جمع کل</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ تخفیف</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ خالص</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ مالیات</td><td style="min-width: 100px; padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">جمع کل <span class="text-weight-700">({{currencyTitle}})</span></td></tr>`;
     const standardBodyRows = `{{#items}}<tr><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{rowNo}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{productCode}}<small>{{productTaxCode}}</small></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><div class="text-wrap">{{productTitle}}<small>({{comment}}{{productComment}})</small></div></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantity}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{productUnitTitle}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{price}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantityPrice}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{discount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{netAmount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{vatAmount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{totalPrice}}</td></tr>{{/items}}`;
 
@@ -1132,10 +1157,7 @@
       .replace(/<table([^>]*)>/, '<table$1 data-mode="simple">');
 
     // Set default columns for simple mode
-    designer.value.columns = defaultColumns.map((col) => ({
-      field: col.field,
-      label: col.label,
-    }));
+    initializeDefaultColumns();
 
     return template.replace(
       itemsPattern,
@@ -1157,20 +1179,14 @@
 
   function onAdvancedModeInvoiceItemsChange(value) {
     // Force conversion by temporarily removing data-mode to ensure it always converts
-    let tempTemplate = templateHtml.value;
-
-    // Remove data-mode temporarily to force conversion
-    tempTemplate = tempTemplate.replace(
+    const tempTemplate = templateHtml.value.replace(
       /data-mode=["'](standard|simple)["']/g,
       ""
     );
 
-    if (value) {
-      templateHtml.value =
-        convertInvoiceItemsToStandard(tempTemplate);
-    } else {
-      templateHtml.value = convertInvoiceItemsToSimple(tempTemplate);
-    }
+    templateHtml.value = value
+      ? convertInvoiceItemsToStandard(tempTemplate)
+      : convertInvoiceItemsToSimple(tempTemplate);
   }
 
   // -------------------------
@@ -1179,37 +1195,36 @@
   function toggleColumn(col) {
     if (isDragging.value) return;
 
-    const currentIndex = designer.value.columns.findIndex(
-      (c) => c.field === col.field
-    );
+    const currentIndex = getColumnIndex(col.field);
 
     if (currentIndex > -1) {
       designer.value.columns.splice(currentIndex, 1);
     } else {
-      const allColIndex = allColumns.value.findIndex(
-        (c) => c.field === col.field
-      );
-
-      let insertIndex = -1;
-      for (let i = allColIndex - 1; i >= 0; i--) {
-        const previousColumn = allColumns.value[i];
-        const previousColumnIndex = designer.value.columns.findIndex(
-          (c) => c.field === previousColumn.field
-        );
-        if (previousColumnIndex > -1) {
-          insertIndex = previousColumnIndex + 1;
-          break;
-        }
-      }
-
-      if (insertIndex === -1) insertIndex = 0;
-
+      const insertIndex = findInsertIndexForColumn(col.field);
       designer.value.columns.splice(insertIndex, 0, {
         field: col.field,
         label: col.label,
       });
-      columnCheckboxState.value[col.field] = true;
     }
+  }
+
+  function findInsertIndexForColumn(field) {
+    const allColIndex = allColumns.value.findIndex(
+      (c) => c.field === field
+    );
+
+    for (let i = allColIndex - 1; i >= 0; i--) {
+      const previousColumn = allColumns.value[i];
+      const previousColumnIndex = getColumnIndex(
+        previousColumn.field
+      );
+
+      if (previousColumnIndex > -1) {
+        return previousColumnIndex + 1;
+      }
+    }
+
+    return 0;
   }
 
   function onColumnDragStart(index, event) {
@@ -1448,17 +1463,15 @@
       !designer.value.columns ||
       designer.value.columns.length === 0
     ) {
-      designer.value.columns = defaultColumns.map((col) => ({
-        field: col.field,
-        label: col.label,
-      }));
+      initializeDefaultColumns();
     }
   }
 
   async function loadMediaAssets() {
     try {
-      if (!appConfigStore.model.value?.companySetting?.id)
+      if (!appConfigStore.model.value?.companySetting?.id) {
         await appConfigStore.reloadData?.();
+      }
       appConfigStore.resetAvatars?.();
 
       const [logo, signature] = await Promise.all([
@@ -1476,7 +1489,9 @@
 
       logoSrc.value = logo || "";
       signatureSrc.value = signature || "";
-    } catch (error) {}
+    } catch (error) {
+      // Silently handle errors
+    }
   }
 
   // -------------------------
@@ -1490,7 +1505,6 @@
       finalTemplate,
       designer.value
     );
-
     finalTemplate = replaceTemplateVariable(
       finalTemplate,
       "logoSrc",

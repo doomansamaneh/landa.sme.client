@@ -14,10 +14,9 @@
     >
       <tbody v-if="appConfigStore.model?.value?.companySetting">
         <tr
-          class="bg-on-dark text-center"
-          style="background-color: #f0f0f0"
+          class="text-center"
         >
-          <td
+          <th
             style="
               padding: 5px;
               border-width: 1px;
@@ -29,7 +28,7 @@
             <div class="text-body2 text-weight-500">
               {{ $t("shared.labels.seller") }}
             </div>
-          </td>
+          </th>
         </tr>
         <tr>
           <td
@@ -127,10 +126,9 @@
       </tbody>
       <tbody>
         <tr
-          class="bg-on-dark text-center"
-          style="background-color: #f0f0f0"
+          class="text-center"
         >
-          <td
+          <th
             style="
               padding: 5px;
               border-width: 1px;
@@ -142,7 +140,7 @@
             <div class="text-body2 text-weight-500">
               {{ $t("shared.labels.customer") }}
             </div>
-          </td>
+          </th>
         </tr>
         <tr>
           <td

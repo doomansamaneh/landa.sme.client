@@ -13,10 +13,9 @@
     >
       <thead>
         <tr
-          class="bg-on-dark text-center"
-          style="background-color: #f0f0f0"
+          class="text-center"
         >
-          <td
+          <th
             style="
               border-width: 1px;
               border-style: solid;
@@ -28,7 +27,7 @@
             <div class="text-body2 text-weight-500">
               {{ $t("shared.labels.productOrServiceDetails") }}
             </div>
-          </td>
+          </th>
         </tr>
       </thead>
       <tbody>
