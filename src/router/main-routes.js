@@ -1248,6 +1248,14 @@ export default {
             import("pages/areas/cmn/documentTemplate/CopyPage.vue"),
           meta: { title: "الگوی چاپ - کپی" },
         },
+        {
+          path: "preview",
+          component: () =>
+            import(
+              "pages/areas/cmn/documentTemplate/PreviewPage.vue"
+            ),
+          meta: { title: "پیش‌نمایش قالب" },
+        },
       ],
     },
 
