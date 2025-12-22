@@ -95,10 +95,12 @@
               <div class="text-bold text-caption">
                 {{
                   helper.formatNumberReadable(
-                    helper.getSubtotal(
-                      tableStore.selectedRows.value,
-                      "amount"
-                    )
+                    helper
+                      .getSubtotal(
+                        tableStore.selectedRows.value,
+                        "amount"
+                      )
+                      .toNumber()
                   )
                 }}
               </div>
@@ -106,10 +108,12 @@
 
             <div
               v-if="
-                helper.getSubtotal(
-                  tableStore.selectedRows.value,
-                  'remainedAmount'
-                )
+                helper
+                  .getSubtotal(
+                    tableStore.selectedRows.value,
+                    'remainedAmount'
+                  )
+                  .toNumber() > 0
               "
               class="row q-gutter-xs q-pt-xs"
             >
@@ -119,10 +123,12 @@
               <div class="text-bold text-caption">
                 {{
                   helper.formatNumberReadable(
-                    helper.getSubtotal(
-                      tableStore.selectedRows.value,
-                      "remainedAmount"
-                    )
+                    helper
+                      .getSubtotal(
+                        tableStore.selectedRows.value,
+                        "remainedAmount"
+                      )
+                      .toNumber()
                   )
                 }}
               </div>

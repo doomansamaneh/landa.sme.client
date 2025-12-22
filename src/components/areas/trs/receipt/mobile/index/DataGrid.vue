@@ -8,7 +8,45 @@
     show-badge_
   >
     <template #header>
-      <template></template>
+      <q-input
+        outlined
+        rounded
+        dense
+        class="searchbox text-body2"
+        v-model="pagination.searchTerm"
+        :placeholder="$t('page.card-searchbar')"
+        @keydown.enter="resetPage"
+      >
+        <template #prepend>
+          <q-icon
+            name="search"
+            class="search-icon cursor-pointer"
+            size="sm"
+            color="primary"
+          />
+        </template>
+
+        <template #append>
+          <q-icon
+            v-if="!isSearchEmpty"
+            name="clear"
+            class="cursor-pointer"
+            size="16px"
+            color="primary"
+            @click="clearSearch"
+          />
+          <q-btn
+            no-caps
+            round
+            unelevated
+            dense
+            icon="o_refresh"
+            size="12px"
+            class="text-on-dark"
+            @click="resetPage"
+          />
+        </template>
+      </q-input>
     </template>
 
     <template #row-avatar-title="{ item }">
@@ -63,6 +101,7 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
@@ -79,6 +118,27 @@
     baseRoute: { type: String, default: "trs/receipt" },
     title: String,
   });
+
+  const pagination = computed(
+    () => props.tableStore?.pagination?.value
+  );
+  const isSearchEmpty = computed(
+    () => !pagination.value?.searchTerm?.trim()
+  );
+
+  async function resetPage() {
+    if (pagination.value) {
+      pagination.value.currentPage = 1;
+      await props.tableStore?.reloadData();
+    }
+  }
+
+  async function clearSearch() {
+    if (pagination.value) {
+      pagination.value.searchTerm = "";
+      await resetPage();
+    }
+  }
 
   function getItemMenu(item) {
     const context = usePreviewMenuContext(item, props.baseRoute, {
