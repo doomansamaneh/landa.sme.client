@@ -1,5 +1,5 @@
 <template>
-  <data-grid-summary :table-store="tableStore" class="q-mb-md" />
+  <data-grid-summary :table-store="tableStore" class="q-mb-sm" />
   <data-grid
     :table-store="tableStore"
     :title="title"

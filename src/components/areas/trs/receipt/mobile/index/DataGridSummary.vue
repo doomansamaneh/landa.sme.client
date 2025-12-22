@@ -1,26 +1,27 @@
 <template>
-  <div class="column q-gutter-sm">
+  <div class="column q-gutter-xs">
     <q-card class="text-white bordered primary-gradient">
-      <q-card-section>
-        <div class="row items-center q-gutter-xs">
-          <div class="col-2">
+      <q-card-section class="q-pa-sm">
+        <div class="row items-center q-gutter-sm">
+          <div class="col-auto">
             <q-btn
               no-caps
               round
               dense
               unelevated
-              class="bg-white text-dark text-body1 text-bold no-pointer-events"
+              size="md"
+              class="bg-white text-dark text-body3 text-bold no-pointer-events"
             >
               {{ tableStore?.pagination.value.totalItems }}
             </q-btn>
           </div>
 
           <div class="col">
-            <div class="row q-gutter-xs">
-              <div class="text-caption">
+            <div class="row q-gutter-xs items-center">
+              <div class="text-body3">
                 {{ $t("shared.labels.total") }}:
               </div>
-              <div class="text-bold text-white text-caption">
+              <div class="text-bold text-white text-body3">
                 {{
                   helper.formatNumber(
                     tableStore?.summaryData?.value?.amount
@@ -31,12 +32,12 @@
 
             <div
               v-if="tableStore?.summaryData?.value?.payedAmount"
-              class="row q-gutter-xs q-pt-xs"
+              class="row q-gutter-xs items-center"
             >
-              <div class="text-caption">
+              <div class="text-body3">
                 {{ $t("shared.labels.received") }}:
               </div>
-              <div class="text-bold text-white text-caption">
+              <div class="text-bold text-white text-body3">
                 {{
                   helper.formatNumber(
                     tableStore?.summaryData?.value?.payedAmount
@@ -47,12 +48,12 @@
 
             <div
               v-if="tableStore?.summaryData?.value?.remainedAmount"
-              class="row q-gutter-xs q-pt-xs"
+              class="row q-gutter-xs items-center"
             >
-              <div class="text-caption">
+              <div class="text-body3">
                 {{ $t("shared.columns.remained") }}:
               </div>
-              <div class="text-bold text-white text-caption">
+              <div class="text-bold text-white text-body3">
                 {{
                   helper.formatNumber(
                     tableStore?.summaryData?.value?.remainedAmount
@@ -69,25 +70,26 @@
       class="bordered grid-subtotal"
       v-if="tableStore?.selectedRows?.value.length > 1"
     >
-      <q-card-section>
-        <div class="row items-center q-gutter-xs">
-          <div class="col-2">
+      <q-card-section class="q-pa-sm">
+        <div class="row items-center q-gutter-sm">
+          <div class="col-auto">
             <q-btn
               no-caps
               round
               dense
               unelevated
-              class="bg-white text-primary text-body1 text-bold no-pointer-events"
+              size="md"
+              class="bg-white text-primary text-body3 text-bold no-pointer-events"
             >
-              <q-icon size="28px" name="o_done" />
+              <q-icon size="20px" name="o_done" />
             </q-btn>
           </div>
           <div class="col">
-            <div class="row q-gutter-xs">
-              <div class="text-caption">
+            <div class="row q-gutter-xs items-center">
+              <div class="text-body3">
                 {{ $t("shared.labels.total") }}:
               </div>
-              <div class="text-bold text-caption">
+              <div class="text-bold text-body3">
                 {{
                   helper.formatNumber(
                     helper
@@ -110,12 +112,12 @@
                   )
                   .toNumber() > 0
               "
-              class="row q-gutter-xs q-pt-xs"
+              class="row q-gutter-xs items-center"
             >
-              <div class="text-caption">
+              <div class="text-body3">
                 {{ $t("shared.columns.remained") }}:
               </div>
-              <div class="text-bold text-caption">
+              <div class="text-bold text-body3">
                 {{
                   helper.formatNumber(
                     helper
