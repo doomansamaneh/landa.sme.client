@@ -1,11 +1,6 @@
 <template>
   <div class="column q-gutter-sm">
     <q-card class="text-white bordered primary-gradient">
-      <div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-      </div>
       <q-card-section>
         <div class="row items-center q-gutter-xs">
           <div class="col-2">
