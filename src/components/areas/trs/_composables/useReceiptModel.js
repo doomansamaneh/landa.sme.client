@@ -13,6 +13,7 @@ export function useReceiptModel({ baseRoute, preview }) {
   const model = ref(receiptModel);
   const isAddingItem = ref(false);
   const validationErrors = ref({});
+  const invoiceId = ref(null);
 
   const crudStore = useFormActions(baseRoute, model);
   const formItemStore = useFormItemsModel();
@@ -21,12 +22,13 @@ export function useReceiptModel({ baseRoute, preview }) {
     let responseData = null;
     if (id) {
       if (preview) responseData = await crudStore.getPreviewById(id);
-      else if (action === "createFromInvoice")
+      else if (action === "createFromInvoice") {
+        invoiceId.value = id; // Store invoice ID for navigation after save
         responseData = await crudStore.getById(
           id,
           `${baseRoute}/createFromInvoice`
         );
-      else responseData = await crudStore.getById(id);
+      } else responseData = await crudStore.getById(id);
     } else responseData = await crudStore.getCreateModel(setItems);
 
     setItems();
@@ -123,7 +125,12 @@ export function useReceiptModel({ baseRoute, preview }) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
       //stateStore.state.firstLoad.value = false;
-      router.back();
+      // If created from invoice, navigate to invoice list page
+      if (invoiceId.value) {
+        router.push(`/sls/invoice`);
+      } else {
+        router.back();
+      }
     }
   }
 
