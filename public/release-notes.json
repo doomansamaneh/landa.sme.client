@@ -1,4 +1,8 @@
 {
+  "1.0.15": {
+    "fa-IR": ["بهینه‌سازی نمایش پیامها"],
+    "en-US": ["Optimize messages"]
+  },
   "1.0.14": {
     "fa-IR": ["بهینه سازی برای app موبایل"],
     "en-US": ["Optimize app mobile"]

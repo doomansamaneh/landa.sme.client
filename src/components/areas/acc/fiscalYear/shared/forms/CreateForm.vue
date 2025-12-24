@@ -22,7 +22,6 @@
             <custom-input
               :label="$t('shared.labels.fiscalYear')"
               type="number"
-              hide-bottom-space
               v-model="formStore.model.value.year"
               required
             />
@@ -61,14 +60,11 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useI18n } from "vue-i18n";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

@@ -12,8 +12,8 @@ export default ({ app }) => {
   i18nInstance = createI18n({
     legacy: false,
     useGlobal: true,
+    globalInjection: true,
     locale: localStorage.getItem("selectedLanguage") || "fa-IR",
-    Injection: true,
     messages,
   });
 
