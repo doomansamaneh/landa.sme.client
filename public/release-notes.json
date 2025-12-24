@@ -1,4 +1,14 @@
 {
+  "1.0.16": {
+    "fa-IR": [
+      "افزودن جستجوی ساده در فاکتور، دریافت، پرداخت نسخه موبایل",
+      "برگشت از فرم دریافت پس از ثبت فاکتور به فهرست فاکتورها"
+    ],
+    "en-US": [
+      "Add simple search in invoice, payment, reception mobile version",
+      "Return to invoice list after creating reception"
+    ]
+  },
   "1.0.15": {
     "fa-IR": ["بهینه‌سازی نمایش پیامها"],
     "en-US": ["Optimize messages"]
