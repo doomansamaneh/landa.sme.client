@@ -110,7 +110,6 @@
           <q-badge
             v-if="value > 0"
             :color="getBadgeColor(key)"
-            text-color="white"
             class="text-body3"
           >
             {{ $t(`shared.accountType.${key}`) }}:
