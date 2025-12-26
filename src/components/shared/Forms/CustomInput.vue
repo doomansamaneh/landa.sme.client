@@ -1,41 +1,43 @@
 <template>
-  <custom-label class="q-mb-sm" :label="label" />
-  <q-input
-    v-model="modelValue"
-    outlined
-    dense
-    clear-icon="clear"
-    :input-class="inputClass"
-    color="primary"
-    hide-bottom-space
-    :disable="disable"
-    :readonly="readonly"
-    :mask="mask"
-    :type="type"
-    :clearable="clearable"
-    :debounce="debounce"
-    :maxlength="maxlength"
-    :placeholder="placeholder"
-    lazy-rules
-    :rounded="rounded"
-    :rules="rules"
-    :autogrow="autogrow"
-    :inputmode="inputmode"
-    :autofocus="autofocus"
-    @keydown="$emit('keydown', $event)"
-    @clear="$emit('clear')"
-  >
-    <validation-alert
-      v-if="validationMessage"
-      :message="validationMessage"
-    />
-    <template v-if="hasPrepend" #prepend>
-      <slot name="prepend"></slot>
-    </template>
-    <template v-if="hasAppend" #append>
-      <slot name="append"></slot>
-    </template>
-  </q-input>
+  <div>
+    <custom-label class="q-mb-sm" :label="label" />
+    <q-input
+      v-model="modelValue"
+      outlined
+      dense
+      clear-icon="clear"
+      :input-class="inputClass"
+      color="primary"
+      hide-bottom-space
+      :disable="disable"
+      :readonly="readonly"
+      :mask="mask"
+      :type="type"
+      :clearable="clearable"
+      :debounce="debounce"
+      :maxlength="maxlength"
+      :placeholder="placeholder"
+      lazy-rules
+      :rounded="rounded"
+      :rules="rules"
+      :autogrow="autogrow"
+      :inputmode="inputmode"
+      :autofocus="autofocus"
+      @keydown="$emit('keydown', $event)"
+      @clear="$emit('clear')"
+    >
+      <validation-alert
+        v-if="validationMessage"
+        :message="validationMessage"
+      />
+      <template v-if="hasPrepend" #prepend>
+        <slot name="prepend"></slot>
+      </template>
+      <template v-if="hasAppend" #append>
+        <slot name="append"></slot>
+      </template>
+    </q-input>
+  </div>
 </template>
 
 <script setup>

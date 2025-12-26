@@ -15,7 +15,7 @@
                 v-model="model.title"
                 required
               />
-              <div class="column q-gutter-sm q-pt-md">
+              <div class="column q-gutter-md q-pt-md">
                 <div>
                   <q-checkbox
                     dense
@@ -36,33 +36,36 @@
               </div>
             </q-card-section>
           </q-card>
-          <q-card bordered>
-            <q-card-section>
+          <q-card bordered class="overflow-hidden">
+            <q-card-section class="q-pa-none">
               <q-list separator class="rounded-borders">
                 <q-expansion-item
                   icon="o_description"
                   label="سربرگ"
                   default-opened
                   class="settings-expansion-item"
+                  group="settings"
                 >
-                  <q-card-section class="column q-py-sm q-px-none">
-                    <div class="column q-gutter-sm q-pb-md">
-                      <q-toggle
-                        dense
-                        v-model="designer.showHeader"
-                        label="سربرگ"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showLogo"
-                        label="لوگو"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showInvoiceInfo"
-                        label="شماره و تاریخ"
-                      />
-                    </div>
+                  <q-card-section class="column q-gutter-md q-pt-sm">
+                    <custom-input
+                      :label="$t('shared.labels.invoiceTitleInPrint')"
+                      v-model="headerTitle"
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showHeader"
+                      label="سربرگ"
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showLogo"
+                      label="لوگو"
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showInvoiceInfo"
+                      label="شماره و تاریخ"
+                    />
                   </q-card-section>
                 </q-expansion-item>
 
@@ -70,30 +73,29 @@
                   icon="o_people"
                   label="فروشنده و خریدار"
                   class="settings-expansion-item"
+                  group="settings"
                 >
-                  <q-card-section class="column q-py-sm q-px-none">
-                    <div class="column q-gutter-sm">
-                      <q-checkbox
-                        class="q-pb-sm"
-                        dense
-                        size="44px"
-                        v-model="designer.isAdvancedModeSellerBuyer"
-                        label="حالت پیشرفته"
-                        @update:model-value="
-                          onAdvancedModeSellerBuyerChange
-                        "
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showSellerInfo"
-                        label="فروشنده"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showCustomerInfo"
-                        label="خریدار"
-                      />
-                    </div>
+                  <q-card-section class="column q-gutter-md q-pt-sm">
+                    <q-checkbox
+                      class="q-pb-sm"
+                      dense
+                      size="44px"
+                      v-model="designer.isAdvancedModeSellerBuyer"
+                      label="حالت پیشرفته"
+                      @update:model-value="
+                        onAdvancedModeSellerBuyerChange
+                      "
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showSellerInfo"
+                      label="فروشنده"
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showCustomerInfo"
+                      label="خریدار"
+                    />
                   </q-card-section>
                 </q-expansion-item>
 
@@ -101,32 +103,31 @@
                   icon="o_table_chart"
                   label="اقلام فاکتور"
                   class="settings-expansion-item"
+                  group="settings"
                 >
-                  <q-card-section class="column q-py-sm q-px-none">
-                    <div class="column q-gutter-sm">
-                      <q-checkbox
-                        class="q-pb-sm"
-                        dense
-                        size="44px"
-                        v-model="designer.isAdvancedModeInvoiceItems"
-                        label="حالت پیشرفته"
-                        @update:model-value="
-                          onAdvancedModeInvoiceItemsChange
-                        "
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showInvoiceItems"
-                        label="اقلام فاکتور"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showRemained"
-                        label="مانده"
-                      />
-                    </div>
+                  <q-card-section class="column q-gutter-md q-pt-sm">
+                    <q-checkbox
+                      class="q-pb-sm"
+                      dense
+                      size="44px"
+                      v-model="designer.isAdvancedModeInvoiceItems"
+                      label="حالت پیشرفته"
+                      @update:model-value="
+                        onAdvancedModeInvoiceItemsChange
+                      "
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showInvoiceItems"
+                      label="اقلام فاکتور"
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showRemained"
+                      label="مانده"
+                    />
 
-                    <q-list separator class="rounded-borders q-mt-sm">
+                    <q-list separator class="rounded-borders">
                       <template
                         v-for="col in columnsForDisplay"
                         :key="`col-${col.field}`"
@@ -154,6 +155,7 @@
                           @dragend="
                             col.isSelected && onColumnDragEnd($event)
                           "
+                          class="q-px-none"
                         >
                           <q-item-section avatar>
                             <q-icon
@@ -189,30 +191,37 @@
                   icon="o_description"
                   label="پاورقی"
                   class="settings-expansion-item"
+                  group="settings"
                 >
-                  <q-card-section class="column q-py-sm q-px-none">
-                    <div class="column q-gutter-sm">
-                      <q-toggle
-                        dense
-                        v-model="designer.showFooter"
-                        label="پاورقی"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showSummary"
-                        label="شرح"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showContract"
-                        label="قرارداد"
-                      />
-                      <q-toggle
-                        dense
-                        v-model="designer.showSignature"
-                        label="امضا"
-                      />
-                    </div>
+                  <q-card-section class="column q-gutter-md q-pt-sm">
+                    <q-toggle
+                      dense
+                      v-model="designer.showFooter"
+                      label="پاورقی"
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showSummary"
+                      label="شرح"
+                    />
+
+                    <custom-input
+                      :label="$t('shared.labels.invoiceDescription')"
+                      v-model="footerNote"
+                      type="textarea"
+                      autogrow
+                    />
+
+                    <q-toggle
+                      dense
+                      v-model="designer.showContract"
+                      label="قرارداد"
+                    />
+                    <q-toggle
+                      dense
+                      v-model="designer.showSignature"
+                      label="امضا"
+                    />
                   </q-card-section>
                 </q-expansion-item>
               </q-list>
@@ -297,6 +306,8 @@
     loadMediaAssets,
     buildFinalTemplate,
     replaceTemplateVariable,
+    headerTitle,
+    footerNote,
   } = useDocumentTemplate(defaultTemplate);
 
   // -------------------------
@@ -341,10 +352,6 @@
 </script>
 
 <style lang="scss">
-  .settings-expansion-item .q-item {
-    padding: 0 !important;
-  }
-
   .draggable-item {
     cursor: grab !important;
 

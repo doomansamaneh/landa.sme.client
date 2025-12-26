@@ -18,15 +18,15 @@ const defaultColumns = [
 const standardColumns = [
   { field: "rowNo", label: "ردیف" },
   { field: "productCode", label: "کد" },
-  { field: "productTitle", label: "عنوان کالا" },
-  { field: "quantity", label: "تعداد" },
-  { field: "productUnitTitle", label: "واحد" },
+  { field: "productDisplay", label: "کالا / خدمت" },
+  { field: "quantity", label: "تعداد/مقدار" },
+  { field: "productUnitTitle", label: "واحد سنجش" },
   { field: "price", label: "مبلغ واحد" },
   { field: "quantityPrice", label: "جمع کل" },
-  { field: "discount", label: "مبلغ تخفیف" },
+  { field: "discount", label: "تخفیف" },
   { field: "netAmount", label: "مبلغ خالص" },
-  { field: "vatAmount", label: "مبلغ مالیات" },
-  { field: "totalPrice", label: "جمع کل" },
+  { field: "vatAmount", label: "ارزش افزوده" },
+  { field: "totalPrice", label: "جمع کل (ریال)" },
 ];
 
 export function useDocumentTemplate(defaultTemplate) {
@@ -39,6 +39,29 @@ export function useDocumentTemplate(defaultTemplate) {
   const isDragging = ref(false);
   const templateHtml = ref("");
   const isLoadingTemplate = ref(false);
+  const headerTitle = computed({
+    get: () =>
+      appConfigStore.model.value?.companySetting?.invoiceTitle ||
+      "صورتحساب فروش کالا و خدمات",
+    set: (value) => {
+      if (!appConfigStore.model.value.companySetting) {
+        appConfigStore.model.value.companySetting = {};
+      }
+      appConfigStore.model.value.companySetting.invoiceTitle = value;
+    },
+  });
+  const footerNote = computed({
+    get: () =>
+      appConfigStore.model.value?.companySetting?.invoiceComment ||
+      "",
+    set: (value) => {
+      if (!appConfigStore.model.value.companySetting) {
+        appConfigStore.model.value.companySetting = {};
+      }
+      appConfigStore.model.value.companySetting.invoiceComment =
+        value;
+    },
+  });
 
   const designer = ref({
     showHeader: true,
@@ -275,6 +298,8 @@ export function useDocumentTemplate(defaultTemplate) {
       sellerPhone: company?.phone || "",
       logoSrc: logoSrc.value,
       signatureSrc: signatureSrc.value,
+      headerTitle: headerTitle.value,
+      footerNote: footerNote.value,
       remainedPayedAmount: formatNumber(remained.payedAmount),
       remainedAmount: formatNumber(remained.remained),
       remainedOtherRemained: formatNumber(remained.otherRemained),
@@ -309,6 +334,13 @@ export function useDocumentTemplate(defaultTemplate) {
       templateData
     );
     html = applyVisibilitySettings(html, designer.value);
+
+    // Remove "شرح" text from summary section in advanced mode
+    if (designer.value.isAdvancedModeInvoiceItems) {
+      const summaryPattern =
+        /(<tr[^>]*name=["']summary["'][^>]*>[\s\S]*?<td[^>]*>)\s*<strong>شرح<\/strong>\s*/;
+      html = html.replace(summaryPattern, "$1");
+    }
 
     return html;
   });
@@ -398,7 +430,7 @@ export function useDocumentTemplate(defaultTemplate) {
 
     if (isStandardMode) {
       // Standard mode: header row is in tbody, and there's a thead with title
-      const theadTitle = `<thead><tr class="text-center"><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;" colspan="100%"><div class="text-body2 text-weight-500">جزئیات کالا / خدمت</div></th></tr></thead>`;
+      const theadTitle = `<thead><tr class="text-center"><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;" colspan="100%"><div class="text-body2 text-weight-500">مشخصات کالا یا خدمات مورد معامله</div></th></tr></thead>`;
 
       let headerRowHtml = "";
       selectedColumns.forEach(
@@ -723,9 +755,9 @@ export function useDocumentTemplate(defaultTemplate) {
     // This ensures the template is always in the correct state
 
     // Create standard mode header and body based on standard/_BodySection.vue
-    const standardHeader = `<thead><tr class="text-center"><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;" colspan="100%"><div class="text-body2 text-weight-500">جزئیات کالا / خدمت</div></th></tr></thead>`;
-    const standardBodyHeader = `<tbody><tr><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">ردیف</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">کد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">عنوان کالا</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">تعداد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">واحد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ واحد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">جمع کل</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ تخفیف</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ خالص</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ مالیات</td><td style="min-width: 100px; padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">جمع کل <span class="text-weight-700">({{currencyTitle}})</span></td></tr>`;
-    const standardBodyRows = `{{#items}}<tr><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{rowNo}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{productCode}}<small>{{productTaxCode}}</small></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><div class="text-wrap">{{productTitle}}<small>({{comment}}{{productComment}})</small></div></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantity}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{productUnitTitle}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{price}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantityPrice}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{discount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{netAmount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{vatAmount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{totalPrice}}</td></tr>{{/items}}`;
+    const standardHeader = `<thead><tr class="text-center"><th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;" colspan="100%"><div class="text-body2 text-weight-500">مشخصات کالا یا خدمات مورد معامله</div></th></tr></thead>`;
+    const standardBodyHeader = `<tbody><tr><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">ردیف</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">کد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">کالا / خدمت</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">تعداد/مقدار</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">واحد سنجش</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ واحد</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">جمع کل</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">تخفیف</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">مبلغ خالص</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">ارزش افزوده</td><td style="min-width: 100px; padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">جمع کل ( ریال )</td></tr>`;
+    const standardBodyRows = `{{#items}}<tr><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{rowNo}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{productCode}}<small>{{productTaxCode}}</small></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><div class="text-wrap">{{productDisplay}} <small>{{commentDisplay}}</small></div></td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantity}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{productUnitTitle}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{price}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantityPrice}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{discount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{netAmount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{vatAmount}}</td><td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{totalPrice}}</td></tr>{{/items}}`;
 
     // Create standard mode summary row - single row with all totals
     // Based on standard/_BodySection.vue structure
@@ -1112,6 +1144,14 @@ export function useDocumentTemplate(defaultTemplate) {
       finalTemplate,
       designer.value
     );
+
+    // Remove "شرح" text from summary section in advanced mode
+    if (designer.value.isAdvancedModeInvoiceItems) {
+      const summaryPattern =
+        /(<tr[^>]*name=["']summary["'][^>]*>[\s\S]*?<td[^>]*>)\s*<strong>شرح<\/strong>\s*/;
+      finalTemplate = finalTemplate.replace(summaryPattern, "$1");
+    }
+
     finalTemplate = replaceTemplateVariable(
       finalTemplate,
       "logoSrc",
@@ -1135,6 +1175,8 @@ export function useDocumentTemplate(defaultTemplate) {
     isLoadingTemplate,
     designer,
     previewData,
+    headerTitle,
+    footerNote,
 
     // Computed
     companyInfo,

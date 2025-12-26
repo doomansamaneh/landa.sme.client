@@ -12,9 +12,7 @@
       class="print-preview-table"
     >
       <thead>
-        <tr
-          class="text-center"
-        >
+        <tr class="text-center">
           <th
             style="
               border-width: 1px;
@@ -144,11 +142,7 @@
             "
           >
             {{ $t("shared.columns.totalPrice") }}
-            <span class="text-weight-700">
-              (
-              {{ model.currencyTitle }}
-              )
-            </span>
+            ({{ model.currencyTitle }})
           </td>
         </tr>
         <tr
