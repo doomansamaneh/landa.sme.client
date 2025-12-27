@@ -1,4 +1,44 @@
 <template>
+  <q-input
+    outlined
+    rounded
+    dense
+    class="searchbox text-body2 q-mb-sm"
+    v-model="pagination.searchTerm"
+    :placeholder="$t('page.card-searchbar')"
+    @keydown.enter="resetPage"
+  >
+    <template #prepend>
+      <q-icon
+        name="search"
+        class="search-icon cursor-pointer"
+        size="sm"
+        color="primary"
+      />
+    </template>
+
+    <template #append>
+      <q-icon
+        v-if="!isSearchEmpty"
+        name="clear"
+        class="cursor-pointer"
+        size="16px"
+        color="primary"
+        @click="clearSearch"
+      />
+      <q-btn
+        no-caps
+        round
+        unelevated
+        dense
+        icon="o_refresh"
+        size="12px"
+        class="text-on-dark"
+        @click="resetPage"
+      />
+    </template>
+  </q-input>
+
   <data-grid-summary :table-store="tableStore" class="q-mb-sm" />
 
   <data-grid
@@ -8,51 +48,10 @@
     show-avatar
     avatar-field="customerId"
     show-badge
+    :show-search="false"
     ref="dataGrid"
     card-padding="q-pa-xs"
   >
-    <template #header>
-      <q-input
-        outlined
-        rounded
-        dense
-        class="searchbox text-body2"
-        v-model="pagination.searchTerm"
-        :placeholder="$t('page.card-searchbar')"
-        @keydown.enter="resetPage"
-      >
-        <template #prepend>
-          <q-icon
-            name="search"
-            class="search-icon cursor-pointer"
-            size="sm"
-            color="primary"
-          />
-        </template>
-
-        <template #append>
-          <q-icon
-            v-if="!isSearchEmpty"
-            name="clear"
-            class="cursor-pointer"
-            size="16px"
-            color="primary"
-            @click="clearSearch"
-          />
-          <q-btn
-            no-caps
-            round
-            unelevated
-            dense
-            icon="o_refresh"
-            size="12px"
-            class="text-on-dark"
-            @click="resetPage"
-          />
-        </template>
-      </q-input>
-    </template>
-
     <template #row-avatar-title="{ item }">
       {{ helper.getFirstChar(item.customerName) }}
     </template>

@@ -1,65 +1,64 @@
 <template>
   <div class="column q-gutter-xs">
-    <q-card class="text-white bordered primary-gradient">
-      <q-card-section class="q-pa-sm">
-        <div class="row items-center q-gutter-sm">
-          <div class="col-auto">
-            <q-btn
-              no-caps
-              round
-              dense
-              unelevated
-              size="md"
-              class="bg-white text-dark text-body3 text-bold no-pointer-events"
-            >
+    <q-card
+      flat
+      class="border-radius-md shadow-2 overflow-hidden primary-gradient"
+    >
+      <q-card-section
+        class="row items-center q-col-gutter-md q-pa-sm"
+      >
+        <div class="col-auto">
+          <div
+            class="bg-white rounded-borders flex flex-center column"
+            style="width: 32px; height: 32px"
+          >
+            <div class="text-body1 text-weight-bold text-primary">
               {{ tableStore?.pagination.value.totalItems }}
-            </q-btn>
+            </div>
           </div>
+        </div>
 
-          <div class="col">
-            <div class="row q-gutter-xs items-center">
-              <div class="text-body3">
-                {{ $t("shared.labels.total") }}:
-              </div>
-              <div class="text-bold text-white text-body3">
-                {{
-                  helper.formatNumberReadable(
-                    tableStore?.summaryData?.value?.amount
-                  )
-                }}
-              </div>
+        <div class="row items-center q-col-gutter-md">
+          <div class="col-auto">
+            <div class="text-caption text-white">
+              {{ $t("shared.labels.total") }}
             </div>
-
-            <div
-              v-if="tableStore?.summaryData?.value?.payedAmount"
-              class="row q-gutter-xs items-center"
-            >
-              <div class="text-body3">
-                {{ $t("shared.labels.received") }}:
-              </div>
-              <div class="text-bold text-white text-body3">
-                {{
-                  helper.formatNumberReadable(
-                    tableStore?.summaryData?.value?.payedAmount
-                  )
-                }}
-              </div>
+            <div class="text-body3 text-weight-bold text-white">
+              {{
+                helper.formatNumberReadable(
+                  tableStore?.summaryData?.value?.amount
+                )
+              }}
             </div>
-
-            <div
-              v-if="tableStore?.summaryData?.value?.remainedAmount"
-              class="row q-gutter-xs items-center"
-            >
-              <div class="text-body3">
-                {{ $t("shared.columns.remained") }}:
-              </div>
-              <div class="text-bold text-white text-body3">
-                {{
-                  helper.formatNumberReadable(
-                    tableStore?.summaryData?.value?.remainedAmount
-                  )
-                }}
-              </div>
+          </div>
+          <div
+            class="col-auto"
+            v-if="tableStore?.summaryData?.value?.payedAmount"
+          >
+            <div class="text-caption text-white">
+              {{ $t("shared.labels.received") }}
+            </div>
+            <div class="text-body2 text-weight-bold text-white">
+              {{
+                helper.formatNumberReadable(
+                  tableStore?.summaryData?.value?.payedAmount
+                )
+              }}
+            </div>
+          </div>
+          <div
+            class="col-auto"
+            v-if="tableStore?.summaryData?.value?.remainedAmount"
+          >
+            <div class="text-caption text-white">
+              {{ $t("shared.columns.remained") }}
+            </div>
+            <div class="text-body3 text-weight-bold text-white">
+              {{
+                helper.formatNumberReadable(
+                  tableStore?.summaryData?.value?.remainedAmount
+                )
+              }}
             </div>
           </div>
         </div>
@@ -67,68 +66,95 @@
     </q-card>
 
     <q-card
-      class="bordered grid-subtotal"
       v-if="tableStore?.selectedRows?.value.length > 1"
+      flat
+      bordered
+      class="border-radius-md shadow-1 bluegrey-gradient"
     >
-      <q-card-section class="q-pa-sm">
-        <div class="row items-center q-gutter-sm">
-          <div class="col-auto">
-            <q-btn
-              no-caps
-              round
-              dense
-              unelevated
-              size="md"
-              class="bg-white text-primary text-body3 text-bold no-pointer-events"
-            >
-              <q-icon size="20px" name="o_done" />
-            </q-btn>
-          </div>
-          <div class="col">
-            <div class="row q-gutter-xs items-center">
-              <div class="text-body3">
-                {{ $t("shared.labels.total") }}:
-              </div>
-              <div class="text-bold text-body3">
-                {{
-                  helper.formatNumberReadable(
-                    helper
-                      .getSubtotal(
-                        tableStore.selectedRows.value,
-                        "amount"
-                      )
-                      .toNumber()
-                  )
-                }}
-              </div>
+      <q-card-section
+        class="row items-center q-col-gutter-md q-pa-sm"
+      >
+        <div class="col-auto">
+          <div
+            class="bg-white rounded-borders flex flex-center column"
+            style="width: 32px; height: 32px"
+          >
+            <div class="text-body1 text-weight-bold text-primary">
+              {{ tableStore?.selectedRows?.value.length }}
             </div>
+          </div>
+        </div>
 
-            <div
-              v-if="
-                helper
-                  .getSubtotal(
-                    tableStore.selectedRows.value,
-                    'remainedAmount'
-                  )
-                  .toNumber() > 0
-              "
-              class="row q-gutter-xs items-center"
-            >
-              <div class="text-body3">
-                {{ $t("shared.columns.remained") }}:
-              </div>
-              <div class="text-bold text-body3">
-                {{
-                  helper.formatNumberReadable(
-                    helper
-                      .getSubtotal(
-                        tableStore.selectedRows.value,
-                        "remainedAmount"
-                      )
-                      .toNumber()
-                  )
-                }}
-              </div>
+        <div class="row items-center q-col-gutter-md">
+          <div class="col-auto">
+            <div class="text-caption text-white">
+              {{ $t("shared.labels.total") }}
+            </div>
+            <div class="text-body3 text-weight-bold text-white">
+              {{
+                helper.formatNumberReadable(
+                  helper
+                    .getSubtotal(
+                      tableStore.selectedRows.value,
+                      "amount"
+                    )
+                    .toNumber()
+                )
+              }}
+            </div>
+          </div>
+          <div
+            class="col-auto"
+            v-if="
+              helper
+                .getSubtotal(
+                  tableStore.selectedRows.value,
+                  'payedAmount'
+                )
+                .toNumber() !== 0
+            "
+          >
+            <div class="text-caption text-white">
+              {{ $t("shared.labels.received") }}
+            </div>
+            <div class="text-body3 text-weight-bold text-white">
+              {{
+                helper.formatNumberReadable(
+                  helper
+                    .getSubtotal(
+                      tableStore.selectedRows.value,
+                      "payedAmount"
+                    )
+                    .toNumber()
+                )
+              }}
+            </div>
+          </div>
+          <div
+            class="col-auto"
+            v-if="
+              helper
+                .getSubtotal(
+                  tableStore.selectedRows.value,
+                  'remainedAmount'
+                )
+                .toNumber() !== 0
+            "
+          >
+            <div class="text-caption text-white">
+              {{ $t("shared.columns.remained") }}
+            </div>
+            <div class="text-body3 text-weight-bold text-white">
+              {{
+                helper.formatNumberReadable(
+                  helper
+                    .getSubtotal(
+                      tableStore.selectedRows.value,
+                      "remainedAmount"
+                    )
+                    .toNumber()
+                )
+              }}
             </div>
           </div>
         </div>

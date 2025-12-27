@@ -1,10 +1,9 @@
 <template>
-  <!-- Title -->
   <slot name="title" />
 
-  <!-- Header with search -->
   <slot name="header">
     <q-input
+      v-if="showSearch"
       outlined
       rounded
       dense
@@ -46,8 +45,7 @@
     </q-input>
   </slot>
 
-  <!-- Rows -->
-  <div class="q-gutter-y-sm q-pt-sm">
+  <div class="q-gutter-y-sm q-mt-sm">
     <template
       v-for="(row, index) in rows?.value"
       :key="row.id || index"
@@ -143,7 +141,6 @@
 
   <slot name="footer" />
 
-  <!-- No Data -->
   <div
     v-if="!tableStore?.showLoader?.value && rows?.value.length === 0"
     class="text-on-dark"
@@ -151,7 +148,6 @@
     <no-data-found />
   </div>
 
-  <!-- Loader -->
   <q-inner-loading
     :showing="tableStore?.showLoader?.value"
     class="transparent z-max"
@@ -159,7 +155,6 @@
     <q-spinner size="52px" color="primary" />
   </q-inner-loading>
 
-  <!-- Pagebar -->
   <div
     v-if="showPagebar"
     class="row items-center justify-center q-gutter-sm q-my-lg"
@@ -204,7 +199,6 @@
     </q-btn>
   </div>
 
-  <!-- Create Button -->
   <q-page-sticky
     v-if="createUrl && showCreate"
     position="bottom-right z-1"
@@ -238,7 +232,6 @@
 
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-  // Props
   const props = defineProps({
     dataSource: String,
     columns: Array,
@@ -255,15 +248,14 @@
     noActiveRow: Boolean,
     noSelectRow: Boolean,
     cardPadding: { type: String, default: "q-pa-xs" },
+    showSearch: { type: Boolean, default: true },
   });
 
-  // Emits
   const emit = defineEmits([
     "active-row-changed",
     "selected-rows-changed",
   ]);
 
-  // State
   const showCreate = ref(true);
   let previousScrollPosition = 0;
 
@@ -295,7 +287,6 @@
     () => pagination.value.currentPage <= 1
   );
 
-  // Methods
   function getPreviewRoute(row) {
     if (props.previewPage && props.baseRoute)
       return `/${props.baseRoute}/preview/${row.id}`;
@@ -368,7 +359,6 @@
     previousScrollPosition = currentPosition;
   }
 
-  // Lifecycle
   onMounted(() => {
     loadData();
     window.addEventListener("scroll", handleScroll);
@@ -378,6 +368,5 @@
     window.removeEventListener("scroll", handleScroll);
   });
 
-  // Expose
   defineExpose({ tableStore, resetPage, loadData });
 </script>
