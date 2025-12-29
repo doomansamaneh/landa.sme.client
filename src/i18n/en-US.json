@@ -376,6 +376,7 @@
       "accountingDocuments": "Vouchers",
       "salesInvoices": "Sales Invoices",
       "purchaseInvoices": "Purchase Invoices",
+      "invoices": "Invoices",
       "dateRange": "Date Range",
       "depositType": "Payment Type",
       "dateFrom": "Date From",

@@ -14,7 +14,7 @@
       <template #title>
         <div class="q-pa-lg">
           <div class="text-body1 text-weight-700">
-            {{ $t("shared.labels.salesInvoices") }}
+            {{ $t("shared.labels.invoices") }}
             {{ $t("shared.labels.hasRemain") }}
           </div>
           <div class="text-body2 q-mt-xs caption-on-dark">

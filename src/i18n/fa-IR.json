@@ -386,6 +386,7 @@
       "accountingDocuments": "اسناد حسابداری",
       "salesInvoices": "فاکتورهای فروش",
       "purchaseInvoices": "فاکتورهای خرید",
+      "invoices": "صورتحسابهای",
       "dateRange": "بازه زمانی",
       "depositType": "نوع تسویه",
       "dateFrom": "تاریخ از",
