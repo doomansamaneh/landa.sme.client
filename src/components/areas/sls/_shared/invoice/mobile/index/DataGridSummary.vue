@@ -12,7 +12,7 @@
             class="bg-white rounded-borders flex flex-center column"
             style="width: 32px; height: 32px"
           >
-            <div class="text-body1 text-weight-bold text-primary">
+            <div class="text-body1 text-weight-bold">
               {{ tableStore?.pagination.value.totalItems }}
             </div>
           </div>
@@ -79,7 +79,7 @@
             class="bg-white rounded-borders flex flex-center column"
             style="width: 32px; height: 32px"
           >
-            <div class="text-body1 text-weight-bold text-primary">
+            <div class="text-body1 text-weight-bold">
               {{ tableStore?.selectedRows?.value.length }}
             </div>
           </div>

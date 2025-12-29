@@ -34,7 +34,7 @@
           </slot>
         </div>
 
-        <q-btn
+        <!-- <q-btn
           no-caps
           v-if="tableStore?.activeRow?.value"
           v-access="`${permissionPrefix}.edit`"
@@ -44,9 +44,9 @@
           unelevated
         >
           <q-icon name="o_edit" />
-        </q-btn>
+        </q-btn> -->
 
-        <q-btn
+        <!-- <q-btn
           no-caps
           v-if="tableStore?.selectedIds?.value?.length"
           v-access="`${permissionPrefix}.delete`"
@@ -77,7 +77,7 @@
           "
         >
           <q-icon name="o_delete" />
-        </q-btn>
+        </q-btn> -->
       </div>
 
       <q-space />
