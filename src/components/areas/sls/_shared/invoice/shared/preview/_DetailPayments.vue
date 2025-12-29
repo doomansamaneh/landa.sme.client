@@ -9,7 +9,7 @@
         color="primary"
         padding="8px 16px"
         unelevated
-        :to="`/trs/receipt/createFromInvoice/${model.id}`"
+        :to="`/trs/receipt/createFromInvoice/${model.id}?returnRoute=${baseRoute}`"
       >
         <q-icon name="o_add" size="xs" />
         <span>{{ $t("shared.labels.receipt") }}</span>
@@ -22,7 +22,7 @@
         color="primary"
         padding="8px 16px"
         unelevated
-        :to="`/trs/payment/createFromInvoice/${model.id}`"
+        :to="`/trs/payment/createFromInvoice/${model.id}?returnRoute=${baseRoute}`"
       >
         <q-icon name="o_add" size="xs" />
         <span>{{ $t("shared.labels.payment") }}</span>
@@ -114,6 +114,7 @@
     model: Object,
     detailUrl: String,
     showReceipt: Boolean,
+    baseRoute: String,
   });
 
   const $q = useQuasar();
