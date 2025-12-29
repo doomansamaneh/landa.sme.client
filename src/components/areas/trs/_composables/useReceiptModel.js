@@ -1,19 +1,19 @@
 import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
-//import { useReceiptItemModel } from "./useReceiptItemModel";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { receiptModel } from "src/models/areas/trs/receiptModel";
 
 export function useReceiptModel({ baseRoute, preview }) {
   const router = useRouter();
-  //const itemStore = useReceiptItemModel();
+  const route = useRoute();
 
   const model = ref(receiptModel);
   const isAddingItem = ref(false);
   const validationErrors = ref({});
   const invoiceId = ref(null);
+  const returnRoute = ref(null);
 
   const crudStore = useFormActions(baseRoute, model);
   const formItemStore = useFormItemsModel();
@@ -23,7 +23,8 @@ export function useReceiptModel({ baseRoute, preview }) {
     if (id) {
       if (preview) responseData = await crudStore.getPreviewById(id);
       else if (action === "createFromInvoice") {
-        invoiceId.value = id; // Store invoice ID for navigation after save
+        invoiceId.value = id;
+        returnRoute.value = route.query.returnRoute || null;
         responseData = await crudStore.getById(
           id,
           `${baseRoute}/createFromInvoice`
@@ -48,35 +49,6 @@ export function useReceiptModel({ baseRoute, preview }) {
     }
   }
 
-  // const addRow = async (paymentMehod) => {
-  //   try {
-  //     isAddingItem.value = true;
-  //     const item = {
-  //       ...itemStore.model.value,
-  //       amount: Math.max(remainedAmount.value, 0),
-  //       typeId: paymentMehod.value.id,
-  //     };
-
-  //     // Only validate typeId when adding a new item
-  //     const errors = validateNewItem(item);
-  //     if (Object.keys(errors).length > 0) {
-  //       validationErrors.value = errors;
-  //       console.error("Validation errors:", errors);
-  //       return;
-  //     }
-
-  //     formItemStore.pushNewItem(model.value.paymentItems, item);
-  //     validationErrors.value = {};
-  //   } catch (error) {
-  //     console.error("Error adding row:", error);
-  //     validationErrors.value = {
-  //       general: "Failed to add item. Please try again.",
-  //     };
-  //   } finally {
-  //     isAddingItem.value = false;
-  //   }
-  // };
-
   const addRow = async (item) => {
     formItemStore.pushNewItem(model.value.paymentItems, item);
   };
@@ -84,25 +56,6 @@ export function useReceiptModel({ baseRoute, preview }) {
   const remainedAmount = computed(() => {
     return model.value.remainedAmount - totalAmount.value;
   });
-
-  // const validateNewItem = (item) => {
-  //   const errors = {};
-  //   if (!item.typeId) {
-  //     errors.typeId = "Payment type is required";
-  //   }
-  //   return errors;
-  // };
-
-  // const validateItem = (item) => {
-  //   const errors = {};
-  //   if (!item.amount || item.amount <= 0) {
-  //     errors.amount = "Amount must be greater than 0";
-  //   }
-  //   if (!item.typeId) {
-  //     errors.typeId = "Payment type is required";
-  //   }
-  //   return errors;
-  // };
 
   const deleteRow = async (index) => {
     try {
@@ -124,10 +77,8 @@ export function useReceiptModel({ baseRoute, preview }) {
   async function submitForm(form, action) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
-      //stateStore.state.firstLoad.value = false;
-      // If created from invoice, navigate to invoice list page
-      if (invoiceId.value) {
-        router.push(`/sls/invoice`);
+      if (invoiceId.value && returnRoute.value) {
+        router.push(`/${returnRoute.value}`);
       } else {
         router.back();
       }

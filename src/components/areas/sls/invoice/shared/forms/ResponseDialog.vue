@@ -56,7 +56,7 @@
             v-if="responseData.amount > responseData.receivedAmount"
             clickable
             v-ripple
-            :to="`/trs/${paymentAction}/createFromInvoice/${responseData.id}`"
+            :to="`/trs/${paymentAction}/createFromInvoice/${responseData.id}?returnRoute=${baseRoute}`"
             class="rounded-borders"
           >
             <q-item-section avatar top>

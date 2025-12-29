@@ -164,6 +164,7 @@
                 :model="model"
                 :detail-url="detailUrl"
                 :show-receipt="showReceipt"
+                :base-route="baseRoute"
               />
             </q-tab-panel>
 
@@ -202,6 +203,7 @@
     taxApi: Boolean,
     detailUrl: String,
     showReceipt: Boolean,
+    baseRoute: String,
   });
 
   const $q = useQuasar();
