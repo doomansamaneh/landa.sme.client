@@ -177,17 +177,14 @@ export function useDataTable({
   }
 
   function setPayload() {
-    pagination.value.filterExpression = [];
-
-    if (store) {
-      if (store.filterExpression)
-        pagination.value.filterExpression.push(
-          ...store.filterExpression
-        );
-    } else if (state?.value.filterExpression)
-      pagination.value.filterExpression.push(
-        ...state.value.filterExpression
-      );
+    pagination.value.filterExpression = [
+      ...new Map(
+        [
+          ...(store?.filterExpression ?? []),
+          ...(state?.value.filterExpression ?? []),
+        ].map((f) => [`${f.fieldName}_${f.operator}`, f])
+      ).values(),
+    ];
 
     if (columns.value) {
       let payLoadCols = "";
