@@ -105,6 +105,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
+  import { useRoute } from "vue-router";
 
   import InvoicePayment from "src/components/areas/trs/paymentInvoice/shared/index/InvoicePayment.vue";
   import PaymentInvoiceDialog from "src/components/areas/trs/paymentInvoice/shared/forms/PaymentInvoiceDialog.vue";
@@ -118,6 +119,7 @@
   });
 
   const $q = useQuasar();
+  const route = useRoute();
   const paymentsGrid = ref(null);
 
   const reloadData = async () => {
@@ -134,17 +136,25 @@
     () => props.model.amount - payedAmount.value
   );
 
+  const currentPreviewRoute = computed(() => {
+    // Get the current route path (e.g., /sls/invoice/preview/123)
+    // Remove leading slash and encode for URL
+    return route.path.startsWith('/') ? route.path.substring(1) : route.path;
+  });
+
   const receiptUrl = computed(() => {
     const baseUrl = `/trs/receipt/createFromInvoice/${props.model.id}`;
-    return props.baseRoute
-      ? `${baseUrl}?returnRoute=${props.baseRoute}`
+    const returnRoute = currentPreviewRoute.value || props.baseRoute;
+    return returnRoute
+      ? `${baseUrl}?returnRoute=${encodeURIComponent(returnRoute)}`
       : baseUrl;
   });
 
   const paymentUrl = computed(() => {
     const baseUrl = `/trs/payment/createFromInvoice/${props.model.id}`;
-    return props.baseRoute
-      ? `${baseUrl}?returnRoute=${props.baseRoute}`
+    const returnRoute = currentPreviewRoute.value || props.baseRoute;
+    return returnRoute
+      ? `${baseUrl}?returnRoute=${encodeURIComponent(returnRoute)}`
       : baseUrl;
   });
 
