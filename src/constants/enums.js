@@ -1,6 +1,6 @@
 import config from "../../app-setting.json";
 //localhost
-//export const baseUrl = config.baseUrl;
+//export const baseUrl = config.baseUrl_;
 
 //api.landa-sme.ir
 export const baseUrl = config.baseUrl;

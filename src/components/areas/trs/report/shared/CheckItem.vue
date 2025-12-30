@@ -99,8 +99,8 @@
   const payedFilter = [
     {
       fieldName: "d.TypeId",
-      operator: sqlOperator.equal,
-      value: documentType.payment,
+      operator: sqlOperator.in,
+      value: `${documentType.payment},${documentType.bill}`,
     },
   ];
 

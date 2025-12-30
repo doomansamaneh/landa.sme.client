@@ -1,4 +1,14 @@
 {
+  "1.0.18": {
+    "fa-IR": [
+      "رفع برخی اشکالات گزارش شده",
+      "نمایش چکهای پرداختی بابت هزینه در گزارش چک"
+    ],
+    "en-US": [
+      "Fix some minor bugs",
+      "Show paid checks for bill in check report"
+    ]
+  },
   "1.0.17": {
     "fa-IR": ["بهبود ui در نسخه موبایل"],
     "en-US": ["Improve ui in mobile version"]

@@ -178,12 +178,13 @@ export function useDataTable({
 
   function setPayload() {
     pagination.value.filterExpression = [];
-    if (store?.filterExpression)
-      pagination.value.filterExpression.push(
-        ...store.filterExpression
-      );
 
-    if (state?.value.filterExpression)
+    if (store) {
+      if (store.filterExpression)
+        pagination.value.filterExpression.push(
+          ...store.filterExpression
+        );
+    } else if (state?.value.filterExpression)
       pagination.value.filterExpression.push(
         ...state.value.filterExpression
       );

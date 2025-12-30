@@ -56,27 +56,26 @@
     </template>
 
     <template #row-badge="{ item }">
-     <div class="flex items-center">
-      <q-icon
-        v-if="item.notifyCheck"
-        size="20px"
-        name="o_warning"
-        color="warning"
-        class="q-mr-xs"
-      />
-      <status-badge
-        :title="
-          $t(
-            `shared.paymentStatus.${helper.getEnumType(
-              item.statusId,
-              paymentStatus
-            )}`
-          )
-        "
-      />
-     </div>
+      <div class="flex items-center">
+        <q-icon
+          v-if="item.notifyCheck"
+          size="20px"
+          name="o_warning"
+          color="warning"
+          class="q-mr-xs"
+        />
+        <status-badge
+          :title="
+            $t(
+              `shared.paymentStatus.${helper.getEnumType(
+                item.statusId,
+                paymentStatus
+              )}`
+            )
+          "
+        />
+      </div>
     </template>
-
   </data-grid>
 </template>
 
@@ -97,7 +96,6 @@
   });
 
   const baseRoute = "trs/paymentItemCheck";
-
   const tableStore = useDataTable({
     dataSource: "trs/report/getCheckItemData",
     store: useBaseInfoGrid({
@@ -107,4 +105,3 @@
     }),
   });
 </script>
-
