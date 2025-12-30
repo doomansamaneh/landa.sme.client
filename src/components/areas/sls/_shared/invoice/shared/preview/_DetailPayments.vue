@@ -9,7 +9,7 @@
         color="primary"
         padding="8px 16px"
         unelevated
-        :to="`/trs/receipt/createFromInvoice/${model.id}?returnRoute=${baseRoute}`"
+        :to="receiptUrl"
       >
         <q-icon name="o_add" size="xs" />
         <span>{{ $t("shared.labels.receipt") }}</span>
@@ -22,7 +22,7 @@
         color="primary"
         padding="8px 16px"
         unelevated
-        :to="`/trs/payment/createFromInvoice/${model.id}?returnRoute=${baseRoute}`"
+        :to="paymentUrl"
       >
         <q-icon name="o_add" size="xs" />
         <span>{{ $t("shared.labels.payment") }}</span>
@@ -133,6 +133,20 @@
   const remainedAmount = computed(
     () => props.model.amount - payedAmount.value
   );
+
+  const receiptUrl = computed(() => {
+    const baseUrl = `/trs/receipt/createFromInvoice/${props.model.id}`;
+    return props.baseRoute
+      ? `${baseUrl}?returnRoute=${props.baseRoute}`
+      : baseUrl;
+  });
+
+  const paymentUrl = computed(() => {
+    const baseUrl = `/trs/payment/createFromInvoice/${props.model.id}`;
+    return props.baseRoute
+      ? `${baseUrl}?returnRoute=${props.baseRoute}`
+      : baseUrl;
+  });
 
   function settlement() {
     $q.dialog({

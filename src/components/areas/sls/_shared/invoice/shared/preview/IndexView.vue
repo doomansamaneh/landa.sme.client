@@ -53,6 +53,7 @@
           :tax-api="taxApi"
           :detail-url="detailUrl"
           :show-receipt="showReceipt"
+          :base-route="baseRoute"
         />
       </slot>
     </template>
