@@ -1,5 +1,6 @@
 <template>
   <q-layout view="hHh Lpr fFf" class="main-layout">
+    <snow-effect />
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -34,6 +35,7 @@
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
   import TutorialChecklist from "src/components/shared/TutorialChecklist.vue";
+  import SnowEffect from "src/assets/SnowEffect.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
