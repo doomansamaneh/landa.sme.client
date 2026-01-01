@@ -1,4 +1,14 @@
 {
+  "1.0.19": {
+    "fa-IR": [
+      "تم برفی برای روزهای برفی",
+      "برخی اصلاحات در ثبت دریافت / پرداخت و برگشت به صفحه پیشین"
+    ],
+    "en-US": [
+      "Snow theme in winter",
+      "Modify payment and reception, back to previous page"
+    ]
+  },
   "1.0.18": {
     "fa-IR": [
       "رفع برخی اشکالات گزارش شده",
