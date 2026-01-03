@@ -12,7 +12,7 @@
             class="bg-white rounded-borders flex flex-center column"
             style="width: 32px; height: 32px"
           >
-            <div class="text-body1 text-weight-bold">
+            <div class="text-body1 text-weight-bold text-black">
               {{ tableStore?.pagination.value.totalItems }}
             </div>
           </div>
@@ -68,8 +68,7 @@
     <q-card
       v-if="tableStore?.selectedRows?.value.length > 1"
       flat
-      bordered
-      class="border-radius-md shadow-1 bluegrey-gradient"
+      class="border-radius-md shadow-2 overflow-hidden bluegrey-gradient"
     >
       <q-card-section
         class="row items-center q-col-gutter-md q-pa-sm"
@@ -79,7 +78,7 @@
             class="bg-white rounded-borders flex flex-center column"
             style="width: 32px; height: 32px"
           >
-            <div class="text-body1 text-weight-bold">
+            <div class="text-body1 text-weight-bold text-black">
               {{ tableStore?.selectedRows?.value.length }}
             </div>
           </div>

@@ -1,6 +1,10 @@
 <template>
   <Teleport to="body">
-    <div class="snow-container" aria-hidden="true">
+    <div
+      class="snow-container"
+      :class="{ 'snow-container--dark': isDark }"
+      aria-hidden="true"
+    >
       <div
         v-for="(snowflake, index) in snowflakes"
         :key="`snow-${index}`"
@@ -14,17 +18,24 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, onUnmounted } from "vue";
+  import { ref, computed, onMounted, onUnmounted, watch } from "vue";
+  import { useQuasar } from "quasar";
 
+  const $q = useQuasar();
   const snowflakes = ref([]);
   let animationFrameId = null;
+
+  const isDark = computed(() => $q.dark.isActive);
 
   const createSnowflake = () => {
     const left = Math.random() * 100;
     const size = Math.random() * 10 + 5;
     const duration = Math.random() * 3 + 2;
     const delay = Math.random() * 2;
-    const opacity = Math.random() * 0.5 + 0.5;
+    // Reduce opacity in dark mode (but still visible)
+    const baseOpacity = isDark.value
+      ? Math.random() * 0.15 + 0.2 // 0.2-0.35 in dark mode
+      : Math.random() * 0.5 + 0.5; // 0.5-1.0 in light mode
     const swayAmount = Math.random() * 30 + 10;
 
     return {
@@ -33,7 +44,7 @@
         fontSize: `${size}px`,
         animationDuration: `${duration}s`,
         animationDelay: `${delay}s`,
-        opacity: opacity,
+        opacity: baseOpacity,
         "--sway": `${swayAmount}px`,
         "--fall-duration": `${duration}s`,
       },
@@ -57,6 +68,11 @@
     }
     animationFrameId = requestAnimationFrame(animate);
   };
+
+  // Regenerate snowflakes when theme changes
+  watch(isDark, () => {
+    generateSnowflakes();
+  });
 
   onMounted(() => {
     generateSnowflakes();
@@ -95,6 +111,12 @@
     will-change: transform;
     line-height: 1;
     display: inline-block;
+  }
+
+  /* Reduce snowflake visibility in dark mode */
+  .snow-container--dark .snowflake {
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5),
+      0 0 5px rgba(255, 255, 255, 0.3);
   }
 
   @keyframes snowfall {

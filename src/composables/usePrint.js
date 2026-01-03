@@ -19,7 +19,11 @@ export function usePrint() {
       if (printRef.value) {
         printRef.value.classList.remove("printable");
         printRef.value.style.direction = "";
-        resetAllBorderColors();
+        // Remove print stylesheet if it exists
+        const printStyle = document.getElementById("print-border-styles");
+        if (printStyle) {
+          printStyle.remove();
+        }
       }
     },
 
@@ -27,21 +31,34 @@ export function usePrint() {
       if (printRef?.value) {
         printRef.value.classList.add("printable");
         printRef.value.style.direction = $q.lang.rtl ? "rtl" : "ltr";
-        setAllBordersToBlack();
 
-        // Add print styles for bg-on-dark
-        const style = document.createElement("style");
-        style.textContent = `
-          @media print {
-            .bg-on-dark {
-              background-color: #f2f2f2 !important;
-              -webkit-print-color-adjust: exact !important;
-              print-color-adjust: exact !important;
-              color-adjust: exact !important;
+        // Add print styles for borders, bg-on-dark and print-preview-table
+        // These styles only apply during print, not on screen
+        let printStyle = document.getElementById("print-border-styles");
+        if (!printStyle) {
+          printStyle = document.createElement("style");
+          printStyle.id = "print-border-styles";
+          printStyle.textContent = `
+            @media print {
+              .printable * {
+                border-color: black !important;
+              }
+              .bg-on-dark {
+                background-color: #f2f2f2 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+              }
+              .print-preview-table th {
+                background-color: #f2f2f2 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+              }
             }
-          }
-        `;
-        document.head.appendChild(style);
+          `;
+          document.head.appendChild(printStyle);
+        }
       }
     },
 
@@ -59,27 +76,6 @@ export function usePrint() {
 
   const { handlePrint } = useVueToPrint(options);
 
-  const setAllBordersToBlack = () => {
-    if (printRef.value) {
-      const allElements = printRef.value.querySelectorAll("*");
-      allElements.forEach((element) => {
-        if (window.getComputedStyle(element).border !== "none") {
-          element.style.borderColor = "black";
-        }
-      });
-    }
-  };
-
-  const resetAllBorderColors = () => {
-    if (printRef.value) {
-      const allElements = printRef.value.querySelectorAll("*");
-      allElements.forEach((element) => {
-        if (window.getComputedStyle(element).border !== "none") {
-          element.style.borderColor = "";
-        }
-      });
-    }
-  };
 
   const injectPrintPreviewTableStyles = () => {
     document.body.dataset.bgColor =

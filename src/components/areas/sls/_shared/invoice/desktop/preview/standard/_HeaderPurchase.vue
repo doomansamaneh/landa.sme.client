@@ -116,8 +116,8 @@
     </tbody>
 
     <tbody v-if="appConfigStore.model?.value?.companySetting">
-      <tr class="text-center" style="background-color: #f0f0f0">
-        <td
+      <tr class="text-center">
+        <th
           style="
             padding: 5px;
             border-width: 1px;
@@ -129,7 +129,7 @@
           <div class="text-body2 text-weight-500">
             {{ $t("shared.labels.customer") }}
           </div>
-        </td>
+        </th>
       </tr>
       <tr>
         <td
