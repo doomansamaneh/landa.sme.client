@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr fFf" class="main-layout">
-    <snow-effect />
+    <!-- <snow-effect /> -->
     <q-page-container>
       <router-view />
     </q-page-container>
