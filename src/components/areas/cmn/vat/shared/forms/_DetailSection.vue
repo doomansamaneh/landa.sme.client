@@ -21,8 +21,8 @@
           :placeholder="$t('shared.columns.slTitle')"
           v-model:selectedId="row.slId"
           v-model:selectedText="row.slTitle"
-          :filter-expression="slFilter"
         />
+        <!-- :filter-expression="slFilter"  -->
       </div>
       <div class="col-md-2 col-sm-12 col-xs-12">
         <custom-input
@@ -168,12 +168,10 @@
     formStore: Object,
   });
 
-  const { t: $t } = useI18n();
-
   const slFilter = [
     {
       fieldName: "clId",
-      operator: sqlOperator.equal,
+      operator: sqlOperator.in,
       value: accountCLType.currentLiability,
     },
   ];
