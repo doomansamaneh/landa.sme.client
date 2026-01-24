@@ -21,7 +21,7 @@
 
       <div class="row items-center q-gutter-x-sm">
         <fiscal-year />
-        <most-used-operations />
+        <!-- <most-used-operations /> -->
         <switch-theme />
         <notification />
       </div>

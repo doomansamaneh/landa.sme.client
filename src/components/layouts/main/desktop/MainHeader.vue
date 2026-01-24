@@ -44,7 +44,7 @@
         <q-space />
 
         <div class="row items-center justify-end q-gutter-x-md">
-          <most-used-operations />
+          <!-- <most-used-operations /> -->
 
           <!-- <q-btn no-caps
             round
