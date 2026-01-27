@@ -35,7 +35,7 @@
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
   import { useQuoteDataGridMenu } from "../../../_menus/useQuoteDataGridMenu";
 
-  import AdvancedSearch from "../../../_shared/invoice/mobile/index/AdvancedSearch.vue";
+  import AdvancedSearch from "src/components/areas/sls/quote/mobile/index/AdvancedSearch.vue";
   import ToolbarMobile from "src/components/shared/toolbars/DynamicToolbarMobile.vue";
   import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
 

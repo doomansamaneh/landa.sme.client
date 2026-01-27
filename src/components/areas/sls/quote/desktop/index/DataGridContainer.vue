@@ -21,7 +21,7 @@
 
 <script setup>
   import DataGrid from "./DataGridTable.vue";
-  import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
+  import AdvancedSearch from "src/components/areas/sls/quote/desktop/index/AdvancedSearch.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
