@@ -27,6 +27,7 @@
         flat
         :columns="accountItemSLColumns"
         :filter-expression="filterExpression"
+        :title="title"
       />
 
       <q-separator />
@@ -50,6 +51,7 @@
   const props = defineProps({
     item: Object,
     title: String,
+    subTitle: String,
     inside: Boolean,
   });
 

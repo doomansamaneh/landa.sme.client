@@ -25,7 +25,11 @@
                     dense
                     class="q-ml-xs"
                   >
-                    <q-icon name="help_outline" size="14px" />
+                    <q-icon
+                      :class="getStatusClasses(item.status)"
+                      name="help_outline"
+                      size="14px"
+                    />
                     <q-tooltip
                       class="custom-tooltip text-body1"
                       max-width="400px"
@@ -52,7 +56,11 @@
                     @click="taxStore.inquery(item.id, reloadData)"
                     class="q-ml-xs"
                   >
-                    <q-icon size="14px" name="o_refresh" />
+                    <q-icon
+                      size="14px"
+                      name="o_refresh"
+                      :class="getStatusClasses(item.status)"
+                    />
                     <q-tooltip class="custom-tooltip text-body1">
                       دریافت دوباره اطلاعات از سامانه مودیان
                     </q-tooltip>
