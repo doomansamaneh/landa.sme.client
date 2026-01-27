@@ -1,5 +1,5 @@
 <template>
-  <data-grid-summary :table-store="tableStore" class="q-mb-sm" />
+  <!-- <data-grid-summary :table-store="tableStore" class="q-mb-sm" /> -->
   <data-grid
     :table-store="tableStore"
     :title="title"
@@ -11,7 +11,7 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "./DataGrid.vue";
-  import DataGridSummary from "./DataGridSummary.vue";
+  // import DataGridSummary from "./DataGridSummary.vue";
 
   const props = defineProps({
     tableStore: useDataTable,

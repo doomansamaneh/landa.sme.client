@@ -1,4 +1,46 @@
 <template>
+  <q-input
+    outlined
+    rounded
+    dense
+    class="searchbox text-body2 q-mb-sm"
+    v-model="pagination.searchTerm"
+    :placeholder="$t('page.card-searchbar')"
+    @keydown.enter="resetPage"
+  >
+    <template #prepend>
+      <q-icon
+        name="search"
+        class="search-icon cursor-pointer"
+        size="sm"
+        color="primary"
+      />
+    </template>
+
+    <template #append>
+      <q-icon
+        v-if="!isSearchEmpty"
+        name="clear"
+        class="cursor-pointer"
+        size="16px"
+        color="primary"
+        @click="clearSearch"
+      />
+      <q-btn
+        no-caps
+        round
+        unelevated
+        dense
+        icon="o_refresh"
+        size="12px"
+        class="text-on-dark"
+        @click="resetPage"
+      />
+    </template>
+  </q-input>
+
+  <data-grid-summary :table-store="tableStore" class="q-mb-sm" />
+
   <data-grid
     :data-table-store="tableStore"
     :create-url="`/${baseRoute}/create`"
@@ -6,48 +48,6 @@
     show-avatar
     show-badge
   >
-    <template #header>
-      <q-input
-        outlined
-        rounded
-        dense
-        class="searchbox text-body2"
-        v-model="pagination.searchTerm"
-        :placeholder="$t('page.card-searchbar')"
-        @keydown.enter="resetPage"
-      >
-        <template #prepend>
-          <q-icon
-            name="search"
-            class="search-icon cursor-pointer"
-            size="sm"
-            color="primary"
-          />
-        </template>
-
-        <template #append>
-          <q-icon
-            v-if="!isSearchEmpty"
-            name="clear"
-            class="cursor-pointer"
-            size="16px"
-            color="primary"
-            @click="clearSearch"
-          />
-          <q-btn
-            no-caps
-            round
-            unelevated
-            dense
-            icon="o_refresh"
-            size="12px"
-            class="text-on-dark"
-            @click="resetPage"
-          />
-        </template>
-      </q-input>
-    </template>
-
     <template #row-avatar-title="{ item }">
       {{
         helper.getFirstChar(
@@ -109,10 +109,12 @@
 
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useBillPreviewMenu } from "../../../_menus/useBillPreviewMenu";
+
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
   import MobileRowToolbar from "src/components/shared/toolbars/MobileRowToolbar.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
   import RowNoBadge from "src/components/areas/_shared/badges/RowNoBadge.vue";
+  import DataGridSummary from "./DataGridSummary.vue";
 
   const props = defineProps({
     tableStore: useDataTable,

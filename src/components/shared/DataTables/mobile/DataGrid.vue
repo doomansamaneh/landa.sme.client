@@ -2,7 +2,7 @@
   <slot name="title" />
 
   <slot name="header">
-    <q-input
+    <!-- <q-input
       v-if="showSearch"
       outlined
       rounded
@@ -42,7 +42,7 @@
         />
         <slot name="header-guide" />
       </template>
-    </q-input>
+    </q-input> -->
   </slot>
 
   <div class="q-gutter-y-sm q-mt-sm">

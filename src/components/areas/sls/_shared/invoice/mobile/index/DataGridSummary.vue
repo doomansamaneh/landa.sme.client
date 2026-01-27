@@ -38,7 +38,7 @@
             <div class="text-caption text-white">
               {{ $t("shared.labels.received") }}
             </div>
-            <div class="text-body2 text-weight-bold text-white">
+            <div class="text-body3 text-weight-bold text-white">
               {{
                 helper.formatNumberReadable(
                   tableStore?.summaryData?.value?.payedAmount
