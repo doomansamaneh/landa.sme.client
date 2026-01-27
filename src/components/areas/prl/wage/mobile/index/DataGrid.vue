@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-  import { helper } from "src/helpers";
+  import { helper, downloadManager } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useWagePreviewMenu } from "../../../_menus/useWagePreviewMenu";
@@ -117,6 +117,20 @@
     const context = usePreviewMenuContext(item, "prl/wage", {
       onDeleteSuccess: async () =>
         await props.tableStore?.reloadData(),
+
+      exportTax: async () => {
+        await downloadManager.downloadGet(
+          `${props.baseRoute}/exportTax/${item?.id}`,
+          "landa-tax"
+        );
+      },
+
+      exportInsurance: async () => {
+        await downloadManager.downloadGet(
+          `${props.baseRoute}/exportInsurance/${item?.id}`,
+          "landa-insurance"
+        );
+      },
     });
     return useWagePreviewMenu(context.value);
   }
