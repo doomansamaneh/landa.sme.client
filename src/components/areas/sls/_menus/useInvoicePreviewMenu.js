@@ -34,8 +34,22 @@ export function useInvoicePreviewMenu(context) {
             label: "sendMail",
             permission: `sls.invoice.print`,
             handler: () => context.sendMail?.(),
-            addSeparator: true,
           },
+          // {
+          //   ...menuItems.defaultItem,
+          //   icon: "chat",
+          //   label: "sendWhatsApp",
+          //   permission: `sls.invoice.print`,
+          //   handler: () => context.sendWhatsApp?.(),
+          // },
+          // {
+          //   ...menuItems.defaultItem,
+          //   icon: "send",
+          //   label: "sendTelegram",
+          //   permission: `sls.invoice.print`,
+          //   handler: () => context.sendTelegram?.(),
+          //   addSeparator: true,
+          // },
           {
             ...menuItems.defaultItem,
             label: "cancelInvoice",

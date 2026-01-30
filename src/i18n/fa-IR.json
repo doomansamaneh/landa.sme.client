@@ -346,6 +346,8 @@
       "reloadDefault": "برگشت به پیشفرض",
       "send": "ارسال",
       "sendEmail": "ارسال ایمیل",
+      "sendWhatsApp": "ارسال با واتساپ",
+      "sendTelegram": "ارسال با تلگرام",
       "new": "جدید",
       "create": "ایجاد",
       "add": "افزودن",
