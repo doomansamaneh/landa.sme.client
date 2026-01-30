@@ -47,6 +47,7 @@
     :base-route="baseRoute"
     show-avatar
     show-badge
+    :show-search="false"
   >
     <template #row-avatar-title="{ item }">
       {{
