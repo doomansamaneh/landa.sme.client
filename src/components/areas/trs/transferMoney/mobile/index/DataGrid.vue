@@ -48,6 +48,7 @@
     show-avatar
     avatar-field="fromTitle"
     show-badge_
+    :show-search="false"
   >
     <template #row-avatar-title="{ item }">
       {{
