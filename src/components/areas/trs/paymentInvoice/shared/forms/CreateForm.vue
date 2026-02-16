@@ -1,7 +1,9 @@
 <template>
   <q-card flat class="tips">
     <q-card-section>
-      <div class="title q-mb-sm">{{ $t("shared.labels.userGuide") }}</div>
+      <div class="title q-mb-sm">
+        {{ $t("shared.labels.userGuide") }}
+      </div>
       <div class="text-body1">
         <p>
           با ثبت این فرم، مانده صورتحساب انتخاب شده تسویه می‌شود، اما
@@ -15,7 +17,7 @@
   <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
     <div class="q-my-md">
       <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-        مبلغ
+        {{ $t("shared.labels.price") }}
       </q-item-label>
       <custom-input-number
         hide-bottom-space
@@ -26,7 +28,7 @@
 
     <div class="q-mb-md">
       <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-        شرح
+        {{ $t("shared.labels.comment") }}
       </q-item-label>
       <custom-input
         hide-bottom-space

@@ -9,12 +9,7 @@
     </template>
 
     <template #action-bar>
-      <action-buttons @ok-clicked="submitForm">
-        <template #ok-label>
-          <q-icon size="20px" name="save" class="q-mx-sm" />
-          {{ $t("shared.labels.save") }}
-        </template>
-      </action-buttons>
+      <action-buttons @ok-clicked="submitForm" />
     </template>
   </custom-dialog>
 </template>

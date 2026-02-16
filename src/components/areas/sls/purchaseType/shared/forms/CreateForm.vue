@@ -104,7 +104,7 @@
       </q-form>
       <q-card flat class="tips">
         <q-card-section>
-          <div class="title q-mb-sm">
+          <div class="title q-mb-lg">
             {{ $t("shared.labels.userGuide") }}
           </div>
           <div class="text-body1">

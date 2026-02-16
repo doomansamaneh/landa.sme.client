@@ -288,6 +288,10 @@
       "tipsTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
       "tipsSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
       "tipsRate": "VAT rate based on VAT items; in the accounting document automatically created from invoices, purchases, etc., it will be broken down accordingly."
+    },
+    "trsPaymentInvoiceCreateForm": {
+      "p1": "By submitting this form, the balance of the selected invoice will be settled, but no financial transaction will be recorded in the accounting documents.",
+      "p2": "Otherwise, use the receipt and payment forms."
     }
   },
 
