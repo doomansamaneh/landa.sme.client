@@ -76,7 +76,7 @@ export function useInvoiceModel(config) {
         componentProps: {
           title: t("shared.labels.cancelInvoice"),
           message: `${t("shared.labels.cancelInvoiceMessage")}. ${t(
-            "shared.labels.selectedRows"
+            "shared.labels.selectedRows",
           )}: ${idList.length}`,
           ok: t("shared.labels.cancelInvoice"),
           okColor: "deep-orange-7",
@@ -116,17 +116,14 @@ export function useInvoiceModel(config) {
         newItems.forEach((item, index) => {
           itemStore.calculateTotal(model.value.invoiceItems[index]);
         });
-      }
+      },
     );
   }
 
   addWatch();
 
   const applyDiscountAmount = (discount) => {
-    // محاسبه total بدون تخفیف فعلی
-    const total = new Decimal(
-      Math.max(totalPrice.value - totalVat.value, 1)
-    );
+    const total = totalNetPrice.value;
     let subTotal = new Decimal(0);
     let lastItem = null;
 
@@ -134,21 +131,22 @@ export function useInvoiceModel(config) {
       lastItem = item;
 
       const itemTotalPrice = new Decimal(item.quantity).times(
-        item.price
-      ); // قیمت کل هر کالا
+        item.price,
+      );
+
       const itemDiscount = itemTotalPrice
         .times(discount)
         .div(total)
-        .toDecimalPlaces(0, Decimal.ROUND_DOWN); // تخفیف برای هر کالا
+        .toDecimalPlaces(0, Decimal.ROUND_DOWN);
 
       if (item.discount !== itemDiscount.toNumber())
-        item.discount = itemDiscount.toNumber(); // اعمال تخفیف
-      subTotal = subTotal.plus(itemDiscount); // جمع تخفیف‌های اعمال‌شده
+        item.discount = itemDiscount.toNumber();
+      subTotal = subTotal.plus(itemDiscount);
     });
 
     // اطمینان از اینکه جمع تخفیف‌ها برابر با مقدار کلی تخفیف است
     const lastItemDiscountDiff = new Decimal(discount).minus(
-      subTotal
+      subTotal,
     );
     if (!lastItemDiscountDiff.isZero()) {
       lastItem.discount += lastItemDiscountDiff.toNumber();
@@ -202,12 +200,12 @@ export function useInvoiceModel(config) {
   const addNewRowByCode = async (code) => {
     if (code) {
       const response = await fetchWrapper.get(
-        `cmn/product/getByCode/${code}`
+        `cmn/product/getByCode/${code}`,
       );
       const product = response.data.data;
       if (product) {
         const currentItem = model.value.invoiceItems.find(
-          (r) => r.productId === product.id
+          (r) => r.productId === product.id,
         );
         if (currentItem) currentItem.quantity += 1;
         else
@@ -229,7 +227,7 @@ export function useInvoiceModel(config) {
 
   const addProduct = (product, formType = invoiceFormType.sales) => {
     const selectedRows = model.value.invoiceItems.find(
-      (r) => r.productId === product.id
+      (r) => r.productId === product.id,
     );
     if (selectedRows) {
       selectedRows.quantity += 1;
@@ -246,11 +244,13 @@ export function useInvoiceModel(config) {
         formType === invoiceFormType.purchaseReturn
       )
         newRow.price =
-          product.price <= 0 ? product.maxPrice ?? 0 : product.price;
+          product.price <= 0
+            ? (product.maxPrice ?? 0)
+            : product.price;
       else
         newRow.price =
           product.purchasePrice <= 0
-            ? product.maxPrice ?? 0
+            ? (product.maxPrice ?? 0)
             : product.purchasePrice;
       newRow.quantity = 1;
       pushNewRow(newRow);
@@ -259,7 +259,7 @@ export function useInvoiceModel(config) {
 
   const removeProduct = (product) => {
     const selectedRows = model.value.invoiceItems.find(
-      (r) => r.productId === product.id
+      (r) => r.productId === product.id,
     );
     const index = model.value.invoiceItems.indexOf(selectedRows);
     deleteRow(index);
@@ -267,7 +267,7 @@ export function useInvoiceModel(config) {
 
   const getProductQuantity = (productId) => {
     const selectedRows = model.value.invoiceItems.find(
-      (r) => r.productId === productId
+      (r) => r.productId === productId,
     );
     if (selectedRows) return selectedRows.quantity;
     return 0;
@@ -282,19 +282,19 @@ export function useInvoiceModel(config) {
   };
 
   const totalPrice = computed(() =>
-    helper.getSubtotal(model.value.invoiceItems, "totalPrice")
+    helper.getSubtotal(model.value.invoiceItems, "totalPrice"),
   );
 
   const totalDiscount = computed(() =>
-    helper.getSubtotal(model.value.invoiceItems, "discount")
+    helper.getSubtotal(model.value.invoiceItems, "discount"),
   );
 
   const totalVat = computed(() =>
-    helper.getSubtotal(model.value.invoiceItems, "vatAmount")
+    helper.getSubtotal(model.value.invoiceItems, "vatAmount"),
   );
 
   const totalNetPrice = computed(() =>
-    totalPrice.value.minus(totalVat.value).plus(totalDiscount.value)
+    totalPrice.value.minus(totalVat.value).plus(totalDiscount.value),
   );
 
   // --- Discount Type Logic ---
@@ -328,7 +328,7 @@ export function useInvoiceModel(config) {
     if (getDiscountType(index)) {
       item.discountPercent = value;
       item.discount = Math.floor(
-        (item.quantity * item.price * value) / 100
+        (item.quantity * item.price * value) / 100,
       );
     } else {
       item.discountPercent = 0;
