@@ -45,7 +45,7 @@
         <span>{{ t("shared.labels.sendToTax") }}</span>
       </q-btn>
 
-      <q-btn
+      <!-- <q-btn
         v-if="
           authStore.currentUser?.id ===
             'a2bacd9e-8b88-4d15-aa86-93e6b642c558' ||
@@ -64,7 +64,7 @@
       >
         <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
         <span>send cancel invoice</span>
-      </q-btn>
+      </q-btn> -->
     </div>
     <data-grid
       ref="taxGrid"

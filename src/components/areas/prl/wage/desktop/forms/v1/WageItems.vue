@@ -12,7 +12,7 @@
       @click="formStore.pushNewRow()"
     >
       <q-icon name="o_add" size="20px" class="q-mr-xs" />
-      افزودن پرسنل
+      {{ $t("shared.labels.addPersonnel") }}
     </q-btn>
   </div>
   <template
@@ -25,9 +25,10 @@
 </template>
 
 <script setup>
+  import { useWageModel } from "src/components/areas/prl/_composables/useWageModel";
   import WageItem from "./WageItem.vue";
 
   const props = defineProps({
-    formStore: Object,
+    formStore: useWageModel,
   });
 </script>

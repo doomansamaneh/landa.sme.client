@@ -297,6 +297,8 @@
 
   "shared": {
     "labels": {
+      "disableTaxCalculation": "Tax Amount Manual",
+      "addPersonnel": "Add Personnel",
       "createQuote": "Create Quote",
       "createInvoice": "Create Invoice",
       "createVoucher": "Create Voucher",

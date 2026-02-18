@@ -46,10 +46,15 @@
         $t(
           `shared.accountDLType.${helper.getEnumType(
             item.typeId,
-            accountDLType
-          )}`
+            accountDLType,
+          )}`,
         )
       }}
+    </template>
+
+    <template #cell-code="{ item }">
+      {{ item.code }}
+      <small v-if="item.syncCode">({{ item.syncCode }})</small>
     </template>
 
     <template #footer-subtotal="{ selectedRows }">
@@ -60,7 +65,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "debitOpening")
+              helper.getSubtotal(selectedRows, "debitOpening"),
             )
           }}
         </b>
@@ -69,7 +74,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "creditOpening")
+              helper.getSubtotal(selectedRows, "creditOpening"),
             )
           }}
         </b>
@@ -78,7 +83,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "debit")
+              helper.getSubtotal(selectedRows, "debit"),
             )
           }}
         </b>
@@ -87,7 +92,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "credit")
+              helper.getSubtotal(selectedRows, "credit"),
             )
           }}
         </b>
@@ -96,7 +101,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "debitRemained")
+              helper.getSubtotal(selectedRows, "debitRemained"),
             )
           }}
         </b>
@@ -105,7 +110,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "creditRemained")
+              helper.getSubtotal(selectedRows, "creditRemained"),
             )
           }}
         </b>
@@ -158,8 +163,8 @@
       helper.findIndex(
         props.tableStore.columns.value,
         "name",
-        "debitOpening"
-      ) !== -1
+        "debitOpening",
+      ) !== -1,
   );
 
   const colspan = computed(() => {

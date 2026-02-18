@@ -302,6 +302,8 @@
 
   "shared": {
     "labels": {
+      "disableTaxCalculation": "مالیات، عدم محاسبه خودکار",
+      "addPersonnel": "افزودن پرسنل",
       "createQuote": "ایجاد پیش‌فاکتور",
       "createInvoice": "ایجاد فاکتور",
       "createVoucher": "ایجاد سند",

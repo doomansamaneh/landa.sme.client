@@ -34,14 +34,14 @@ export function useWageModel({ baseRoute, preview }) {
 
   async function exportTax(id) {
     const response = await fetchWrapper.download(
-      `prl/wage/exportTax/${id}`
+      `prl/wage/exportTax/${id}`,
     );
     downloadFile(response);
   }
 
   async function exportInsurance(id) {
     const response = await fetchWrapper.download(
-      `prl/wage/exportInsurance/${id}`
+      `prl/wage/exportInsurance/${id}`,
     );
     downloadFile(response);
   }
@@ -123,6 +123,7 @@ export function useWageModel({ baseRoute, preview }) {
         bonus: 0,
         reward: 0,
         serviceBenefit: 0,
+        disableTaxCalculation: false,
       });
   };
 
@@ -143,7 +144,7 @@ export function useWageModel({ baseRoute, preview }) {
     formData.append("ImportFile", file.value);
     const responseData = await fetchWrapper.post(
       `prl/wage/importItems`,
-      formData
+      formData,
     );
     addItemsFromResponse(responseData);
   }
@@ -152,7 +153,7 @@ export function useWageModel({ baseRoute, preview }) {
     if (responseData?.data?.data) {
       responseData.data.data.forEach((item) => {
         const exists = model.value.wageItems.some(
-          (c) => c.customerId === item.customerId
+          (c) => c.customerId === item.customerId,
         );
 
         if (!exists) pushNewRow(item);
