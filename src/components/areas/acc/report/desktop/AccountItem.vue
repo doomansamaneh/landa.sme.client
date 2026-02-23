@@ -9,7 +9,7 @@
     wrapCells
     expandable
     toolbar
-    :title="`${title}`"
+    :title="title"
   >
     <template #cell-voucherSubject="{ item }">
       {{ item.voucherSubject }} -

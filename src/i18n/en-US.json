@@ -259,6 +259,7 @@
   },
 
   "messages": {
+    "Concurrency Error": "This information has been modified by another user. Please refresh the page and try again.",
     "noRowSelected": "No row selected",
     "Msg_DatabaseUniqueKeyError": "Duplicate data entered",
     "Msg_YouAreNotBusinessOwner": "You are not the business owner",

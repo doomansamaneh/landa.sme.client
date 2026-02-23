@@ -90,6 +90,8 @@
                     <custom-input
                       v-model="col.value"
                       clearable
+                      inputmode="search"
+                      enterkeyhint="search"
                       @keydown="handleEnterKey"
                       @clear="handleClear(col)"
                       @update:model-value="
@@ -302,7 +304,7 @@
         dataSource: props.dataSource,
         dataColumns: props.columns,
         store: props.gridStore,
-      })
+      }),
   );
 
   const emit = defineEmits([
@@ -320,7 +322,7 @@
       if (col.template) {
         return col.template.replace(
           /{{\s*([\w.]+)\s*}}/g,
-          (_, key) => row[key] ?? ""
+          (_, key) => row[key] ?? "",
         );
       } else if (col.field) {
         let value = row[col.field];
@@ -368,7 +370,7 @@
   function emitselectedRows() {
     emit(
       "selected-rows-changed",
-      tableStore.value.selectedRows.value
+      tableStore.value.selectedRows.value,
     );
   }
 
@@ -385,7 +387,7 @@
         : "") +
       (props.square === true ? " q-table--square" : "") +
       (props.flat === true ? " q-table--flat" : " border-radius-lg") +
-      (props.bordered === true ? " q-table--bordered" : "")
+      (props.bordered === true ? " q-table--bordered" : ""),
   );
 
   const __containerClass = computed(
@@ -401,8 +403,8 @@
       (props.noFullscreen
         ? " scroll"
         : tableStore.value.inFullscreen.value === true
-        ? " fullscreen scroll"
-        : "")
+          ? " fullscreen scroll"
+          : ""),
   );
 
   const containerClass = computed(
@@ -410,7 +412,7 @@
       __containerClass.value +
       (tableStore.value.showLoader.value === true
         ? " q-table--loading"
-        : "")
+        : ""),
   );
 
   const goToPreview = (row) => {
@@ -451,7 +453,7 @@
 
   function handleTabNavigation(e) {
     const filterInputs = document.querySelectorAll(
-      ".filter input, .filter .q-field__native"
+      ".filter input, .filter .q-field__native",
     );
     if (!filterInputs.length) return;
 
@@ -476,7 +478,7 @@
     const inputs = Array.from(filterInputs);
     const currentIndex = inputs.findIndex(
       (input) =>
-        input === currentInput || input.contains(currentInput)
+        input === currentInput || input.contains(currentInput),
     );
     if (currentIndex === -1) return;
 
@@ -485,8 +487,8 @@
         ? inputs.length - 1
         : currentIndex - 1
       : currentIndex === inputs.length - 1
-      ? 0
-      : currentIndex + 1;
+        ? 0
+        : currentIndex + 1;
 
     // Focus the next input
     const nextInput = inputs[nextIndex];
@@ -513,7 +515,7 @@
   }
 
   const visibleColumns = computed(() =>
-    tableStore?.value.columns.value.filter((col) => !col.hidden)
+    tableStore?.value.columns.value.filter((col) => !col.hidden),
   );
 
   defineExpose({

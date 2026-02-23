@@ -27,7 +27,7 @@
         flat
         :columns="accountItemSLColumns"
         :filter-expression="filterExpression"
-        :title="title"
+        :title="$t('shared.labels.AccountTransaction')"
       />
 
       <q-separator />
