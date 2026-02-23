@@ -98,12 +98,31 @@
                 {{ item.slCode }}
               </div>
               <div
+                v-if="item.dlCode"
                 style="text-align: end"
                 :class="
                   $q.dark.isActive ? 'text-yellow' : 'text-primary'
                 "
               >
                 {{ item.dlCode }}
+              </div>
+              <div
+                v-if="item.dl2Code"
+                style="text-align: end"
+                :class="
+                  $q.dark.isActive ? 'text-yellow' : 'text-primary'
+                "
+              >
+                {{ item.dlCode2 }}
+              </div>
+              <div
+                v-if="item.dl3Code"
+                style="text-align: end"
+                :class="
+                  $q.dark.isActive ? 'text-yellow' : 'text-primary'
+                "
+              >
+                {{ item.dlCode3 }}
               </div>
             </td>
             <td
@@ -118,12 +137,31 @@
                 {{ item.slTitle }}
               </div>
               <div
+                v-if="item.dlCode"
                 class="text-wrap"
                 :class="
                   $q.dark.isActive ? 'text-yellow' : 'text-primary'
                 "
               >
                 {{ item.dlTitle }}
+              </div>
+              <div
+                v-if="item.dl2Code"
+                class="text-wrap"
+                :class="
+                  $q.dark.isActive ? 'text-yellow' : 'text-primary'
+                "
+              >
+                {{ item.dl2Title }}
+              </div>
+              <div
+                v-if="item.dl3Code"
+                class="text-wrap"
+                :class="
+                  $q.dark.isActive ? 'text-yellow' : 'text-primary'
+                "
+              >
+                {{ item.dl3Title }}
               </div>
               <div class="text-wrap">
                 {{ item.comment }}
@@ -172,7 +210,7 @@
             (
             {{
               numberToWords(
-                helper.getSubtotal(model?.voucherItems, "debit") ?? 0
+                helper.getSubtotal(model?.voucherItems, "debit") ?? 0,
               )
             }}
             <strong>{{ model?.currencyTitle }}</strong>
@@ -189,7 +227,7 @@
             <strong>
               {{
                 helper.formatNumber(
-                  helper.getSubtotal(model?.voucherItems, "debit")
+                  helper.getSubtotal(model?.voucherItems, "debit"),
                 )
               }}
             </strong>
@@ -205,7 +243,7 @@
             <strong>
               {{
                 helper.formatNumber(
-                  helper.getSubtotal(model?.voucherItems, "credit")
+                  helper.getSubtotal(model?.voucherItems, "credit"),
                 )
               }}
             </strong>
