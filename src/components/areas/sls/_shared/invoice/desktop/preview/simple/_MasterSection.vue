@@ -6,6 +6,7 @@
           :show-logo="showSaleHeader"
           :model="model"
           :title="title"
+          :show-due-date="$route.path.includes('sls/quote')"
         />
       </q-card-section>
       <q-card-section class="q-gutter-y-sm">

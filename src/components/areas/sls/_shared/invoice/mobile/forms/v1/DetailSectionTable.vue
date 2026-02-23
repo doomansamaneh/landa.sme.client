@@ -48,9 +48,14 @@
 
     <div class="q-pa-lg">
       <div class="row items-center q-mb-md">
-        <!-- <div class="col-4">
-          <span class="text-caption text-on-dark">کالا/خدمت</span>
-        </div> -->
+        <div class="col-4">
+          <span class="text-body3 text-on-dark">
+            <span>#</span>
+            {{ row.rowNo }}
+          </span>
+        </div>
+      </div>
+      <div class="row items-center q-mb-md">
         <div class="col">
           <span class="text-body2 text-bold text-on-dark">
             {{ row.productCode }} -
@@ -287,7 +292,7 @@
     } else {
       props.formStore.editRow(
         selectedIndex.value,
-        addItemElement.value.model
+        addItemElement.value.model,
       );
     }
   }

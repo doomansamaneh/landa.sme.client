@@ -22,9 +22,11 @@
       :rules="rules"
       :autogrow="autogrow"
       :inputmode="inputmode"
+      :enterkeyhint="enterkeyhint"
       :autofocus="autofocus"
       @keydown="$emit('keydown', $event)"
       @clear="$emit('clear')"
+      @keyup.enter="$emit('enter')"
     >
       <validation-alert
         v-if="validationMessage"
@@ -61,10 +63,13 @@
     rounded: Boolean,
     autogrow: Boolean,
     inputmode: String,
+    enterkeyhint: String,
     dense: Boolean,
     inputClass: String,
     autofocus: Boolean,
   });
+
+  const emit = defineEmits(["keydown", "clear", "enter"]);
 
   const modelValue = defineModel("modelValue");
   const { t } = useI18n();

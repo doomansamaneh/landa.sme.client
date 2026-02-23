@@ -20,6 +20,14 @@
     <div class="q-pa-lg">
       <div class="row items-center q-mb-md">
         <div class="col-4">
+          <span class="text-body3 text-on-dark">
+            <span>#</span>
+            {{ row.rowNo }}
+          </span>
+        </div>
+      </div>
+      <div class="row items-center q-mb-md">
+        <div class="col-4">
           <span class="text-caption text-on-dark">
             {{ $t("shared.columns.slTitle") }}
           </span>
@@ -356,12 +364,12 @@
         props.formStore.model.value.voucherItems.length - 1;
       Object.assign(
         props.formStore.model.value.voucherItems[lastIndex],
-        selectedItem.value
+        selectedItem.value,
       );
     } else {
       Object.assign(
         props.formStore.model.value.voucherItems[selectedIndex.value],
-        selectedItem.value
+        selectedItem.value,
       );
     }
   };
