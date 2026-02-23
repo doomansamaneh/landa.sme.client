@@ -45,17 +45,6 @@
             :thumb-style="helper.thumbStyle"
             style="height: 300px"
           >
-            <!--           <q-item clickable v-close-popup @click="showAllColumns">
-            <q-item-section avatar>
-              <q-icon :name="isShowingAll ? 'visibility_off' : 'visibility'" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>
-                {{ isShowingAll ? $t("shared.labels.showDefault") : $t("shared.labels.showAll") }}
-              </q-item-label>
-            </q-item-section>
-          </q-item>
-            <q-separator /> -->
             <q-item
               v-for="column in allColumns"
               :key="column.name"
@@ -81,17 +70,6 @@
                 </q-item-label>
               </q-item-section>
             </q-item>
-
-            <!-- <q-item clickable v-close-popup @click="hideAllColumns">
-            <q-item-section avatar>
-              <q-icon name="visibility_off" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>
-                {{ $t("shared.labels.hideAll") }}
-              </q-item-label>
-            </q-item-section>
-          </q-item> -->
           </q-scroll-area>
         </q-list>
       </q-menu>
@@ -100,7 +78,7 @@
 </template>
 
 <script setup>
-  import { computed, ref, onMounted, watch } from "vue";
+  import { computed, ref, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { useColumnSettings } from "src/composables/useColumnSettings";
 
@@ -123,37 +101,31 @@
     },
   });
 
-  // Initialize column settings composable
   const {
     getColumnVisibility,
     saveColumnVisibility,
     getOriginalStates,
     saveOriginalStates,
-    resetToDefault,
   } = useColumnSettings(
     props.pageName,
     props.widgetName,
     props.tableId,
-    props.tableStore
+    props.tableStore,
   );
 
   const allColumns = computed(() => {
     return props.tableStore?.columns?.value || [];
   });
 
-  // Track original column visibility state
   const originalColumnStates = ref({});
   const isShowingAll = ref(false);
 
-  // Initialize original states when component mounts
   const initializeOriginalStates = () => {
     if (props.tableStore?.columns?.value) {
-      // Load saved original states from localStorage
       const savedOriginalStates = getOriginalStates();
 
       props.tableStore.columns.value.forEach((column) => {
         if (!(column.name in originalColumnStates.value)) {
-          // Use saved original state or current column state
           originalColumnStates.value[column.name] =
             savedOriginalStates[column.name] !== undefined
               ? savedOriginalStates[column.name]
@@ -161,12 +133,10 @@
         }
       });
 
-      // Save original states to localStorage
       saveOriginalStates(originalColumnStates.value);
     }
   };
 
-  // Load column visibility from localStorage
   const loadColumnVisibility = () => {
     if (props.tableStore?.columns?.value) {
       const savedVisibility = getColumnVisibility();
@@ -177,14 +147,12 @@
         }
       });
 
-      // Trigger reactivity update
       props.tableStore.columns.value = [
         ...props.tableStore.columns.value,
       ];
     }
   };
 
-  // Save current column visibility to localStorage
   const saveCurrentColumnVisibility = () => {
     if (props.tableStore?.columns?.value) {
       const visibilitySettings = {};
@@ -203,11 +171,9 @@
   const toggleColumnVisibility = (column) => {
     if (column && props.tableStore) {
       column.hidden = !column.hidden;
-      // Trigger reactivity update
       props.tableStore.columns.value = [
         ...props.tableStore.columns.value,
       ];
-      // Save to localStorage
       saveCurrentColumnVisibility();
     }
   };
@@ -215,48 +181,21 @@
   const showAllColumns = () => {
     if (props.tableStore?.columns?.value) {
       if (isShowingAll.value) {
-        // Return to original state
         props.tableStore.columns.value.forEach((column) => {
           column.hidden =
             originalColumnStates.value[column.name] || false;
         });
         isShowingAll.value = false;
       } else {
-        // Show all columns
         props.tableStore.columns.value.forEach((column) => {
           column.hidden = false;
         });
         isShowingAll.value = true;
       }
-      // Trigger reactivity update
       props.tableStore.columns.value = [
         ...props.tableStore.columns.value,
       ];
-      // Save to localStorage
       saveCurrentColumnVisibility();
     }
-  };
-
-  const hideAllColumns = () => {
-    if (props.tableStore?.columns?.value) {
-      props.tableStore.columns.value.forEach((column) => {
-        column.hidden = true;
-      });
-      isShowingAll.value = false;
-      // Trigger reactivity update
-      props.tableStore.columns.value = [
-        ...props.tableStore.columns.value,
-      ];
-      // Save to localStorage
-      saveCurrentColumnVisibility();
-    }
-  };
-
-  // Reset to default settings
-  const resetToDefaultSettings = () => {
-    resetToDefault();
-    // Reload the original states and visibility
-    initializeOriginalStates();
-    loadColumnVisibility();
   };
 </script>

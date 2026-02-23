@@ -680,7 +680,7 @@ export const actions = {
   name: "actions",
   field: "",
   sortable: false,
-  label: "",
+  label: "actions",
   align: "left",
   class: "text-left",
   style: "width:160px;",

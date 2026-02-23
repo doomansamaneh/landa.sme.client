@@ -86,7 +86,7 @@
               />
             </div>
 
-            <lookup-add-button to="/cmn/commonKeyword/create" />
+            <lookup-add-button @click="handleAdd" />
           </div>
         </div>
         <div class="q-px-md q-pt-md">
@@ -316,8 +316,13 @@
   } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
-  import { defaultLookupPageSize, sortOrder } from "src/constants";
+  import {
+    defaultLookupPageSize,
+    sortOrder,
+    formAction,
+  } from "src/constants";
   import { useI18n } from "vue-i18n";
+  import { useDialog } from "src/composables/useDialog";
 
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
@@ -325,9 +330,10 @@
   import CustomLabel from "../forms/CustomLabel.vue";
   import ValidationAlert from "src/components/shared/forms/ValidationAlert.vue";
   import LookupAddButton from "src/components/shared/lookups/LookupAddButton.vue";
+  import CreateForm from "src/components/areas/cmn/commonKeyword/shared/forms/CreateForm.vue";
 
   const props = defineProps({
-    modelValue: String, // <-- add for v-model
+    modelValue: String,
     type: String,
     placeholder: String,
     label: String,
@@ -338,11 +344,12 @@
     },
   });
 
-  const emit = defineEmits(["update:modelValue", "row-selected"]); // <-- add update:modelValue
+  const emit = defineEmits(["update:modelValue", "row-selected"]);
 
   const { t } = useI18n();
   const $q = useQuasar();
-  // Use computed for v-model
+  const dialogStore = useDialog();
+
   const model = computed({
     get: () => props.modelValue,
     set: (val) => emit("update:modelValue", val),
@@ -351,7 +358,7 @@
   const menuWidth = ref("");
   const isDialogOpen = ref(false);
   const searchText = ref("");
-  const selectedRowIndex = ref(0); // default to 0 for first row
+  const selectedRowIndex = ref(0);
   const isAscending = ref(true);
   const addBtnRef = ref(null);
   const popup = ref(null);
@@ -359,7 +366,7 @@
   const menuSearch = ref(null);
   const dialogSearch = ref(null);
   const mainSearch = ref(null);
-  const validationMessage = ref(""); // <-- add validation message
+  const validationMessage = ref("");
 
   const rules = computed(() => {
     return props.required
@@ -423,7 +430,7 @@
 
   function syncSelectedRowIndex() {
     const idx = tableStore.rows.value.findIndex(
-      (row) => row.title === model.value
+      (row) => row.title === model.value,
     );
     selectedRowIndex.value = idx >= 0 ? idx : 0;
   }
@@ -476,7 +483,6 @@
 
   function selectRow(row) {
     if (!isPopupOpen.value && !isDialogOpen.value) return;
-    // Always select the row at selectedRowIndex if no row is passed
     if (!row) {
       if (tableStore.rows.value.length === 0) return;
       row = tableStore.rows.value[selectedRowIndex.value];
@@ -492,12 +498,6 @@
   function reloadData() {
     tableStore.reloadData().then(syncSelectedRowIndex);
   }
-
-  // function onSearch(val) {
-  //   tableStore.setSearchTerm(val);
-  //   tableStore.pagination.value.currentPage = 1;
-  //   tableStore.reloadData().then(syncSelectedRowIndex);
-  // }
 
   async function searchInLookup(val) {
     tableStore.setSearchTerm(val);
@@ -518,6 +518,20 @@
     tableStore.pagination.value.sortColumn = "title";
     tableStore.reloadData();
     selectedRowIndex.value = 0;
+  }
+
+  function handleAdd(event) {
+    isPopupOpen.value = false;
+    dialogStore.openDialog({
+      title: "shared.labels.create",
+      component: CreateForm,
+      width: "900px",
+      actionBar: true,
+      props: { action: formAction.create },
+      okCallback: (responseData) => {
+        if (responseData.data) setIdText(responseData.data);
+      },
+    });
   }
 
   function handleKeyDown(event) {
@@ -554,20 +568,15 @@
       event.stopPropagation();
       selectRow();
     }
-    // Otherwise, allow default (new line in textarea)
   }
 
-  // Global keydown handler for navigation
   function globalKeydownHandler(e) {
-    // Only handle up/down/enter
     if (["ArrowUp", "ArrowDown", "Enter"].includes(e.key)) {
-      // Prevent default scroll/submit
       e.preventDefault();
       handleKeyDown(e);
     }
   }
 
-  // Watch for menu/dialog open/close to add/remove global keydown
   watch([isPopupOpen, isDialogOpen], ([popup, dialog]) => {
     if (popup || dialog) {
       window.addEventListener("keydown", globalKeydownHandler);
@@ -576,7 +585,6 @@
     }
   });
 
-  // Clean up on component unmount
   onBeforeUnmount(() => {
     window.removeEventListener("keydown", globalKeydownHandler);
   });

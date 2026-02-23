@@ -42,8 +42,8 @@
         "
         :class="
           $q.screen.gt.xs
-            ? 'q-pa-lg scroll'
-            : 'q-pa-lg scroll hide-scrollbar'
+            ? 'q-px-lg q-py-none scroll'
+            : 'q-px-md q-py-none scroll hide-scrollbar'
         "
       >
         <slot name="body">

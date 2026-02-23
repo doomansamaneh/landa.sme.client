@@ -10,5 +10,5 @@
 </template>
 
 <script setup>
-import Desktop from "src/components/areas/cmn/commonKeyword/shared/forms/CreateForm.vue";
+import Desktop from "src/components/areas/cmn/commonKeyword/shared/forms/CreateFormContainer.vue";
 </script>
