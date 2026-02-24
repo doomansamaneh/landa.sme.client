@@ -4,12 +4,16 @@
     class="q-px-md"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
+    <!-- <snow-effect /> -->
+    <!-- <falling-leaves /> -->
+    <!-- <rain-effect /> -->
+    <!-- <spring-effect /> -->
+
     <div class="row no-wrap">
       <q-toolbar class="col-auto no-padding">
         <div class="row items-center q-gutter-sm">
           <div class="column items-center">
             <steam-animation />
-
             <q-btn
               no-caps
               @click="menuBarStore.toggle"
@@ -72,7 +76,7 @@
           />
 
           <profile />
-          <ticket-submission  />
+          <ticket-submission />
         </div>
       </q-toolbar>
     </div>
@@ -95,6 +99,10 @@
   import SteamAnimation from "src/assets/SteamAnimation.vue";
   import MostUsedOperations from "src/components/layouts/main/desktop/MostUsedOperations.vue";
   import TicketSubmission from "src/components/layouts/main/TicketSubmission.vue";
+  import SnowEffect from "../../../../assets/SnowEffect.vue";
+  import FallingLeaves from "src/assets/FallingLeaves.vue";
+  import RainEffect from "src/assets/RainEffect.vue";
+  import SpringEffect from "src/assets/SpringEffect.vue";
 
   const contactDrawerStore = useContactDrawer();
   const notifDrawerStore = useNotifDrawer();
@@ -104,7 +112,7 @@
   const businessStore = useBusiness();
 
   const activeButton = computed(() =>
-    contactDrawerStore.state.value == true ? "btn-active" : ""
+    contactDrawerStore.state.value == true ? "btn-active" : "",
   );
 
   const toggleContactDrawer = () => {
