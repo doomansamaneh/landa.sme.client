@@ -158,6 +158,16 @@
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
+          <q-checkbox
+            dense
+            size="48px"
+            v-model="wageItem.disableTaxCalculation"
+            :label="$t('shared.labels.disableTaxCalculation')"
+          />
+          <custom-input-number v-model="wageItem.taxAmount" />
+          <!-- :label="$t('shared.columns.taxAmount')" -->
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-12">
           <date-time-picker
             v-model="wageItem.dateEnter"
             :label="$t('shared.columns.dateEnter')"
@@ -169,7 +179,7 @@
             :label="$t('shared.columns.dateExit')"
           />
         </div>
-        <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="col-md-6 col-sm-8 col-xs-12">
           <custom-input
             v-model="wageItem.comment"
             :label="$t('shared.columns.comment')"
@@ -211,7 +221,7 @@
   ];
 
   const days = computed(() =>
-    Array.from({ length: 32 }, (_, i) => ({ label: i, value: i }))
+    Array.from({ length: 32 }, (_, i) => ({ label: i, value: i })),
   );
 
   const wageItem = computed(() => props.item);

@@ -59,13 +59,11 @@
 
 <script setup>
   import { computed } from "vue";
-  import { baseUrl } from "src/constants";
   import { useWageModel } from "src/components/areas/prl/_composables/useWageModel";
 
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
   import UploadArea from "src/components/areas/_shared/common/UploadArea.vue";
 
   const props = defineProps({
@@ -78,7 +76,7 @@
     Array.from({ length: 12 }, (_, i) => ({
       label: i + 1,
       value: i + 1,
-    }))
+    })),
   );
 
   const upload = async (file) => {

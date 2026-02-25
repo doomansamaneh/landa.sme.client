@@ -259,7 +259,7 @@
   },
 
   "messages": {
-    "Concurrency Error": "This information has been modified by another user. Please refresh the page and try again.",
+    "Concurrency_Error": "This information has been modified by another user. Please refresh the page and try again.",
     "noRowSelected": "No row selected",
     "Msg_DatabaseUniqueKeyError": "Duplicate data entered",
     "Msg_YouAreNotBusinessOwner": "You are not the business owner",
@@ -298,6 +298,8 @@
 
   "shared": {
     "labels": {
+      "disableTaxCalculation": "Tax Amount Manual",
+      "addPersonnel": "Add Personnel",
       "createQuote": "Create Quote",
       "createInvoice": "Create Invoice",
       "createVoucher": "Create Voucher",
