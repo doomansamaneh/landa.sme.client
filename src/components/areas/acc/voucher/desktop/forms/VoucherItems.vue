@@ -12,13 +12,13 @@
       <thead>
         <tr>
           <th style="width: 1px">#</th>
-          <th style="width: 25%">
+          <th style="width: 20%">
             {{ $t("shared.columns.slTitle") }}
           </th>
-          <th style="width: 23%">
+          <th style="width: 20%">
             {{ $t("shared.columns.dlTitle") }}
           </th>
-          <th style="width: 25%">
+          <th style="width: 20%">
             {{ $t("shared.labels.comment") }}
           </th>
           <th style="width: 10%">{{ $t("shared.columns.debit") }}</th>
@@ -44,131 +44,153 @@
           <th style="width: 10%">
             {{ $t("shared.columns.credit") }}
           </th>
-          <th></th>
+          <th style="width: 1px" />
         </tr>
       </thead>
       <tbody>
-        <tr
+        <template
           v-for="(row, index) in formStore.model.value.voucherItems"
           :key="index"
-          class="q-pa-md"
         >
-          <td class="text-center">{{ index + 1 }}</td>
-          <td>
-            <sl-lookup
-              v-model:selectedId="row.slId"
-              v-model:selectedText="row.slDisplay"
-              :autofocus="index === formStore.newAddedItemIndex.value"
-              :placeholder="$t('shared.columns.slTitle')"
-              required
-              clearable
-              @rowSelected="slChanged($event, row, index)"
-            />
-          </td>
-          <td>
-            <dl-lookup
-              ref="dl"
-              v-model:selectedId="row.dlId"
-              v-model:selectedText="row.dlDisplay"
-              :placeholder="$t('shared.columns.dlTitle')"
-            />
-            <!-- :filter-expression="getDlFilters(row)" -->
-          </td>
-          <td>
-            <comment-lookup dense v-model="row.comment" required />
-            <!-- <custom-input v-model="row.comment" autogrow required /> -->
-            <!-- <custom-input
-              v-model:selectedText="row.comment"
-              autogrow
-              required
-            /> -->
-          </td>
-          <td>
-            <custom-input-number
-              v-model="row.debit"
-              :placeholder="$t('shared.columns.debit')"
-              required_
-            />
-          </td>
-          <td class="text-center">
-            <q-btn
-              no-caps
-              size="sm"
-              unelevated
-              round
-              dense
-              icon="o_swap_horiz"
-              @click="swapRowValues(index)"
-            />
-          </td>
-          <td>
-            <custom-input-number
-              v-model="row.credit"
-              :placeholder="$t('shared.columns.credit')"
-              required_
-            />
-          </td>
-          <td class="text-center q-gutter-x-xs">
-            <q-btn
-              no-caps
-              color="primary"
-              unelevated
-              round
-              class="text-on-dark"
-              size="sm"
-              icon="o_add"
-              @click="formStore.addNewRow(index, row)"
-            />
+          <tr class="q-pa-md">
+            <td class="text-center">{{ index + 1 }}</td>
+            <td>
+              <sl-lookup
+                v-model:selectedId="row.slId"
+                v-model:selectedText="row.slDisplay"
+                :autofocus="
+                  index === formStore.newAddedItemIndex.value
+                "
+                :placeholder="$t('shared.columns.slTitle')"
+                required
+                clearable
+                @rowSelected="slChanged($event, row, index)"
+              />
+            </td>
+            <td>
+              <dl-lookup
+                :ref="setDlRef"
+                v-model:selectedId="row.dlId"
+                v-model:selectedText="row.dlDisplay"
+                :placeholder="$t('shared.columns.dlTitle')"
+              />
+            </td>
+            <td>
+              <comment-lookup dense v-model="row.comment" required />
+            </td>
+            <td>
+              <custom-input-number
+                v-model="row.debit"
+                :placeholder="$t('shared.columns.debit')"
+                required_
+              />
+            </td>
+            <td class="text-center">
+              <q-btn
+                no-caps
+                size="sm"
+                unelevated
+                round
+                dense
+                icon="o_swap_horiz"
+                @click="swapRowValues(index)"
+              />
+            </td>
+            <td>
+              <custom-input-number
+                v-model="row.credit"
+                :placeholder="$t('shared.columns.credit')"
+                required_
+              />
+            </td>
+            <td>
+              <div
+                class="flex no-wrap items-center justify-center q-pt-xs"
+                style="gap: 8px"
+              >
+                <q-btn
+                  no-caps
+                  color="primary"
+                  unelevated
+                  round
+                  class="text-on-dark"
+                  size="sm"
+                  icon="o_add"
+                  @click="formStore.addNewRow(index, row)"
+                />
+                <q-btn
+                  no-caps
+                  color="red"
+                  unelevated
+                  round
+                  class="text-on-dark"
+                  size="sm"
+                  icon="o_delete"
+                  @click="formStore.deleteRow(index)"
+                />
+                <q-btn
+                  no-caps
+                  unelevated
+                  round
+                  class="text-on-dark"
+                  size="sm"
+                  @click="duplicateRow(index)"
+                >
+                  <q-icon size="20px" name="o_copy" />
+                </q-btn>
+                <q-btn
+                  no-caps
+                  @click="toggleRowDetails(index)"
+                  unelevated
+                  dense
+                  round
+                  class="text-on-dark"
+                  size="14px"
+                >
+                  <q-icon size="24px" name="o_more_horiz" />
+                </q-btn>
+              </div>
+            </td>
+          </tr>
 
-            <q-btn
-              no-caps
-              color="red"
-              unelevated
-              round
-              class="text-on-dark"
-              size="sm"
-              icon="o_delete"
-              @click="formStore.deleteRow(index)"
-            />
-
-            <q-btn
-              no-caps
-              unelevated
-              round
-              class="text-on-dark"
-              size="sm"
-              @click="duplicateRow(index)"
-            >
-              <q-icon size="20px" name="o_copy" />
-            </q-btn>
-
-            <!-- <q-btn no-caps
-              unelevated
-              round
-              dense
-              class="text-on-dark"
-              size="14px"
-              @click="formStore.deleteRow(index)"
-            >
-              <q-icon size="24px" name="o_delete" />
-            </q-btn> -->
-          </td>
-        </tr>
+          <tr
+            class="expanded-row"
+            :style="
+              $q.dark.isActive
+                ? 'background: #ffffff08;'
+                : 'background: #00000004;'
+            "
+            v-if="expandedRows[index]"
+          >
+            <td class="text-center"></td>
+            <td colspan="3">
+              <div class="row q-col-gutter-sm">
+                <div class="col-4">
+                  <dl-lookup
+                    v-model:selectedId="row.dl2Id"
+                    v-model:selectedText="row.dl2Display"
+                    :placeholder="$t('shared.columns.dl2Title')"
+                    dense
+                  />
+                </div>
+                <div class="col-4">
+                  <dl-lookup
+                    v-model:selectedId="row.dl3Id"
+                    v-model:selectedText="row.dl3Display"
+                    :placeholder="$t('shared.columns.dl3Title')"
+                    dense
+                  />
+                </div>
+              </div>
+            </td>
+            <td colspan="4" />
+          </tr>
+        </template>
       </tbody>
       <tbody v-if="formStore.model.value.voucherItems.length === 0">
         <tr>
           <td colspan="100%" class="text-center">
             <no-item-selected />
-            <!-- <q-btn no-caps
-              class="q-my-xl primary-shadow"
-              rounded
-              unelevated
-              color="primary"
-              @click="formStore.pushNewRow()"
-            >
-              <q-icon name="o_add" size="20px" class="q-mr-xs" />
-              افزودن ردیف
-            </q-btn> -->
           </td>
         </tr>
       </tbody>
@@ -213,7 +235,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, reactive } from "vue";
   import { sqlOperator } from "src/constants";
   import { helper } from "src/helpers";
 
@@ -228,11 +250,26 @@
     formStore: Object,
   });
 
-  const dl = ref([]);
+  const dlRefs = ref([]);
+  const expandedRows = reactive({});
+
+  const setDlRef = (el) => {
+    if (el) {
+      dlRefs.value.push(el);
+    }
+  };
+
+  const toggleRowDetails = (index) => {
+    expandedRows[index] = !expandedRows[index];
+  };
 
   const slChanged = (sl, row, index) => {
     const dlFilters = getDlFilters(row);
-    dl.value[index].lookup.tableStore.setFilterExpression(dlFilters);
+    if (dlRefs.value[index]) {
+      dlRefs.value[index].lookup.tableStore.setFilterExpression(
+        dlFilters,
+      );
+    }
   };
 
   const getDlFilters = (row) => {
@@ -267,7 +304,6 @@
     const currentRow = items[index];
     if (!currentRow) return;
 
-    // Insert a new row and then copy values into it
     props.formStore.addNewRow(index);
     const newIndex = index + 1;
     const cloned = { ...currentRow };
@@ -281,3 +317,19 @@
     props.formStore.editRow(newIndex, cloned);
   };
 </script>
+
+<style lang="scss" scoped>
+  .expanded-row td {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  th {
+    background-color: #{$primary}10;
+    border-bottom: 2px solid $primary;
+  }
+
+  .q-table td {
+    vertical-align: top;
+  }
+</style>

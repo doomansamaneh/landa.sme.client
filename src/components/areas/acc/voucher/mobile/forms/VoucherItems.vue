@@ -196,6 +196,28 @@
 
             <div class="row items-center q-mb-md">
               <div class="col">
+                <dl-lookup
+                  ref="dl"
+                  v-model:selectedId="selectedItem.dl2Id"
+                  v-model:selectedText="selectedItem.dl2Display"
+                  :label="$t('shared.columns.dl2Title')"
+                />
+              </div>
+            </div>
+
+            <div class="row items-center q-mb-md">
+              <div class="col">
+                <dl-lookup
+                  ref="dl"
+                  v-model:selectedId="selectedItem.dl3Id"
+                  v-model:selectedText="selectedItem.dl3Display"
+                  :label="$t('shared.columns.dl3Title')"
+                />
+              </div>
+            </div>
+
+            <div class="row items-center q-mb-md">
+              <div class="col">
                 <custom-input
                   v-model="selectedItem.comment"
                   autogrow

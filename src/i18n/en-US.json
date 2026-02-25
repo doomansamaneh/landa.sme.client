@@ -1300,6 +1300,8 @@
       "slTitle": "Sub Ledger",
       "glTitle": "General Ledger",
       "dlTitle": "Detail Ledger",
+      "dl2Title": "Detail Ledger2",
+      "dl3Title": "Detail Ledger3",
       "isActive": "Active",
       "no": "Number",
       "itemNo": "Receipt Number",
