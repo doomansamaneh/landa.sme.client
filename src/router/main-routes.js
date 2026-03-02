@@ -49,7 +49,7 @@ export default {
           meta: {
             title: (t) =>
               `${t("shared.labels.create")} - ${t(
-                "shared.labels.fiscalYear"
+                "shared.labels.fiscalYear",
               )}`,
           },
         },
@@ -60,7 +60,7 @@ export default {
           meta: {
             title: (t) =>
               `${t("shared.labels.edit")} - ${t(
-                "shared.labels.fiscalYear"
+                "shared.labels.fiscalYear",
               )}`,
           },
         },
@@ -71,7 +71,7 @@ export default {
           meta: {
             title: (t) =>
               `${t("shared.labels.copy")} - ${t(
-                "shared.labels.fiscalYear"
+                "shared.labels.fiscalYear",
               )}`,
           },
         },
@@ -562,9 +562,7 @@ export default {
         {
           path: "createFromInvoice/:id",
           component: () =>
-            import(
-              "pages/areas/trs/receipt/CreateFromInvoicePage.vue"
-            ),
+            import("pages/areas/trs/receipt/CreateFromInvoicePage.vue"),
           meta: { title: "دریافت - ایجاد از روی فاکتور" },
         },
         {
@@ -606,9 +604,7 @@ export default {
         {
           path: "createFromInvoice/:id",
           component: () =>
-            import(
-              "pages/areas/trs/payment/CreateFromInvoicePage.vue"
-            ),
+            import("pages/areas/trs/payment/CreateFromInvoicePage.vue"),
           meta: { title: "پرداخت - ایجاد از روی خرید" },
         },
         {
@@ -632,9 +628,7 @@ export default {
         {
           path: "preview/:id",
           component: () =>
-            import(
-              "pages/areas/trs/paymentItemCheck/PreviewPage.vue"
-            ),
+            import("pages/areas/trs/paymentItemCheck/PreviewPage.vue"),
           meta: { title: "گردش حساب چک" },
         },
       ],
@@ -808,9 +802,7 @@ export default {
         {
           path: "createFromPurchase/:id",
           component: () =>
-            import(
-              "pages/areas/sls/invoice/CreateFromPurchasePage.vue"
-            ),
+            import("pages/areas/sls/invoice/CreateFromPurchasePage.vue"),
           meta: { title: "فاکتور فروش- کپی از فاکتور خرید" },
         },
         {
@@ -876,9 +868,7 @@ export default {
         {
           path: "createFromInvoice/:id",
           component: () =>
-            import(
-              "pages/areas/sls/purchase/CreateFromInvoicePage.vue"
-            ),
+            import("pages/areas/sls/purchase/CreateFromInvoicePage.vue"),
           meta: { title: "فاکتور خرید - ایجاد از فاکتور فروش" },
         },
         {
@@ -890,9 +880,7 @@ export default {
         {
           path: "ReceiptPreview/:id",
           component: () =>
-            import(
-              "src/pages/areas/sls/purchase/ReceiptPreviewPage.vue"
-            ),
+            import("src/pages/areas/sls/purchase/ReceiptPreviewPage.vue"),
           meta: { title: "فاکتور خرید - رسید انبار" },
         },
       ],
@@ -940,9 +928,7 @@ export default {
         {
           path: "createFromInvoice/:id",
           component: () =>
-            import(
-              "pages/areas/sls/salesReturn/CreateFromInvoicePage.vue"
-            ),
+            import("pages/areas/sls/salesReturn/CreateFromInvoicePage.vue"),
           meta: { title: "برگشت از فروش - ایجاد از فاکتور فروش" },
         },
       ],
@@ -990,9 +976,7 @@ export default {
         {
           path: "createFromPurchase/:id",
           component: () =>
-            import(
-              "pages/areas/sls/purchaseReturn/CreateFromInvoicePage.vue"
-            ),
+            import("pages/areas/sls/purchaseReturn/CreateFromInvoicePage.vue"),
           meta: { title: "برگشت از خرید - ایجاد از فاکتور خرید" },
         },
       ],
@@ -1091,12 +1075,34 @@ export default {
             {
               path: "changePassword",
               component: () =>
-                import(
-                  "src/pages/areas/scr/users/ChangePasswordPage.vue"
-                ),
+                import("src/pages/areas/scr/users/ChangePasswordPage.vue"),
               meta: { title: "تغییر گذر واژه" },
             },
           ],
+        },
+      ],
+    },
+
+    {
+      path: "scr/ipRange",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/scr/ipRange/IndexPage.vue"),
+          meta: { title: "فهرست ip های مجاز" },
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/scr/ipRange/CreatePage.vue"),
+          meta: { title: "ip مجاز - ایجاد" },
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/scr/ipRange/EditPage.vue"),
+          meta: { title: "ip مجاز - ویرایش" },
         },
       ],
     },
@@ -1251,9 +1257,7 @@ export default {
         {
           path: "preview",
           component: () =>
-            import(
-              "pages/areas/cmn/documentTemplate/PreviewPage.vue"
-            ),
+            import("pages/areas/cmn/documentTemplate/PreviewPage.vue"),
           meta: { title: "پیش‌نمایش قالب" },
         },
       ],
@@ -1421,33 +1425,25 @@ export default {
         {
           path: "",
           component: () =>
-            import(
-              "pages/areas/cmn/productUnitRelation/IndexPage.vue"
-            ),
+            import("pages/areas/cmn/productUnitRelation/IndexPage.vue"),
           meta: { title: "ارتباط واحدهای سنجش" },
         },
         {
           path: "create",
           component: () =>
-            import(
-              "pages/areas/cmn/productUnitRelation/CreatePage.vue"
-            ),
+            import("pages/areas/cmn/productUnitRelation/CreatePage.vue"),
           meta: { title: "ارتباط واحد سنجش - ایجاد" },
         },
         {
           path: "edit/:id",
           component: () =>
-            import(
-              "pages/areas/cmn/productUnitRelation/EditPage.vue"
-            ),
+            import("pages/areas/cmn/productUnitRelation/EditPage.vue"),
           meta: { title: "ارتباط واحد سنجش - ویرایش" },
         },
         {
           path: "copy/:id",
           component: () =>
-            import(
-              "pages/areas/cmn/productUnitRelation/CopyPage.vue"
-            ),
+            import("pages/areas/cmn/productUnitRelation/CopyPage.vue"),
           meta: { title: "ارتباط واحد سنجش - کپی" },
         },
       ],
@@ -1541,9 +1537,7 @@ export default {
         {
           path: "invoiceTablePreview",
           component: () =>
-            import(
-              "pages/areas/cmn/appConfig/InvoiceTablePreviewPage.vue"
-            ),
+            import("pages/areas/cmn/appConfig/InvoiceTablePreviewPage.vue"),
           meta: { title: "پیکربندی سامانه - نمایش جدول فاکتور" },
         },
       ],
@@ -1765,9 +1759,7 @@ export default {
         {
           path: "productStock/preview/:productId",
           component: () =>
-            import(
-              "pages/areas/inv/report/ProductStockPreviewPage.vue"
-            ),
+            import("pages/areas/inv/report/ProductStockPreviewPage.vue"),
           meta: { title: "گزارش موجودی کالا - پیش نمایش" },
         },
 

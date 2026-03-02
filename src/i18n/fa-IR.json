@@ -47,6 +47,7 @@
     "Crm_Section_View": "بخش",
     "Crm_Job_View": "شغل",
     "Scr_Users_View": "کاربران",
+    "Scr_IpRange_View": "ip های مجاز",
     "Acc_Voucher_View": "سند حسابداری",
     "Acc_Operation_View": "عملیات حسابداری",
     "Acc_AccountSL_Tree": "سرفصل حسابها",
@@ -1309,6 +1310,8 @@
     },
 
     "columns": {
+      "fromIp": "از ip",
+      "toIp": "تا  ip",
       "invoiceNumber": "شماره فاکتور",
       "dueDate": "سررسید",
       "total": "جمع کل",

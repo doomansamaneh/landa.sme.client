@@ -113,7 +113,7 @@
                   $q.dark.isActive ? 'text-yellow' : 'text-primary'
                 "
               >
-                {{ item.dlCode2 }}
+                d2: {{ item.dl2Code }}
               </div>
               <div
                 v-if="item.dl3Code"
@@ -122,7 +122,7 @@
                   $q.dark.isActive ? 'text-yellow' : 'text-primary'
                 "
               >
-                {{ item.dlCode3 }}
+                d3: {{ item.dl3Code }}
               </div>
             </td>
             <td

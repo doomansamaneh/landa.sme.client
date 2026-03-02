@@ -172,6 +172,29 @@ export const loginName = {
   value: "",
 };
 
+export const userName = {
+  ...name,
+  name: "userName",
+  field: "userName",
+};
+
+export const fromIp = {
+  name: "fromIp",
+  field: "fromIpString",
+  sortable: false,
+  label: "fromIp",
+  align: "left",
+  class: "text-left",
+  showFilter: false,
+};
+
+export const toIp = {
+  ...fromIp,
+  name: "toIp",
+  field: "toIpString",
+  label: "toIp",
+};
+
 export const jobTitle = {
   name: "jobTitle",
   field: "jobTitle",

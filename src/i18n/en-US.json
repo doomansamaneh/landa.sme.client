@@ -47,6 +47,7 @@
     "Crm_Section_View": "Departments",
     "Crm_Job_View": "Jobs",
     "Scr_Users_View": "Users",
+    "Scr_IpRange_View": "Ip Valids",
     "Acc_Voucher_View": "Vouchers",
     "Acc_Operation_View": "Accounting Operations",
     "Acc_AccountSL_Tree": "Chart of Accounts",
