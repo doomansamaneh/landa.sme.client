@@ -69,7 +69,7 @@
                   :options="
                     helper.getEnumOptions(
                       taxSentStatus,
-                      'taxSentStatus'
+                      'taxSentStatus',
                     )
                   "
                   style="gap: 8px"
@@ -92,6 +92,25 @@
                 class="col-md col-sm-12"
                 :class="$q.screen.gt.sm ? 'q-mr-xl' : ''"
               >
+                <!-- <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      label="سرفصل حسابها"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <AccountSLTreeLookup
+                      v-model:selectedId="
+                        searchStore.searchModel.value.typeId
+                      "
+                      v-model:selectedText="
+                        searchStore.searchModel.value.typeTitle
+                      "
+                    />
+                  </div>
+                </div> -->
+
                 <div class="row q-col-gutter-lg items-center q-pt-md">
                   <div class="col-md-2 col-sm-2">
                     <custom-label
@@ -394,6 +413,7 @@
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
+  // import AccountSLTreeLookup from "src/components/shared/lookups/AccountSLTreeLookup.vue";
 
   const props = defineProps({
     showDepositType: {
@@ -411,10 +431,10 @@
   };
 
   const dateRangeOptions = computed(() =>
-    helper.getEnumOptions(dateRange)
+    helper.getEnumOptions(dateRange),
   );
 
   const depositTypeOptions = computed(() =>
-    helper.getEnumOptions(depositType)
+    helper.getEnumOptions(depositType),
   );
 </script>
