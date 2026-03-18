@@ -10,7 +10,7 @@ import {
 export const userColumns = [{ ...name }, { ...loginName }];
 export const ipRangeColumns = [
   { ...userName },
-  { ...loginName },
+  //{ ...loginName },
   { ...fromIp },
   { ...toIp },
   { ...isActive },

@@ -3,9 +3,9 @@
     ref="lookup"
     auto-focus
     dataSource="scr/users/getlookupData"
-    sortColumn="loginName"
-    textTemplate="{{ loginName }} / {{ name }}"
-    columns="loginName,name"
+    sortColumn="name"
+    textTemplate="{{ name }}"
+    columns="name"
     :filterExpression="filterExpression"
   >
     <template #thead-index>
@@ -13,13 +13,13 @@
     </template>
 
     <template #thead-cols="{ tableStore }">
-      <div class="col">
+      <!-- <div class="col">
         <header-column
           fieldName="loginName"
           :title="$t('shared.columns.loginName')"
           :table-store="tableStore"
         />
-      </div>
+      </div> -->
       <div class="col">
         <header-column
           fieldName="name"
@@ -34,7 +34,7 @@
     </template>
 
     <template #tbody-cols="{ item }">
-      <div class="col">{{ item.loginName }}</div>
+      <!-- <div class="col">{{ item.loginName }}</div> -->
       <div class="col">
         {{ item.name }}
       </div>
@@ -44,7 +44,6 @@
 
 <script setup>
   import { ref } from "vue";
-  import { helper } from "src/helpers";
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";

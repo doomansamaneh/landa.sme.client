@@ -5,7 +5,7 @@
     data-source="scr/ipRange/getGridData"
     :title="$t('main-menu-items.Scr_IpRange_View')"
     :columns="ipRangeColumns"
-    sort-column="loginName"
+    sort-column="userName"
     create-url="/scr/ipRange/create"
     activation
   ></data-grid>
