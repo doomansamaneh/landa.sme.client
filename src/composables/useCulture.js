@@ -14,7 +14,7 @@ export function useCulture() {
   const $q = useQuasar();
 
   const qLangList = import.meta.glob(
-    "/node_modules/quasar/lang/(en-US|fa-IR|ar).js"
+    "/node_modules/quasar/lang/(en-US|fa-IR|ar).js",
   );
 
   const defaultLanguage = "fa-IR";
@@ -32,7 +32,7 @@ export function useCulture() {
 
   const culture = computed(() => {
     const found = cultures.find(
-      (culture) => culture.iso === lang.value
+      (culture) => culture.iso === lang.value,
     );
     return (
       found ||
@@ -70,21 +70,28 @@ export function useCulture() {
   };
 
   const changeLocale = async (cultureCode) => {
-    return await fetchWrapper.post(
-      `account/changeLocale/${cultureCode}`,
-      null,
-      true
-    );
+    try {
+      return await fetchWrapper.post(
+        `account/changeLocale/${cultureCode}`,
+        null,
+        true,
+      );
+    } catch (e) {
+      console.error("API ChangeLocale error", e);
+    }
   };
 
   const applyCulture = async () => {
     try {
       if (!culture.value) return;
       const iso = culture.value.iso;
-      const langModule = await qLangList[
-        `/node_modules/quasar/lang/${iso}.js`
-      ]();
-      $q.lang.set(langModule.default);
+
+      if (qLangList[`/node_modules/quasar/lang/${iso}.js`]) {
+        const langModule =
+          await qLangList[`/node_modules/quasar/lang/${iso}.js`]();
+        $q.lang.set(langModule.default);
+      }
+
       $t.locale.value = lang.value;
 
       localStorage.setItem(GeneralStorageKey, iso);
@@ -95,9 +102,10 @@ export function useCulture() {
       }
 
       document.body.classList.remove("persian", "english", "arabic");
-      document.body.classList.add(culture.value.bodyClass);
-
-      localStorage.setItem("Digits", culture.value.bodyClass);
+      if (culture.value.bodyClass) {
+        document.body.classList.add(culture.value.bodyClass);
+        localStorage.setItem("Digits", culture.value.bodyClass);
+      }
 
       const expirationDate = new Date();
       expirationDate.setFullYear(expirationDate.getFullYear() + 1);
@@ -108,22 +116,17 @@ export function useCulture() {
 
       const cultureCode = getCultureCode(iso);
       await changeLocale(cultureCode);
-    } catch {}
+    } catch (error) {
+      console.error("Failed to apply culture", error);
+    }
   };
 
-  if (
-    !businessStore.getLanguage() &&
-    !localStorage.getItem(GeneralStorageKey)
-  ) {
-    document.body.classList.add("persian");
-  }
+  applyCulture();
 
-  // (async () => {
-  //   await applyCulture();
-  // })();
-
-  watch(lang, async () => {
-    await applyCulture();
+  watch(lang, async (newVal, oldVal) => {
+    if (newVal !== oldVal) {
+      await applyCulture();
+    }
   });
 
   return {
