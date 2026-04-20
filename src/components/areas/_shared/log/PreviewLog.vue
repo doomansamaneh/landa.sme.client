@@ -98,7 +98,7 @@
     return items.sort(
       (a, b) =>
         helper.dateToNumber(helper.parseDateString(b.logTime)) -
-        helper.dateToNumber(helper.parseDateString(a.logTime))
+        helper.dateToNumber(helper.parseDateString(a.logTime)),
     );
   });
 

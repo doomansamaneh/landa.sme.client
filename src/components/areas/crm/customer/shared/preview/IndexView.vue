@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <invoice-summary :customer-id="id" class="q-mb-lg" />
+  <invoice-summary :customer-id="id" :key="id" class="q-mb-lg" />
 
   <tabs :item="model" />
 </template>
@@ -77,6 +77,6 @@
     () => route.params.id,
     (newId) => {
       loadData(newId);
-    }
+    },
   );
 </script>
