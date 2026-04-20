@@ -267,6 +267,7 @@ export const accountDLType = {
   cash: 1034,
   bankAccount: 1035,
   costCenter: 1036,
+  contract: 1037,
   product: 1039,
   other: 1031,
 };

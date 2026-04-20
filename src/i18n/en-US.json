@@ -1015,6 +1015,7 @@
       "cash": "Cash",
       "bankAccount": "Bank Account",
       "costCenter": "Cost Center",
+      "contract": "Contract",
       "product": "Product/Service"
     },
 
