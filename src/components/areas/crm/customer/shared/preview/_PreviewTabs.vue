@@ -108,30 +108,33 @@
     </card-tabs>
 
     <!-- <q-card-section class="q-pa-lg"> -->
-      <q-tab-panels
-        v-model="tab"
-        keep-alive
-        class="transparent"
+    <q-tab-panels v-model="tab" keep-alive class="transparent">
+      <q-tab-panel name="main">
+        <base-info v-if="item.id" :item="item" :key="item.id" />
+      </q-tab-panel>
+      <q-tab-panel name="quote">
+        <quote-review :item="item" :key="item.id" />
+      </q-tab-panel>
+      <q-tab-panel name="invoice">
+        <invoice-review :item="item" :key="item.id" />
+      </q-tab-panel>
+      <q-tab-panel name="review">
+        <account-review :item="item" :key="item.id" />
+      </q-tab-panel>
+      <q-tab-panel
+        name="check"
+        :class="$q.screen.xs ? 'q-pa-none' : ''"
       >
-        <q-tab-panel name="main">
-          <base-info v-if="item.id" :item="item" />
-        </q-tab-panel>
-        <q-tab-panel name="quote">
-          <quote-review :item="item" />
-        </q-tab-panel>
-        <q-tab-panel name="invoice">
-          <invoice-review :item="item" />
-        </q-tab-panel>
-        <q-tab-panel name="review">
-          <account-review :item="item" />
-        </q-tab-panel>
-        <q-tab-panel name="check" :class="$q.screen.xs ? 'q-pa-none' : ''">
-          <check-item :customer-id="item.id" />
-        </q-tab-panel>
-        <q-tab-panel name="log">
-          <log :entity-id="item.id" entity-name="Crm.[Customer]" />
-        </q-tab-panel>
-      </q-tab-panels>
+        <check-item :customer-id="item.id" :key="item.id" />
+      </q-tab-panel>
+      <q-tab-panel name="log">
+        <log
+          :entity-id="item.id"
+          entity-name="Crm.[Customer]"
+          :key="item.id"
+        />
+      </q-tab-panel>
+    </q-tab-panels>
     <!-- </q-card-section> -->
   </q-card>
 </template>
