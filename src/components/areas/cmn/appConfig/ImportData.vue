@@ -58,5 +58,11 @@
       fileTemplate: "purchaseTemplate.xlsx",
       permission: "sls.purchase.create",
     },
+    {
+      title: $t("shared.labels.contract"),
+      importAction: "importContract",
+      fileTemplate: "contractTemplate.xlsx",
+      permission: "doc.contract.create",
+    },
   ];
 </script>
