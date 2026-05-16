@@ -3,9 +3,7 @@
     :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''"
   >
     <div class="theme-settings-container">
-      <form-toolbar
-        :title="$t('shared.labels.commercePurchaseSale')"
-      />
+      <form-toolbar :title="$t('shared.subSystem.sales')" />
       <index-view />
     </div>
   </div>

@@ -79,11 +79,32 @@
             class="q-py-md"
             :class="$q.screen.gt.xs ? '' : 'q-px-none'"
             clickable
+            to="/cmn/appConfig/accountingInfo"
+          >
+            <q-item-section :class="itemClass">
+              <q-item-label class="text-on-dark text-body2">
+                {{ $t("shared.subSystem.accounting") }}
+              </q-item-label>
+            </q-item-section>
+
+            <q-item-section side :class="itemClass">
+              <q-btn no-caps round dense unelevated>
+                <q-icon :name="expandIcon()" size="24px" />
+              </q-btn>
+            </q-item-section>
+          </q-item>
+
+          <q-separator size="1px" />
+
+          <q-item
+            class="q-py-md"
+            :class="$q.screen.gt.xs ? '' : 'q-px-none'"
+            clickable
             to="/cmn/appConfig/salaryInfo"
           >
             <q-item-section :class="itemClass">
               <q-item-label class="text-on-dark text-body2">
-                {{ $t("shared.labels.salaryAndWages") }}
+                {{ $t("shared.subSystem.payroll") }}
               </q-item-label>
             </q-item-section>
 
@@ -104,7 +125,7 @@
           >
             <q-item-section :class="itemClass">
               <q-item-label class="text-on-dark text-body2">
-                {{ $t("shared.labels.commercePurchaseSale") }}
+                {{ $t("shared.subSystem.sales") }}
               </q-item-label>
             </q-item-section>
 
@@ -204,7 +225,7 @@
   };
 
   const itemClass = computed(() =>
-    $q.screen.lt.sm ? "q-mx-md" : "q-mx-sm"
+    $q.screen.lt.sm ? "q-mx-md" : "q-mx-sm",
   );
 </script>
 

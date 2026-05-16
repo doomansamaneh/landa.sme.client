@@ -13,6 +13,7 @@ const model = ref({
     taxApiSetting: {},
     payrollTaxSetting: {},
     payrollInsurranceSetting: {},
+    accounting: { dl1Types: [], dl2Types: [], dl3Types: [] },
   },
 });
 
@@ -30,7 +31,7 @@ export function useAppConfigModel(disableLoad) {
     const response = await fetchWrapper.get(
       "cmn/appConfig/getAppConfig",
       undefined,
-      true
+      true,
     );
     model.value = response?.data?.data.appConfig;
     userSetting.value = response?.data?.data.userSetting;
@@ -78,7 +79,7 @@ export function useAppConfigModel(disableLoad) {
 
     const response = await fetchWrapper.post(
       "cmn/UploadMedia/Upload",
-      formData
+      formData,
     );
     return response;
   };
@@ -103,7 +104,7 @@ export function useAppConfigModel(disableLoad) {
   const saveAppConfig = async () => {
     const response = await fetchWrapper.post(
       "cmn/AppConfig/SaveAppConfig",
-      model.value.companySetting
+      model.value.companySetting,
     );
     resetAvatars();
     return response;

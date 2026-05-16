@@ -48,17 +48,6 @@
       "
     />
   </div>
-  <div class="q-mt-lg">
-    <q-checkbox
-      class="text-body2"
-      dense
-      size="46px"
-      :label="$t('shared.labels.showTrackingNumberInVoucher')"
-      v-model="
-        configStore.model.value.companySetting.showDocNoInVoucher
-      "
-    />
-  </div>
 </template>
 
 <script setup>

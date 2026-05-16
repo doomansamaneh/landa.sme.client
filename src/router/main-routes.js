@@ -1505,6 +1505,12 @@ export default {
           meta: { title: "پیکربندی سامانه - مالیات" },
         },
         {
+          path: "accountingInfo",
+          component: () =>
+            import("pages/areas/cmn/appConfig/AccountingInfoPage.vue"),
+          meta: { title: "پیکربندی سامانه - حسابداری" },
+        },
+        {
           path: "salaryInfo",
           component: () =>
             import("pages/areas/cmn/appConfig/SalaryInfoPage.vue"),

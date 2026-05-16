@@ -117,7 +117,7 @@
     {
       fieldName: "d.TypeId",
       operator: sqlOperator.equal,
-      value: documentType.payment,
+      value: `${documentType.payment},${documentType.bill}`,
     },
     {
       fieldName: "pi.StatusId",

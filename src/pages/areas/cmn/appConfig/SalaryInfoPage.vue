@@ -3,7 +3,7 @@
     :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''"
   >
     <div class="theme-settings-container">
-      <form-toolbar :title="$t('shared.labels.salaryAndWages')" />
+      <form-toolbar :title="$t('shared.subSystem.payroll')" />
       <index-view />
     </div>
   </div>

@@ -169,6 +169,7 @@
                   <dl-lookup
                     v-model:selectedId="row.dl2Id"
                     v-model:selectedText="row.dl2Display"
+                    :filter-expression="dl2Filters"
                     :placeholder="$t('shared.columns.dl2Title')"
                     dense
                   />
@@ -177,6 +178,7 @@
                   <dl-lookup
                     v-model:selectedId="row.dl3Id"
                     v-model:selectedText="row.dl3Display"
+                    :filter-expression="dl3Filters"
                     :placeholder="$t('shared.columns.dl3Title')"
                     dense
                   />
@@ -235,9 +237,10 @@
 </template>
 
 <script setup>
-  import { ref, reactive } from "vue";
+  import { ref, computed, reactive } from "vue";
   import { sqlOperator } from "src/constants";
   import { helper } from "src/helpers";
+  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import NoItemSelected from "src/components/shared/dataTables/NoItemSelected.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
@@ -249,6 +252,8 @@
   const props = defineProps({
     formStore: Object,
   });
+
+  const configStore = useAppConfigModel();
 
   const dlRefs = ref([]);
   const expandedRows = reactive({});
@@ -263,6 +268,31 @@
     expandedRows[index] = !expandedRows[index];
   };
 
+  const createDlFilter = (types) => {
+    if (types?.length) {
+      return [
+        {
+          fieldName: "typeId",
+          operator: sqlOperator.in,
+          value: types.join(","),
+        },
+      ];
+    }
+    return null;
+  };
+
+  const dl1Filters = createDlFilter(
+    configStore.model.value.companySetting.accounting.dl1Types,
+  );
+
+  const dl2Filters = createDlFilter(
+    configStore.model.value.companySetting.accounting.dl2Types,
+  );
+
+  const dl3Filters = createDlFilter(
+    configStore.model.value.companySetting.accounting.dl3Types,
+  );
+
   const slChanged = (sl, row, index) => {
     const dlFilters = getDlFilters(row);
     if (dlRefs.value[index]) {
@@ -273,13 +303,19 @@
   };
 
   const getDlFilters = (row) => {
-    return [
+    const filters = [
       {
         fieldName: "slId",
         operator: sqlOperator.equal,
         value: row.slId,
       },
     ];
+
+    if (dl1Filters) {
+      filters.push(...dl1Filters);
+    }
+
+    return filters;
   };
 
   const swapRowValues = (index) => {

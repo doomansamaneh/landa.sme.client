@@ -54,12 +54,8 @@
   });
 
   const lookup = ref(null);
-  const test = () => {
-    alert("dl lookup");
-  };
 
   defineExpose({
     lookup,
-    test,
   });
 </script>

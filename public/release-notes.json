@@ -1,4 +1,16 @@
 {
+  "1.0.28": {
+    "fa-IR": [
+      "پیکربندی استفاده از تفصیلی 1، 2، 3",
+      "نمایش چکهای هزینه کرد در بخش اعلانها",
+      "یکسان سازی نمایش مانده در pdf و چاپ فاکتور براساس همه سالهای مالی"
+    ],
+    "en-US": [
+      "Configuration for using Detail Levels 1, 2, and 3",
+      "Display expense checks in the notifications section",
+      "Unify remaining balance display in invoice PDF and print based on all fiscal years"
+    ]
+  },
   "1.0.27": {
     "fa-IR": [
       "افزودن import اطلاعات قرارداد از بخش پیکربندی / ورود اطلاعات"
