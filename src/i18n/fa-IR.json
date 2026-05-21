@@ -1392,6 +1392,7 @@
       "insurranceAmount": "بیمه",
       "vatAmount": "ارزش افزوده",
       "netAmount": "مبلغ خالص",
+      "profitAmount": "مبلغ سود",
       "payedAmount": "پرداخت شده",
       "remainedAmount": "مانده",
       "discountAmount": "تخفیف",

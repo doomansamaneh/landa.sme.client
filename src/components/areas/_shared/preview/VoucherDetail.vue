@@ -7,8 +7,9 @@
         </span>
         <span class="text-body3 q-mx-md">
           <custom-link
+            v-if="model?.voucherId"
             :to="`/acc/voucher/preview/${model?.voucherId}`"
-            :title="model?.voucherNo"
+            :title="`${model.voucherRowNo} (${model.voucherNo})`"
           />
         </span>
       </div>

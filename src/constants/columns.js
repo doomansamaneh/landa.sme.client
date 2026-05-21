@@ -489,6 +489,20 @@ export const amount = {
   type: dataType.number,
 };
 
+export const profitAmount = {
+  ...amount,
+  name: "profitAmount",
+  field: "profitAmount",
+  label: "profitAmount",
+};
+
+export const netAmount = {
+  ...amount,
+  name: "netAmount",
+  field: "netAmount",
+  label: "netAmount",
+};
+
 export const taxAmount = {
   ...amount,
   name: "taxAmount",
@@ -669,13 +683,6 @@ export const vatAmount = {
   name: "vatAmount",
   field: "vatAmount",
   label: "vatAmount",
-};
-
-export const netAmount = {
-  ...amount,
-  name: "netAmount",
-  field: "netAmount",
-  label: "netAmount",
 };
 
 export const payedAmount = {

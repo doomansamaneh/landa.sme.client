@@ -1,4 +1,26 @@
 {
+  "1.0.30": {
+    "fa-IR": [
+      "ویرایش و اصلاح در بخش نمایش ریز حساب تفصیلی",
+      "اصلاح ترتیب ستونهای مبلغ خالص و سود در فاکتور فروش"
+    ],
+    "en-US": [
+      "Added simple and advanced search functionality in the system header section",
+      "Edit Net Amount and Profit columns order in the sales invoice"
+    ]
+  },
+  "1.0.29": {
+    "fa-IR": [
+      "امکان جستجوی ساده تفصیلی در بخش header سامانه",
+      "برخی اصلاحات در نمایش جزییات اسناد",
+      "اضافه شدن ستونهای مبلغ خالص و سود در فاکتور فروش"
+    ],
+    "en-US": [
+      "Added simple and advanced search functionality in the system header section",
+      "Some improvements to the display of document details",
+      "Added Net Amount and Profit columns to the sales invoice"
+    ]
+  },
   "1.0.28": {
     "fa-IR": [
       "پیکربندی استفاده از تفصیلی 1، 2، 3",

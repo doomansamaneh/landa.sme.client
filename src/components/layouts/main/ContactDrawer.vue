@@ -11,7 +11,7 @@
   >
     <loadable-data-grid
       ref="loadableDataGrid"
-      data-source="crm/customer/getLookupData"
+      data-source="acc/accountDl/getSearchData"
       show-search
       :scrollBarStyle="
         $q.screen.xs
@@ -37,7 +37,7 @@
 
       <template #item="{ item, index }">
         <q-item
-          :to="`/crm/customer/preview/${item.id}`"
+          :to="getItemRoute(item)"
           :key="index"
           clickable
           v-close-popup
@@ -56,7 +56,7 @@
                 text-color="white"
                 size="52px"
                 :item="item.id"
-                :text-holder="item.name"
+                :text-holder="item.title"
               />
             </q-item-section>
 
@@ -65,7 +65,11 @@
                 class="ellipsis text-on-caption text-caption text-bold"
                 style="width: 200px"
               >
-                {{ item.code }} {{ item.name }}
+                {{ item.code }}
+                <template v-if="item.syncCode">
+                  ({{ item.syncCode }})
+                </template>
+                {{ item.title }}
               </div>
               <div
                 v-if="item.locationName"
@@ -128,6 +132,12 @@
 
   const loadableDataGrid = ref(null);
 
+  const getItemRoute = (item) => {
+    if (item.customerId)
+      return `/crm/customer/preview/${item.customerId}`;
+    return `/acc/accountDL/preview/${item.id}`;
+  };
+
   watch(
     () => contactDrawerStore.state.value,
     (newVal) => {
@@ -136,6 +146,6 @@
           loadableDataGrid.value.$refs.searchInput?.focus();
         }, 300);
       }
-    }
+    },
   );
 </script>

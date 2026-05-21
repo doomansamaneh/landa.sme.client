@@ -18,8 +18,9 @@
               <div v-if="model?.voucherId" class="q-pt-sm text-body3">
                 <custom-link
                   class="text-body2"
+                  v-if="model?.voucherId"
                   :to="`/acc/voucher/preview/${model.voucherId}`"
-                  :title="model.voucherNo"
+                  :title="`${model.voucherRowNo} (${model.voucherNo})`"
                 />
               </div>
               <div class="q-pt-sm" v-else>
@@ -216,13 +217,13 @@
       () => {
         props.model.voucherId = null;
       },
-      "deleteVoucher"
+      "deleteVoucher",
     );
   };
 
   const createVoucher = async () => {
     var responseData = await formStore.customPostAction(
-      `createVoucher/${props.model.id}`
+      `createVoucher/${props.model.id}`,
     );
 
     props.model.voucherId = responseData.data?.id;

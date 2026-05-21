@@ -24,6 +24,7 @@ import {
   remainedAmount,
   discountAmount,
   netAmount,
+  profitAmount,
   statusId,
   contractTitle,
   typeTitle,
@@ -51,6 +52,8 @@ export const invoiceColumns = [
   { ...vatAmount, hidden: true },
   { ...payedAmount },
   { ...remainedAmount },
+  { ...netAmount, hidden: true },
+  { ...profitAmount, hidden: true },
 ];
 
 export const invoiceRemainedColumns = [

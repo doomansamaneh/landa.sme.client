@@ -65,12 +65,12 @@
   const formStore = useFormActions("crm/customer", model);
   const id = computed(() => props.item?.id ?? route.params.id);
 
-  const loadData = async () => {
-    await formStore.getById(id.value);
+  const loadData = async (id) => {
+    await formStore.getById(id);
   };
 
   onMounted(() => {
-    loadData();
+    loadData(id.value);
   });
 
   watch(
