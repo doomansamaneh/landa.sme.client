@@ -182,14 +182,23 @@
           >
             <div class="text-wrap">
               {{ item.productTitle }}
-              <small v-if="item.comment || item.productComment">
+              <small
+                v-if="
+                  item.comment ||
+                  item.productComment ||
+                  item.discountComment
+                "
+              >
                 (
-                <span v-if="!item.productComment">
-                  {{ item.productComment }}
-                </span>
-                <span v-if="item.comment">
-                  {{ item.comment }}
-                </span>
+                {{
+                  [
+                    item.productComment,
+                    item.comment,
+                    item.discountComment,
+                  ]
+                    .filter((val) => !!val)
+                    .join(" / ")
+                }}
                 )
               </small>
             </div>
@@ -256,7 +265,7 @@
           >
             {{
               helper.formatNumber(
-                item.quantity * item.price - item.discount
+                item.quantity * item.price - item.discount,
               )
             }}
           </td>

@@ -1,4 +1,10 @@
 {
+  "1.0.31": {
+    "fa-IR": ["اصلاح نمایش فاکتور، pdf سند حسابداری"],
+    "en-US": [
+      "Invoice previrew major edition, voucher pdf generation minor bug fix"
+    ]
+  },
   "1.0.30": {
     "fa-IR": [
       "ویرایش و اصلاح در بخش نمایش ریز حساب تفصیلی",
