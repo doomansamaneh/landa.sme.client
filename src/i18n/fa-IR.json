@@ -304,6 +304,8 @@
 
   "shared": {
     "labels": {
+      "slTitle": "حساب معین",
+      "dlTitle": "حساب تفصیلی",
       "disableTaxCalculation": "مالیات، عدم محاسبه خودکار",
       "addPersonnel": "افزودن پرسنل",
       "createQuote": "ایجاد پیش‌فاکتور",
@@ -1309,6 +1311,8 @@
     },
 
     "columns": {
+      "dl2Code": "کد تفصیلی 2",
+      "dl3Code": "کد تفصیلی 3",
       "fromIp": "از ip",
       "toIp": "تا  ip",
       "invoiceNumber": "شماره فاکتور",
@@ -1333,8 +1337,8 @@
       "title": "عنوان",
       "parentTitle": "سرگروه",
       "slCode": "کد معین",
-      "slTitle": "حساب معین",
       "glTitle": "حساب کل",
+      "slTitle": "حساب معین",
       "dlTitle": "حساب تفصیلی",
       "dl1Title": "حساب تفصیلی 1",
       "dl2Title": "حساب تفصیلی 2",

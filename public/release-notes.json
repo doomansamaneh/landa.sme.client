@@ -1,4 +1,12 @@
 {
+  "1.0.32": {
+    "fa-IR": [
+      "افزودن حساب معین و تفصیلی در جستجوی پیشرفته اسناد و گزارش مرور حساب"
+    ],
+    "en-US": [
+      "Added Detail Ledger and Subsidiary Account filters to Advanced Voucher Search and Account Review Report"
+    ]
+  },
   "1.0.31": {
     "fa-IR": ["اصلاح نمایش فاکتور، pdf سند حسابداری"],
     "en-US": [

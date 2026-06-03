@@ -26,6 +26,10 @@ import {
   slTitle,
   dlCode,
   dlTitle,
+  dl2Code,
+  dl2Title,
+  dl3Code,
+  dl3Title,
   voucherDate,
   voucherSubject,
   contractTitle,
@@ -143,8 +147,14 @@ export const accountItemColumns = [
   { ...voucherDate },
   { ...slCode },
   { ...slTitle },
+
   { ...dlCode },
   { ...dlTitle },
+  { ...dl2Code, hidden: true },
+  { ...dl2Title, hidden: true },
+  { ...dl3Code, hidden: true },
+  { ...dl3Title, hidden: true },
+
   { ...voucherSubject },
   { ...comment, hidden: true },
   {

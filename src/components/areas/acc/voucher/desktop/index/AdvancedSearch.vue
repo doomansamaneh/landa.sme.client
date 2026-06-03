@@ -104,6 +104,34 @@
 
           <div class="row q-col-gutter-md q-mt-sm">
             <div class="col-md-4 col-sm-6 col-xs-12">
+              <sl-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.slId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.slTitle
+                "
+                :placeholder="$t('shared.labels.slTitle')"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <dl-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.dlId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.dlTitle
+                "
+                :placeholder="$t('shared.labels.dlTitle')"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-6 col-xs-12">
               <contract-lookup
                 v-model:selectedId="
                   searchStore.searchModel.value.contractId
@@ -179,6 +207,8 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
+  import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+  import DlLookup from "src/components/shared/lookups/AccountDLLookup.vue";
 
   const expanded = ref(false);
   const searchStore = useVoucherSearch();
@@ -189,6 +219,6 @@
   };
 
   const dateRangeOptions = computed(() =>
-    helper.getEnumOptions(dateRange)
+    helper.getEnumOptions(dateRange),
   );
 </script>

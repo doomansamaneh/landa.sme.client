@@ -299,6 +299,8 @@
 
   "shared": {
     "labels": {
+      "slTitle": "Sub Ledger",
+      "dlTitle": "Detail Ledger",
       "disableTaxCalculation": "Tax Amount Manual",
       "addPersonnel": "Add Personnel",
       "createQuote": "Create Quote",
@@ -1277,6 +1279,10 @@
     },
 
     "columns": {
+      "dl2Code": "Detail Ledger2 Code",
+      "dl3Code": "Detail Ledger3 Code",
+      "fromIp": "From Ip",
+      "toIp": "To Ip",
       "invoiceNumber": "Invoice Number",
       "dueDate": "Due Date",
       "total": "Total",
@@ -1299,8 +1305,8 @@
       "title": "Title",
       "parentTitle": "Parent Group",
       "slCode": "Sub Ledger Code",
-      "slTitle": "Sub Ledger",
       "glTitle": "General Ledger",
+      "slTitle": "Sub Ledger",
       "dlTitle": "Detail Ledger",
       "dl2Title": "Detail Ledger2",
       "dl3Title": "Detail Ledger3",

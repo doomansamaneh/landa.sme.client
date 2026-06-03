@@ -150,6 +150,20 @@ export const dlCode = {
   showFilter: true,
 };
 
+export const dl2Code = {
+  ...dlCode,
+  name: "dl2Code",
+  field: "dl2Code",
+  label: "dl2Code",
+};
+
+export const dl3Code = {
+  ...dlCode,
+  name: "dl3Code",
+  field: "dl3Code",
+  label: "dl3Code",
+};
+
 export const name = {
   name: "name",
   field: "name",
@@ -272,6 +286,20 @@ export const dlTitle = {
   cellClass: "text-left",
   cellStyle: "",
   showFilter: true,
+};
+
+export const dl2Title = {
+  ...dlTitle,
+  name: "dl2Title",
+  field: "dl2Title",
+  label: "dl2Title",
+};
+
+export const dl3Title = {
+  ...dlTitle,
+  name: "dl3Title",
+  field: "dl3Title",
+  label: "dl3Title",
 };
 
 export const isActive = {
