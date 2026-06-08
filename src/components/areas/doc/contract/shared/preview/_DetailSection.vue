@@ -13,11 +13,19 @@
       :title="$t('shared.labels.AccountTransactionDetails')"
       icon="o_arrow_downward"
     />
-    <card-tab name="log"  :title="$t('shared.labels.history')" icon="o_history" />
+    <card-tab
+      name="log"
+      :title="$t('shared.labels.history')"
+      icon="o_history"
+    />
   </card-tabs>
   <q-tab-panels class="transparent" v-model="tab" animated keep-alive>
     <q-tab-panel name="main-info" class="no-padding">
-      <account-item flat :filter-expression="filterExpression" />
+      <account-item
+        flat
+        data-source="acc/report/getItemAllData"
+        :filter-expression="filterExpression"
+      />
     </q-tab-panel>
 
     <q-tab-panel name="log">
@@ -41,11 +49,6 @@
 
   const tab = ref("main-info");
   const filterExpression = [
-    {
-      fieldName: "fiscalYearId",
-      operator: sqlOperator.isNotNull,
-      value: null,
-    },
     {
       fieldName: "d.ContractId",
       operator: sqlOperator.equal,

@@ -104,7 +104,7 @@
     previewRoute: String,
     dataSource: {
       type: String,
-      default: "acc/report/getItemData",
+      default: "acc/report/getReviewItemData",
     },
     filterExpression: Array,
     gridStore: Object,
