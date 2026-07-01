@@ -286,6 +286,12 @@ export default {
           meta: { title: "گزارش مرور حساب" },
         },
         {
+          path: "advancedReview",
+          component: () =>
+            import("pages/areas/acc/report/AccountAdvancedReviewPage.vue"),
+          meta: { title: "گزارش مرور حساب چندسطحی" },
+        },
+        {
           path: "trialBalance",
           component: () =>
             import("pages/areas/acc/report/TrialBalancePage.vue"),

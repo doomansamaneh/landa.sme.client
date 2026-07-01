@@ -28,6 +28,8 @@ export const accountTreeType = {
   gl: "gl",
   sl: "sl",
   dl: "dl",
+  dl2: "dl2",
+  dl3: "dl3",
   slDl: "slDl",
 };
 

@@ -58,6 +58,27 @@
       </span>
     </template>
 
+    <template #cell-remainedAmount="{ item }">
+      <!-- <span class="text-red">
+        <q-badge
+          v-if="item.remainedAmount !== 0"
+          color="red"
+          rounded
+        />
+        {{ helper.formatNumber(item.remainedAmount) }}
+      </span> -->
+
+      <q-chip
+        v-if="item.remainedAmount"
+        dense_
+        square
+        :color="item.remainedAmount > 0 ? 'red-1' : 'green-1'"
+        :text-color="item.remainedAmount > 0 ? 'red-10' : 'green-10'"
+      >
+        {{ helper.formatNumber(item.remainedAmount) }}
+      </q-chip>
+    </template>
+
     <template #cell-customerName="{ item }">
       <div class="row items-center no-wrap q-gutter-sm">
         <customer-avatar
@@ -100,8 +121,8 @@
             $t(
               `shared.voucherStatus.${helper.getEnumType(
                 item.statusId,
-                voucherStatus
-              )}`
+                voucherStatus,
+              )}`,
             )
           }}
         </q-chip>
@@ -112,8 +133,8 @@
             $t(
               `shared.voucherStatus.${helper.getEnumType(
                 item.statusId,
-                voucherStatus
-              )}`
+                voucherStatus,
+              )}`,
             )
           }}
         </q-chip>
@@ -136,7 +157,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "amount")
+              helper.getSubtotal(selectedRows, "amount"),
             )
           }}
         </b>
@@ -149,7 +170,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "discountAmount")
+              helper.getSubtotal(selectedRows, "discountAmount"),
             )
           }}
         </b>
@@ -160,7 +181,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "vatAmount")
+              helper.getSubtotal(selectedRows, "vatAmount"),
             )
           }}
         </b>
@@ -173,7 +194,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "payedAmount")
+              helper.getSubtotal(selectedRows, "payedAmount"),
             )
           }}
         </b>
@@ -186,7 +207,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "remainedAmount")
+              helper.getSubtotal(selectedRows, "remainedAmount"),
             )
           }}
         </b>
@@ -265,10 +286,10 @@
       helper.findIndex(
         props.tableStore.columns.value.filter((col) => !col.hidden),
         "name",
-        "amount"
+        "amount",
       ) +
       1 + //numbered column
-      1 //multi check column
+      1, //multi check column
   );
 
   const shouldShowFooter = computed(() => {
@@ -281,8 +302,8 @@
     ];
     return footerColumns.some((colName) =>
       props.tableStore.columns.value.find(
-        (col) => col.name === colName && !col.hidden
-      )
+        (col) => col.name === colName && !col.hidden,
+      ),
     );
   });
 

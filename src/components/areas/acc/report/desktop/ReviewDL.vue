@@ -27,6 +27,10 @@
       type: String,
       default: "acc/report/getDLData",
     },
+    dlType: {
+      type: Number,
+      default: accountTreeType.dl,
+    },
     filterExpression: Array,
     gridStore: Object,
     columns: Array,
@@ -48,20 +52,29 @@
     props.reportStore?.setItem({
       id: row.id,
       title: `${row.code} - ${row.title}`,
-      type: accountTreeType.dl,
+      type: props.dlType,
     });
   };
 
   const setSelectedAccount = () => {
     let currentFilters = props.filterExpression || [];
     const selectedCl = props.reportStore?.getItemByType(
-      accountTreeType.cl
+      accountTreeType.cl,
     );
     const selectedGl = props.reportStore?.getItemByType(
-      accountTreeType.gl
+      accountTreeType.gl,
     );
     const selectedSl = props.reportStore?.getItemByType(
-      accountTreeType.sl
+      accountTreeType.sl,
+    );
+    const selectedDl = props.reportStore?.getItemByType(
+      accountTreeType.dl,
+    );
+    const selectedDl2 = props.reportStore?.getItemByType(
+      accountTreeType.dl2,
+    );
+    const selectedDl3 = props.reportStore?.getItemByType(
+      accountTreeType.dl3,
     );
 
     if (selectedSl) {
@@ -83,6 +96,37 @@
         value: selectedCl.id,
       });
     }
+
+    if (selectedDl) {
+      if (props.dlType != accountTreeType.dl) {
+        currentFilters.push({
+          fieldName: "vi.dlId",
+          operator: sqlOperator.equal,
+          value: selectedDl.id,
+        });
+      }
+    }
+
+    if (selectedDl2) {
+      if (props.dlType != accountTreeType.dl2) {
+        currentFilters.push({
+          fieldName: "vi.dl2Id",
+          operator: sqlOperator.equal,
+          value: selectedDl2.id,
+        });
+      }
+    }
+
+    if (selectedDl3) {
+      if (props.dlType != accountTreeType.dl3) {
+        currentFilters.push({
+          fieldName: "vi.dl3Id",
+          operator: sqlOperator.equal,
+          value: selectedDl3.id,
+        });
+      }
+    }
+
     tableStore.setFilterExpression(currentFilters);
   };
 

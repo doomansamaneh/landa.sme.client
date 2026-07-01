@@ -1,4 +1,18 @@
 {
+  "1.0.35": {
+    "fa-IR": [
+      "اضافه شدن گزارش مرور حساب چندسطحی برای تفصیلیهای 2 و 3"
+    ],
+    "en-US": ["Add advanced review report for detailed ledger 2, 3"]
+  },
+  "1.0.34": {
+    "fa-IR": [
+      "حذف شعبه و افزودن بانک در ثبت چک به منظور راحتی ثبت چکهای دریافتی"
+    ],
+    "en-US": [
+      "Removed branch selection and added bank selection in check registration to simplify recording received checks"
+    ]
+  },
   "1.0.33": {
     "fa-IR": [
       "امکان جستجوی بین سالهای مالی در بخش مرور حساب با انتخاب تاریخ از و تا"

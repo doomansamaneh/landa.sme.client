@@ -54,17 +54,20 @@
   const setSelectedAccount = () => {
     let currentFilters = props.filterExpression || [];
     const selectedCl = props.reportStore?.getItemByType(
-      accountTreeType.cl
+      accountTreeType.cl,
     );
     const selectedGl = props.reportStore?.getItemByType(
-      accountTreeType.gl
+      accountTreeType.gl,
     );
-    // const selectedSl = props.reportStore?.getItemByType(
-    //   accountTreeType.sl
-    // );
-    // const selectedDl = props.reportStore?.getItemByType(
-    //   accountTreeType.dl
-    // );
+    const selectedDl = props.reportStore?.getItemByType(
+      accountTreeType.dl,
+    );
+    const selectedDl2 = props.reportStore?.getItemByType(
+      accountTreeType.dl2,
+    );
+    const selectedDl3 = props.reportStore?.getItemByType(
+      accountTreeType.dl3,
+    );
 
     if (selectedGl) {
       currentFilters.push({
@@ -80,15 +83,29 @@
       });
     }
 
-    // if (!selectedSl) {
-    //   if (selectedDl) {
-    //     currentFilters.push({
-    //       fieldName: "vi.dlId",
-    //       operator: sqlOperator.equal,
-    //       value: selectedDl.id,
-    //     });
-    //   }
-    // }
+    if (selectedDl) {
+      currentFilters.push({
+        fieldName: "vi.dlId",
+        operator: sqlOperator.equal,
+        value: selectedDl.id,
+      });
+    }
+
+    if (selectedDl2) {
+      currentFilters.push({
+        fieldName: "vi.dl2Id",
+        operator: sqlOperator.equal,
+        value: selectedDl2.id,
+      });
+    }
+
+    if (selectedDl3) {
+      currentFilters.push({
+        fieldName: "vi.dl3Id",
+        operator: sqlOperator.equal,
+        value: selectedDl3.id,
+      });
+    }
 
     tableStore.setFilterExpression(currentFilters);
   };

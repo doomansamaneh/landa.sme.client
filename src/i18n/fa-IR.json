@@ -80,6 +80,7 @@
     "Inv_Report_ProductFlow": "گزاش گردش کالا",
     "Doc_Contract_View": "قرارداد",
     "Acc_Report_AccountReview": "گزارش مرور حساب",
+    "Acc_Report_AccountAdvancedReview": "گزارش مرور حساب چندسطحی",
     "Acc_Report_TrialBalance": "تراز آزمایشی",
     "Acc_Report_TrialBalance6Col": "تراز آزمایشی 6 ستونی",
     "Acc_Report_BalanceSheet": "ترازنامه",
@@ -1147,6 +1148,8 @@
       "gl": "حساب کل",
       "sl": "حساب معین",
       "dl": "حساب تفصیلی",
+      "dl2": "حساب تفصیلی 2",
+      "dl3": "حساب تفصیلی 3",
       "slDl": "حساب معین / تفصیلی"
     },
 

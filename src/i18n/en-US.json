@@ -80,6 +80,7 @@
     "Inv_Report_ProductFlow": "Stock Flow Report",
     "Doc_Contract_View": "Contracts",
     "Acc_Report_AccountReview": "Account Review",
+    "Acc_Report_AccountAdvancedReview": "Account Review Multi Ledgers",
     "Acc_Report_TrialBalance": "Trial Balance",
     "Acc_Report_TrialBalance6Col": "6-Column Trial Balance",
     "Acc_Report_BalanceSheet": "Balance Sheet",
@@ -1115,6 +1116,8 @@
       "gl": "General Ledger",
       "sl": "Sub Ledger",
       "dl": "Detail Ledger",
+      "dl2": "Detail 2 Ledger",
+      "dl3": "Detail 3 Ledger",
       "slDl": "Sub/Detail Ledger"
     },
 
