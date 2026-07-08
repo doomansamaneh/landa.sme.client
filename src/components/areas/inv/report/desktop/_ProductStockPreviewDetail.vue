@@ -34,7 +34,7 @@
         :filter-expression="accountItemfilter"
         no-fullscreen
         :title="`${$t(
-          'shared.labels.AccountTransactionDetails'
+          'shared.labels.AccountTransactionDetails',
         )}   / ${item.code} - ${item.title}`"
       />
     </q-tab-panel>
@@ -80,7 +80,7 @@
 
   const accountItemfilter = computed(() => [
     {
-      fieldName: "vi.dlId",
+      fieldName: "dlId",
       operator: sqlOperator.equal,
       value: props.item.dlId ?? guidEmpty,
     },

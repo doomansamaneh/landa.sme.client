@@ -57,7 +57,7 @@
   const printStore = usePrint();
   const filterExpression = computed(() => [
     {
-      fieldName: "vi.dlId",
+      fieldName: "dlId",
       operator: sqlOperator.equal,
       value: model?.value.dlId,
     },

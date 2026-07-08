@@ -48,7 +48,7 @@
           {{
             helper.formatNumber(
               helper.getSubtotal(selectedRows, "debitRemained") -
-                helper.getSubtotal(selectedRows, "creditRemained")
+                helper.getSubtotal(selectedRows, "creditRemained"),
             )
           }}
         </b>
@@ -68,7 +68,7 @@
         <b v-if="showInlineDebit">
           {{
             helper.formatNumber(
-              summary?.debitRemained - summary?.creditRemained
+              summary?.debitRemained - summary?.creditRemained,
             )
           }}
         </b>
@@ -132,10 +132,10 @@
       helper.findIndex(
         tableStore.columns.value,
         "name",
-        "debitRemained"
+        "debitRemained",
       ) +
       1 + //numbered column
-      1 //multi check column
+      1, //multi check column
   );
 
   const showInlineDebit = computed(
@@ -143,26 +143,32 @@
       helper.findIndex(
         tableStore.columns.value,
         "name",
-        "inlineDebit"
-      ) >= 0
+        "inlineDebit",
+      ) >= 0,
   );
 
   const setSelectedAccount = () => {
     let currentFilters = props.filterExpression || [];
     const selectedDl = props.reportStore?.getItemByType(
-      accountTreeType.dl
+      accountTreeType.dl,
+    );
+    const selectedDl2 = props.reportStore?.getItemByType(
+      accountTreeType.dl2,
+    );
+    const selectedDl3 = props.reportStore?.getItemByType(
+      accountTreeType.dl3,
     );
     const selectedCl = props.reportStore?.getItemByType(
-      accountTreeType.cl
+      accountTreeType.cl,
     );
     const selectedGl = props.reportStore?.getItemByType(
-      accountTreeType.gl
+      accountTreeType.gl,
     );
     const selectedSl = props.reportStore?.getItemByType(
-      accountTreeType.sl
+      accountTreeType.sl,
     );
     const selectedSlDl = props.reportStore?.getItemByType(
-      accountTreeType.slDl
+      accountTreeType.slDl,
     );
 
     if (selectedSlDl) {
@@ -184,6 +190,22 @@
           fieldName: "vi.dlId",
           operator: sqlOperator.equal,
           value: selectedDl.id,
+        });
+      }
+
+      if (selectedDl2) {
+        currentFilters.push({
+          fieldName: "vi.dl2Id",
+          operator: sqlOperator.equal,
+          value: selectedDl2.id,
+        });
+      }
+
+      if (selectedDl3) {
+        currentFilters.push({
+          fieldName: "vi.dl3Id",
+          operator: sqlOperator.equal,
+          value: selectedDl3.id,
         });
       }
 

@@ -1,7 +1,13 @@
 {
   "1.0.36": {
-    "fa-IR": ["بازنگری چاپ رسید انبار و حواله خروج از انبار"],
-    "en-US": ["Review and refactor receipt and exite preview"]
+    "fa-IR": [
+      "بازنگری چاپ رسید انبار و حواله خروج از انبار",
+      "اصلاحات بر روی گزارش مرور حساب چند سطحی"
+    ],
+    "en-US": [
+      "Review and refactor receipt and exite preview",
+      "Modify account review report multi level"
+    ]
   },
   "1.0.35": {
     "fa-IR": [

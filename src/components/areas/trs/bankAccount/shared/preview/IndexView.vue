@@ -59,7 +59,7 @@
 
   const filterExpression = computed(() => [
     {
-      fieldName: "vi.dlId",
+      fieldName: "dlId",
       operator: sqlOperator.equal,
       value: model?.value.dlId,
     },
@@ -68,7 +68,7 @@
   const crudStore = useFormActions(props.baseRoute, model);
 
   const id = computed(
-    () => props.item?.id ?? props.voucherId ?? route.params.id
+    () => props.item?.id ?? props.voucherId ?? route.params.id,
   );
 
   onMounted(() => {

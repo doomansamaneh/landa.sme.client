@@ -61,7 +61,7 @@
   const accountItemColumns = accountItemDLColumns;
   const filterExpression = computed(() => [
     {
-      fieldName: "vi.dlId",
+      fieldName: "dlId",
       operator: sqlOperator.equal,
       value: id.value,
     },

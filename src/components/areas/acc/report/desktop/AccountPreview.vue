@@ -99,7 +99,7 @@
     if (itemId) {
       return [
         {
-          fieldName: "vi.dlId",
+          fieldName: "dlId",
           operator: sqlOperator.equal,
           value: itemId,
         },
@@ -110,6 +110,6 @@
   });
 
   const { exportAll } = useDataTableExport(
-    dataGrid?.value?.tableStore
+    dataGrid?.value?.tableStore,
   );
 </script>

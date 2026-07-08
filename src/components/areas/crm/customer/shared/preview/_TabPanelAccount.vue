@@ -38,7 +38,7 @@
     searchModel: searchModel,
     filterExpression: [
       {
-        fieldName: "vi.dlId",
+        fieldName: "dlId",
         operator: sqlOperator.equal,
         value: props.item.dlId,
       },
