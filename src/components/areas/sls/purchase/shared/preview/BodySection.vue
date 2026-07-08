@@ -63,7 +63,7 @@
           >
             واحد
           </td>
-          <td
+          <!-- <td
             style="
               padding: 5px;
               border-width: 1px;
@@ -140,7 +140,7 @@
               {{ model?.currencyTitle }}
               )
             </span>
-          </td>
+          </td> -->
           <td
             style="
               padding: 5px;
@@ -225,7 +225,7 @@
           >
             {{ item.productUnitTitle }}
           </td>
-          <td
+          <!-- <td
             style="
               padding: 5px;
               border-width: 1px;
@@ -267,7 +267,7 @@
           >
             {{
               helper.formatNumber(
-                item.quantity * item.price - item.discount
+                item.quantity * item.price - item.discount,
               )
             }}
           </td>
@@ -302,7 +302,7 @@
             "
           >
             {{ helper.formatNumber(item.totalPrice) }}
-          </td>
+          </td> -->
 
           <td
             style="
@@ -316,7 +316,7 @@
           </td>
         </tr>
 
-        <tr>
+        <!-- <tr>
           <td
             style="
               padding: 5px;
@@ -370,7 +370,7 @@
             <strong>
               {{
                 helper.formatNumber(
-                  model?.totalPrice - model?.totalVat
+                  model?.totalPrice - model?.totalVat,
                 )
               }}
             </strong>
@@ -412,7 +412,7 @@
               {{ helper.formatNumber(model?.totalPrice) }}
             </strong>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </q-card-section>

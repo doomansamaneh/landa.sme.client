@@ -74,6 +74,7 @@
         square
         :color="item.remainedAmount > 0 ? 'red-1' : 'green-1'"
         :text-color="item.remainedAmount > 0 ? 'red-10' : 'green-10'"
+        class="text-weight-600"
       >
         {{ helper.formatNumber(item.remainedAmount) }}
       </q-chip>

@@ -8,11 +8,11 @@
 
   <q-card-section class="q-py-none">
     <div
-      class="row items-end"
+      class="row items-end justify-between"
       style="margin-left: -24px; margin-right: -24px"
     >
       <div
-        class="col"
+        class="col-6"
         style="padding-left: 24px; padding-right: 24px"
       >
         <table
