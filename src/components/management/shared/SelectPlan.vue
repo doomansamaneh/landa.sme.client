@@ -30,6 +30,17 @@
     }"
   >
     <div class="col-md-6 col-sm-6 col-xs-12 q-gutter-y-lg">
+      <div class="row">
+        <div class="col-md-5 col-sm-3 col-xs-3">
+          <span>{{ $t("page.renew-subscription.total") }}</span>
+        </div>
+        <div class="col-md col-sm col-xs">
+          <span>
+            {{ helper.formatNumber(subTotal + loyaltyDiscountTotal) }}
+          </span>
+        </div>
+      </div>
+
       <div class="row" v-if="loyaltyDiscountTotal > 0">
         <div class="col-md-5 col-sm-3 col-xs-3">
           <span>
@@ -38,14 +49,6 @@
         </div>
         <div class="col-md col-sm col-xs">
           <span>{{ helper.formatNumber(loyaltyDiscountTotal) }}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5 col-sm-3 col-xs-3">
-          <span>{{ $t("page.renew-subscription.total") }}</span>
-        </div>
-        <div class="col-md col-sm col-xs">
-          <span>{{ helper.formatNumber(subTotal) }}</span>
         </div>
       </div>
       <div class="row">
@@ -159,86 +162,110 @@
   const loyaltyDiscountTotal = ref(0);
   const discount = ref(0);
 
+  function roundPrice(value) {
+    return Math.round(value / 1000) * 1000;
+  }
+
   async function loadData() {
     let businessId = route.params.businessId;
     if (!businessId) businessId = guidEmpty;
-    await fetchWrapper
-      .get(`business/GetMonths/${businessId}`)
-      .then((response) => {
-        handleMonthResponse(response.data.data);
-      });
+
+    const response = await fetchWrapper.get(
+      `business/GetMonths/${businessId}`,
+    );
+
+    handleMonthResponse(response.data.data);
   }
 
   async function getLoyalDiscount(planId) {
     const businessId = route.params.businessId;
-    if (businessId)
-      await fetchWrapper
-        .get(`business/GetLoyalDiscount/${businessId}/${planId}`)
-        .then((response) => {
-          handleDiscountResponse(response.data.data);
-        });
+
+    if (!businessId) return 0;
+
+    const response = await fetchWrapper.get(
+      `business/GetLoyalDiscount/${businessId}/${planId}`,
+    );
+
+    return response.data.data ?? 0;
   }
 
   function handleMonthResponse(data) {
     periodItems.value = data.map((item) => ({
       id: item.id,
-      //value: item.month,
       label: `${item.month} ماه${
         item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
       }`,
       month: item.month,
       discountPercent: item.percent,
     }));
-    selectedPeriod.value = periodItems.value[0];
-    props.model.month = periodItems.value[0]?.month;
-  }
 
-  function handleDiscountResponse(data) {
-    loyaltyDiscount.value = data;
+    selectedPeriod.value = periodItems.value[0] ?? 0;
+    props.model.month = selectedPeriod.value?.month;
   }
 
   async function onPlanSelected(plan) {
     selectedPlan.value = plan;
-    if (plan != null) await getLoyalDiscount(plan.id);
+
+    if (!plan) {
+      loyaltyDiscount.value = 0;
+      resetValues();
+      return;
+    }
+
+    const planId = plan.id;
+
+    const discountValue = await getLoyalDiscount(planId);
+
+    // اگر کاربر سریع پلن را عوض کرد
+    if (selectedPlan.value?.id !== planId) return;
+
+    loyaltyDiscount.value = discountValue;
+
     computeValues();
   }
 
-  async function selectPeriod(item) {
+  function selectPeriod(item) {
+    selectedPeriod.value = item;
     props.model.month = item?.month;
 
-    selectedPeriod.value = item;
     computeValues();
   }
 
   function computeValues() {
-    if (!selectedPlan.value) resetValues();
-    else {
-      loyaltyDiscountTotal.value =
-        loyaltyDiscount.value * selectedPeriod.value.month;
-      const planCost = selectedPlan.value.cost;
-      const selectedPercent = selectedPeriod.value.discountPercent;
-
-      subTotal.value =
-        planCost * selectedPeriod.value.month -
-        loyaltyDiscountTotal.value;
-
-      discount.value = Math.round(
-        (subTotal.value * selectedPercent) / 100
-      );
-      total.value = Math.round(subTotal.value - discount.value);
+    if (!selectedPlan.value || !selectedPeriod.value) {
+      resetValues();
+      return;
     }
+
+    const month = selectedPeriod.value.month;
+    const periodDiscountPercent =
+      selectedPeriod.value.discountPercent;
+    const planCost = selectedPlan.value.cost;
+
+    loyaltyDiscountTotal.value = roundPrice(
+      loyaltyDiscount.value * month,
+    );
+
+    subTotal.value = roundPrice(
+      planCost * month - loyaltyDiscountTotal.value,
+    );
+
+    discount.value = roundPrice(
+      (subTotal.value * periodDiscountPercent) / 100,
+    );
+
+    total.value = roundPrice(subTotal.value - discount.value);
   }
 
   function resetValues() {
-    loyaltyDiscountTotal.value =
-      discount.value =
-      total.value =
-      subTotal.value =
-        0;
+    loyaltyDiscountTotal.value = 0;
+    subTotal.value = 0;
+    discount.value = 0;
+    total.value = 0;
   }
 
-  onMounted(() => {
-    loadData();
+  onMounted(async () => {
+    await loadData();
   });
 </script>
 
