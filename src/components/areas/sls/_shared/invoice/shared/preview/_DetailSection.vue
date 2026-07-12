@@ -20,7 +20,7 @@
                   class="text-body2"
                   v-if="model?.voucherId"
                   :to="`/acc/voucher/preview/${model.voucherId}`"
-                  :title="`${model.voucherRowNo} (${model.voucherNo})`"
+                  :title="model.voucherNo"
                 />
               </div>
               <div class="q-pt-sm" v-else>
@@ -75,12 +75,12 @@
             </div>
           </div>
 
-          <div v-if="model.marketerName">
+          <div v-if="model.contactName">
             <div class="text-body2 text-weight-700">
               {{ $t("shared.labels.marketer") }}
             </div>
             <div class="q-mt-sm text-body2">
-              {{ model.marketerName }}
+              {{ model.contactName }}
             </div>
           </div>
 

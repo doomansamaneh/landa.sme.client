@@ -202,10 +202,10 @@
                   <div class="col-md col-sm-7 col-xs-12">
                     <customer-lookup
                       v-model:selectedId="
-                        searchStore.searchModel.value.marketerId
+                        searchStore.searchModel.value.contactId
                       "
                       v-model:selectedText="
-                        searchStore.searchModel.value.marketerName
+                        searchStore.searchModel.value.contactName
                       "
                       style="width: 398px"
                     />
@@ -411,10 +411,10 @@
   };
 
   const dateRangeOptions = computed(() =>
-    helper.getEnumOptions(dateRange)
+    helper.getEnumOptions(dateRange),
   );
 
   const depositTypeOptions = computed(() =>
-    helper.getEnumOptions(depositType)
+    helper.getEnumOptions(depositType),
   );
 </script>

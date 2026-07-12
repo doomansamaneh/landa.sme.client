@@ -58,7 +58,7 @@
               >
                 {{
                   $t(
-                    `shared.dateRange.${searchStore.searchModel.value.dateRange}`
+                    `shared.dateRange.${searchStore.searchModel.value.dateRange}`,
                   )
                 }}
               </div>
@@ -94,7 +94,7 @@
               >
                 {{
                   $t(
-                    `shared.depositType.${searchStore.searchModel.value.depositType}`
+                    `shared.depositType.${searchStore.searchModel.value.depositType}`,
                   )
                 }}
               </div>
@@ -130,7 +130,7 @@
               >
                 {{
                   $t(
-                    `shared.taxSentStatus.${searchStore.searchModel.value.taxStatus}`
+                    `shared.taxSentStatus.${searchStore.searchModel.value.taxStatus}`,
                   )
                 }}
               </div>
@@ -260,10 +260,10 @@
             </div>
             <customer-lookup
               v-model:selectedId="
-                searchStore.searchModel.value.marketerId
+                searchStore.searchModel.value.contactId
               "
               v-model:selectedText="
-                searchStore.searchModel.value.marketerName
+                searchStore.searchModel.value.contactName
               "
               style="width: 398px"
             />
@@ -469,20 +469,20 @@
     () => searchStore.searchModel.value.depositType,
     () => {
       depositTypeDialog.value = false;
-    }
+    },
   );
 
   watch(
     () => searchStore.searchModel.value.taxStatus,
     () => {
       taxSentStatusDialog.value = false;
-    }
+    },
   );
 
   watch(
     () => searchStore.searchModel.value.dateRange,
     () => {
       dateRangeDialog.value = false;
-    }
+    },
   );
 </script>
