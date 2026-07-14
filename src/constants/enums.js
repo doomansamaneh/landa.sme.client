@@ -318,7 +318,7 @@ export const receiptFormType = {
 };
 
 export const paymentFormType = {
-  purhcase: 1,
+  purchase: 1,
   other: 2,
 };
 

@@ -1045,7 +1045,7 @@
     },
 
     "paymentFormType": {
-      "purhcase": "Purchase, Sales Returns",
+      "purchase": "Purchase, Sales Returns",
       "other": "Other"
     },
 

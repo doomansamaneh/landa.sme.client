@@ -83,11 +83,13 @@
   });
 
   const getInvoiceUrl = (item) => {
-    return item.invoiceTypeId === documentType.purchase
-      ? "sls/purhcase"
-      : item.invoiceTypeId === documentType.salesReturn
-      ? "sls/salesReturn"
-      : "sls/invoice";
+    const urlMap = {
+      [documentType.purchase]: "sls/purchase",
+      [documentType.salesReturn]: "sls/salesReturn",
+      [documentType.purchaseReturn]: "sls/purchaseReturn",
+    };
+
+    return urlMap[item.invoiceTypeId] || "sls/invoice";
   };
 </script>
 <style>

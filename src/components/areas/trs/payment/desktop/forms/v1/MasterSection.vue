@@ -70,7 +70,7 @@
   </div>
 
   <remained-grid
-    v-if="formType === paymentFormType.purhcase"
+    v-if="formType === paymentFormType.purchase"
     class="q-mt-md"
     ref="invoiceGrid"
     :form-store="formStore"
@@ -97,12 +97,12 @@
     formStore: useReceiptModel,
   });
 
-  const formType = ref(paymentFormType.purhcase);
+  const formType = ref(paymentFormType.purchase);
   const invoiceGrid = ref(null);
   const localFormStore = computed(() => props.formStore);
 
   const formTypeChanged = async (e) => {
-    if (e === paymentFormType.purhcase)
+    if (e === paymentFormType.purchase)
       localFormStore.value.resetSL();
     else localFormStore.value.resetRemainedInvoices();
   };

@@ -1078,7 +1078,7 @@
     },
 
     "paymentFormType": {
-      "purhcase": "خرید، برگشت از فروش",
+      "purchase": "خرید، برگشت از فروش",
       "other": "سایر"
     },
 
