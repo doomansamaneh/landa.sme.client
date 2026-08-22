@@ -36,11 +36,12 @@
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
   import { usePurchaseDataGridMenu } from "../../../_menus/usePurchaseDataGridMenu";
 
-  import AdvancedSearch from "../../../_shared/invoice/mobile/index/AdvancedSearch.vue";
   import ToolbarMobile from "src/components/shared/toolbars/DynamicToolbarMobile.vue";
   import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
 
+  import AdvancedSearch from "../../../_shared/invoice/mobile/index/AdvancedSearch.vue";
   import EditBatchForm from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
+  import ReorderForm from "src/components/areas/sls/purchase/shared/forms/ReorderForm.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -57,6 +58,17 @@
     props.tableStore,
     baseRoute,
     {
+      reorder: () => {
+        dialogStore.openDialog({
+          title: `shared.labels.reorder`,
+          component: ReorderForm,
+          actionBar: true,
+          okCallback: async (response) => {
+            await props.tableStore.reloadData();
+          },
+        });
+      },
+
       editBatch: () => {
         dialogStore.openDialog({
           title: `shared.labels.editBatch`,
@@ -75,13 +87,13 @@
       cancelInvoice: () => {
         formStore.cancelInvoice(
           props.tableStore?.activeRow?.value?.id,
-          props.tableStore.reloadData()
+          props.tableStore.reloadData(),
         );
       },
-    }
+    },
   );
 
   const menuItems = computed(() =>
-    usePurchaseDataGridMenu(context.value)
+    usePurchaseDataGridMenu(context.value),
   );
 </script>

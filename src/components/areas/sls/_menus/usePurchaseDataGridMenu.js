@@ -55,6 +55,14 @@ export function usePurchaseDataGridMenu(context) {
     extraMoreItems: [
       {
         ...menuItems.defaultItem,
+        label: "reorder",
+        icon: "o_cached",
+        permission: "acc.operation.reorder",
+        addSeparator: true,
+        handler: () => context.reorder?.(),
+      },
+      {
+        ...menuItems.defaultItem,
         label: "cancelInvoice",
         icon: "o_close",
         permission: "sls.purchase.cancelInvoice",
