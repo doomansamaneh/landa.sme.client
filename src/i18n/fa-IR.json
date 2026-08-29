@@ -851,10 +851,12 @@
       "byCodeOrder": "به ترتیب کد",
       "maxSalePrice": "بیشترین قیمت فروش",
       "paymentMethod": "روش تسویه",
+      "insr": "مشمول ماده 9",
       "discountAccount": "حساب تخفیف",
       "productAccount": "حساب کالا",
       "serviceAccount": "حساب خدمات",
       "paymentMethodGuide": "برای ارسال به سامانه مودیان استفاده می‌شود",
+      "insrGuide": "برای ارسال به سامانه مودیان استفاده می‌شود",
       "slAccountGuide": "حسابهای دریافتنی تجاری با کد 10301",
       "discountAccountGuide": "برگشت از فروش و تخفیفها با کد 60103",
       "productAccountGuide": "فروش کالا و خدمات با کد 60101",
@@ -1070,6 +1072,10 @@
       "cash": "نقد",
       "trust": "نسیه",
       "both": "نقد و نسیه"
+    },
+
+    "insr": {
+      "include": "مشمول ماده 9"
     },
 
     "receiptFormType": {

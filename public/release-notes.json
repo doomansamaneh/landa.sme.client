@@ -1,4 +1,14 @@
 {
+  "1.0.41": {
+    "fa-IR": [
+      "امکان ارسال ماده 9 در صورتحسابهای الکترونیکی",
+      "افزوده شدن حساب تفصیلی در پرداخت و دریافت گزینه سایر"
+    ],
+    "en-US": [
+      "Ability to send Article 9 in electronic invoices",
+      "Added detailed account option 'Other' in payments and receipts"
+    ]
+  },
   "1.0.40": {
     "fa-IR": [
       "افزون شماره گذاری دوباره در بخش فاکتورهای خرید",

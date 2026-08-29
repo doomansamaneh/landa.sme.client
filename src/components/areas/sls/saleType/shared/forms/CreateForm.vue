@@ -18,8 +18,8 @@
           </div>
         </div>
 
-        <div class="row q-mb-md">
-          <div class="col-md-3 col-sm-12 col-xs-12">
+        <div class="row q-col-gutter-md q-mb-md">
+          <div class="col-12 col-sm-6 col-md-3">
             <custom-select
               v-model="formStore.model.value.paymentTypeId"
               :options="
@@ -27,6 +27,14 @@
               "
               :label="$t('shared.labels.paymentMethod')"
               required
+            />
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <custom-select
+              v-model="formStore.model.value.insr"
+              :options="helper.getEnumOptions(insr, 'insr')"
+              :label="$t('shared.labels.insr')"
             />
           </div>
         </div>
@@ -108,6 +116,10 @@
                 {{ $t("shared.labels.paymentMethodGuide") }}
               </li>
               <li>
+                <strong>{{ $t("shared.labels.insr") }}:</strong>
+                {{ $t("shared.labels.insrGuide") }}
+              </li>
+              <li>
                 <strong>{{ $t("shared.columns.slTitle") }}:</strong>
                 {{ $t("shared.labels.slAccountGuide") }}
               </li>
@@ -144,6 +156,7 @@
     sqlOperator,
     paymentType,
     accountCLType,
+    insr,
   } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 

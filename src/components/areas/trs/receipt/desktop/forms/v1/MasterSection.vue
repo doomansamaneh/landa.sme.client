@@ -37,15 +37,26 @@
     </div>
   </div>
 
-  <div v-if="formType === receiptFormType.other" class="row q-mt-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
-      <sl-lookup
-        v-model:selectedId="localFormStore.model.value.slId"
-        v-model:selectedText="localFormStore.model.value.slDisplay"
-        :label="$t('shared.columns.slTitle')"
-      />
+  <template v-if="formType === receiptFormType.other">
+    <div class="row q-mt-md">
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <sl-lookup
+          v-model:selectedId="localFormStore.model.value.slId"
+          v-model:selectedText="localFormStore.model.value.slDisplay"
+          :label="$t('shared.columns.slTitle')"
+        />
+      </div>
     </div>
-  </div>
+    <div class="row q-mt-md">
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <dl-lookup
+          v-model:selectedId="localFormStore.model.value.dlId"
+          v-model:selectedText="localFormStore.model.value.dlDisplay"
+          :label="$t('shared.labels.dlTitle')"
+        />
+      </div>
+    </div>
+  </template>
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
@@ -84,6 +95,7 @@
   import { useReceiptModel } from "src/components/areas/trs/_composables/useReceiptModel";
 
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
+  import DlLookup from "src/components/shared/lookups/AccountDLLookup.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
@@ -95,7 +107,6 @@
   });
 
   const formType = ref(receiptFormType.sales);
-  const invoiceGrid = ref(null);
   const localFormStore = computed(() => props.formStore);
 
   const formTypeChanged = async (e) => {

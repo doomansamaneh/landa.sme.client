@@ -1039,6 +1039,10 @@
       "both": "Cash and Credit"
     },
 
+    "insr": {
+      "include": "Include 9"
+    },
+
     "receiptFormType": {
       "sales": "Sales, Purchase Returns",
       "other": "Other"

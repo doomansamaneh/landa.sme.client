@@ -312,6 +312,11 @@ export const paymentType = {
   both: 3,
 };
 
+//مشمول ماده 9 صورتحساب مالیاتی
+export const insr = {
+  include: 1,
+};
+
 export const receiptFormType = {
   sales: 1,
   other: 2,
