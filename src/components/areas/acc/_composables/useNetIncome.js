@@ -4,7 +4,11 @@ import { accountCLType } from "src/constants";
 import { useAccess } from "src/directives/useAccess";
 import { useComposables } from "src/stores/useComposables";
 
-const model = ref({ thisYear: [{}], lastYear: [{}] });
+const model = ref({
+  thisYear: [],
+  lastYear: [],
+});
+
 const _state = {
   firstLoad: ref(false),
   data: ref(null),
@@ -12,10 +16,13 @@ const _state = {
 
 export function useNetIncome() {
   const { hasAccess } = useAccess();
+
   const showLoader = ref(false);
+
   const state = computed(() => _state);
 
   const composablesStore = useComposables();
+
   composablesStore.register({
     reset: () => {
       state.value.firstLoad.value = false;
@@ -28,18 +35,27 @@ export function useNetIncome() {
       await reloadData();
       return true;
     }
+
     return false;
   }
 
   async function reloadData() {
     try {
       showLoader.value = true;
+
       const response = await fetchWrapper.get(
-        `acc/report/revenueExpense`,
+        "acc/report/revenueExpense",
         null,
-        true
+        true,
       );
-      model.value = response.data.data;
+
+      const data = response?.data?.data ?? {};
+
+      model.value = {
+        thisYear: Array.isArray(data.thisYear) ? data.thisYear : [],
+
+        lastYear: Array.isArray(data.lastYear) ? data.lastYear : [],
+      };
     } finally {
       showLoader.value = false;
     }
@@ -47,17 +63,23 @@ export function useNetIncome() {
 
   const getThisYear = (clTypeId) => {
     return (
-      model.value?.thisYear.find(
-        (item) => item.clId === clTypeId
-      ) || { debit: 0, credit: 0 }
+      (model.value.thisYear ?? []).find(
+        (item) => item.clId === clTypeId,
+      ) || {
+        debit: 0,
+        credit: 0,
+      }
     );
   };
 
   const getLastYear = (clTypeId) => {
     return (
-      model.value?.lastYear.find(
-        (item) => item.clId === clTypeId
-      ) || { debit: 0, credit: 0 }
+      (model.value.lastYear ?? []).find(
+        (item) => item.clId === clTypeId,
+      ) || {
+        debit: 0,
+        credit: 0,
+      }
     );
   };
 
@@ -73,64 +95,75 @@ export function useNetIncome() {
 
   const getThisYearAmount = (clId) =>
     calculateAmount(getThisYear(clId), clId);
+
   const getLastYearAmount = (clId) =>
     calculateAmount(getLastYear(clId), clId);
 
   const getPercentAmount = (clId) => {
     const lastYearAmount = getLastYearAmount(clId);
+
     const thisYearAmount = getThisYearAmount(clId);
+
     if (lastYearAmount === 0) return thisYearAmount === 0 ? 0 : 100;
+
     return (
       ((thisYearAmount - lastYearAmount) / Math.abs(lastYearAmount)) *
       100
     );
   };
 
-  // Use the "year" parameter to select the appropriate data source
   const computeNetIncome = (year) => {
     const getData = year === "thisYear" ? getThisYear : getLastYear;
+
     const revenue = calculateAmount(
       getData(accountCLType.revenue),
-      accountCLType.revenue
+      accountCLType.revenue,
     );
+
     const expense = calculateAmount(
       getData(accountCLType.expense),
-      accountCLType.expense
+      accountCLType.expense,
     );
+
     const cogs = calculateAmount(
       getData(accountCLType.cogs),
-      accountCLType.cogs
+      accountCLType.cogs,
     );
+
     return revenue - expense - cogs;
   };
 
   const thisYearNetIncome = computed(() =>
-    computeNetIncome("thisYear")
-  );
-  const lastYearNetIncome = computed(() =>
-    computeNetIncome("lastYear")
+    computeNetIncome("thisYear"),
   );
 
-  // Compute net income percent change between this year and last year
+  const lastYearNetIncome = computed(() =>
+    computeNetIncome("lastYear"),
+  );
+
   const netIncomePercent = computed(() => {
     const lastNI = lastYearNetIncome.value;
+
     const thisNI = thisYearNetIncome.value;
+
     if (lastNI === 0) return thisNI === 0 ? 0 : 100;
+
     return ((thisNI - lastNI) / Math.abs(lastNI)) * 100;
   });
 
   const thisYearRevenue = computed(() => {
     return calculateAmount(
       getThisYear(accountCLType.revenue),
-      accountCLType.revenue
+      accountCLType.revenue,
     );
   });
 
   const revenuePercent = computed(() => {
     const lastYearRevenue = calculateAmount(
       getLastYear(accountCLType.revenue),
-      accountCLType.revenue
+      accountCLType.revenue,
     );
+
     if (lastYearRevenue > 0) {
       return (
         ((thisYearRevenue.value - lastYearRevenue) /
@@ -138,34 +171,43 @@ export function useNetIncome() {
         100
       );
     }
+
     return 100;
   });
 
-  const clItems = computed(() =>
-    [...model.value?.thisYear, ...model.value?.lastYear]
+  const clItems = computed(() => {
+    return [
+      ...(model.value.thisYear ?? []),
+      ...(model.value.lastYear ?? []),
+    ]
+
       .map(({ clId, clTypeId, clCode, clTitle }) => ({
         clId,
         clTypeId,
         clCode,
         clTitle,
       }))
+
       .sort((a, b) => a.clCode?.localeCompare(b.clCode))
+
       .filter(
         (value, index, self) =>
           index ===
           self.findIndex(
             (c) =>
-              c.clId === value.clId && c.clTypeId === value.clTypeId
-          )
-      )
-  );
+              c.clId === value.clId && c.clTypeId === value.clTypeId,
+          ),
+      );
+  });
 
   const chartSeries = computed(() => {
     return [
       {
         name: "revenue",
+
         data: [
           getLastYearAmount(accountCLType.revenue),
+
           getThisYearAmount(accountCLType.revenue),
         ],
       },
@@ -176,6 +218,7 @@ export function useNetIncome() {
     if (!hasAccess("acc.report.accountReview")) return;
 
     loadData();
+
     bus.on("render-page", loadData);
   });
 
@@ -192,9 +235,11 @@ export function useNetIncome() {
     thisYearNetIncome,
     lastYearNetIncome,
     netIncomePercent,
+
     getThisYearAmount,
     getLastYearAmount,
     getPercentAmount,
+
     showLoader,
   };
 }
