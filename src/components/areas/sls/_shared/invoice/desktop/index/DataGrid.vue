@@ -58,17 +58,8 @@
       </span>
     </template>
 
-    <template #cell-remainedAmount="{ item }">
-      <!-- <span class="text-red">
-        <q-badge
-          v-if="item.remainedAmount !== 0"
-          color="red"
-          rounded
-        />
-        {{ helper.formatNumber(item.remainedAmount) }}
-      </span> -->
-
-      <q-chip
+    <!-- <template #cell-remainedAmount="{ item }">
+          <q-chip
         v-if="item.remainedAmount"
         dense_
         square
@@ -78,6 +69,18 @@
       >
         {{ helper.formatNumber(item.remainedAmount) }}
       </q-chip>
+    </template> -->
+
+    <template #cell-remainedAmount="{ item }">
+      <span class="text-weight-600">
+        <q-badge
+          v-if="item.remainedAmount > 0"
+          rounded
+          :color="item.payedAmount === 0 ? 'red' : 'amber'"
+          class="q-mr-xs"
+        />
+        {{ helper.formatNumber(item.remainedAmount) }}
+      </span>
     </template>
 
     <template #cell-customerName="{ item }">
@@ -281,6 +284,14 @@
   });
 
   const router = useRouter();
+
+  const getRemainColor = (item) => {
+    if (item.remainedAmount === 0) return "green";
+
+    if (item.paidAmount === 0) return "red";
+
+    return "amber";
+  };
 
   const colspan = computed(
     () =>
