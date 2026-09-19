@@ -97,7 +97,7 @@
               >
                 {{
                   helper.formatNumber(
-                    formStore.getProductQuantity(item.id)
+                    formStore.getProductQuantity(item.id),
                   )
                 }}
               </q-badge>
@@ -107,7 +107,9 @@
           <div class="row items-center justify-between full-width">
             <div class="col-10 q-pl-lg column">
               <span class="text-body3 text-weight-600">
-                {{ item.code }} - {{ item.title }}
+                {{ item.code }}
+                <span v-if="item.barcode">- {{ item.barcode }}</span>
+                - {{ item.title }}
               </span>
               <span v-if="item.purchasePrice" class="text-body3">
                 {{ $t("shared.columns.purchasePrice") }}:
@@ -180,7 +182,7 @@
   const grid = ref(null);
   const tab = ref("mostSold");
   const pulseProduct = computed(
-    () => ""
+    () => "",
     //props.model.invoiceItems.length < 1 ? "pulse" : ""
   );
 

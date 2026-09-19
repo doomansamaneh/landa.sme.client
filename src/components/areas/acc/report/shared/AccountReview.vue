@@ -1,7 +1,7 @@
 <template>
   <toolbar-desktop margin :title="title" />
 
-  <advanced-search />
+  <advanced-search ref="as" />
 
   <tip-banner :tip="tip" closeable class="q-mb-md" />
 
@@ -72,21 +72,21 @@
         <review-cl
           :report-store="accountReviewStore"
           :title="title"
-          :sub-title="$t('shared.accountTreeType.cl')"
+          :sub-title="clTitle"
         />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
         <review-gl
           :report-store="accountReviewStore"
           :title="title"
-          :sub-title="$t('shared.accountTreeType.gl')"
+          :sub-title="glTitle"
         />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
         <review-sl
           :report-store="accountReviewStore"
           :title="title"
-          :sub-title="$t('shared.accountTreeType.sl')"
+          :sub-title="slTitle"
         />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
@@ -115,7 +115,10 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useAccountReview } from "src/components/areas/acc/_composables/useAccountReview";
+  import { useVoucherSearch } from "../../_composables/useVoucherSearch.js";
+  import { useFiscalYear } from "../../_composables/useFiscalYear.js";
   import { useI18n } from "vue-i18n";
 
   import ReviewCl from "../desktop/ReviewCL.vue";
@@ -137,7 +140,29 @@
   });
 
   const accountReviewStore = useAccountReview();
+  const searchStore = useVoucherSearch();
+  const fiscalYear = useFiscalYear();
 
   const { t: $t } = useI18n();
   const tip = $t("accountReview.tip");
+
+  const getAccountTitle = (type) =>
+    computed(() => {
+      const base = $t(`shared.accountTreeType.${type}`);
+      const { dateFrom, dateTo } =
+        searchStore.searchModel?.value ?? {};
+
+      //TODO: use actual fiscal year from and to date
+      const from =
+        dateFrom ?? `${fiscalYear.currentYear.value.title}/01/01`;
+
+      const to =
+        dateTo ?? `${fiscalYear.currentYear.value.title}/12/29`;
+
+      return `${base} (${from} - ${to})`;
+    });
+
+  const clTitle = getAccountTitle("cl");
+  const glTitle = getAccountTitle("gl");
+  const slTitle = getAccountTitle("sl");
 </script>

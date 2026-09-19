@@ -47,7 +47,9 @@
         </div>
         <q-item-section class="q-pl-md">
           <q-item-label class="text-body3">
-            {{ row.code }} - {{ row.title }}
+            {{ row.code }}
+            <span v-if="row.barcode">- {{ row.barcode }}</span>
+            - {{ row.title }}
           </q-item-label>
           <q-item-label
             class="text-body2"
