@@ -1327,6 +1327,7 @@
     },
 
     "columns": {
+      "barcode": "بارکد",
       "dl2Code": "کد تفصیلی 2",
       "dl3Code": "کد تفصیلی 3",
       "fromIp": "از ip",

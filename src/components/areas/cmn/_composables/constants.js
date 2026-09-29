@@ -3,6 +3,7 @@ import {
   title,
   typeId,
   parentTitle,
+  comment,
   isActive,
   actions,
 } from "src/constants/columns";
@@ -19,6 +20,15 @@ export const productColumns = [
     value: "",
   },
   { ...code },
+  {
+    name: "barcode",
+    field: "barcode",
+    sortable: true,
+    label: "barcode",
+    hidden: true,
+    showFilter: true,
+    class: "text-left",
+  },
   { ...title },
   { ...typeId },
   {
@@ -51,6 +61,7 @@ export const productColumns = [
     class: "text-left",
     value: "",
   },
+  { ...comment, hidden: true },
   { ...isActive },
   //actions,
 ];

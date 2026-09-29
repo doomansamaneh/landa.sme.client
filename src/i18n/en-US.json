@@ -1286,6 +1286,7 @@
     },
 
     "columns": {
+      "barcode": "Barcode",
       "dl2Code": "Detail Ledger2 Code",
       "dl3Code": "Detail Ledger3 Code",
       "fromIp": "From Ip",

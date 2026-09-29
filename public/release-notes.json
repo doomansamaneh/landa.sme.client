@@ -1,4 +1,8 @@
 {
+  "1.0.44": {
+    "fa-IR": ["افزودن ستونهای بارکد و شرح در جدول کالا"],
+    "en-US": ["Add barcode and comment in product data grid"]
+  },
   "1.0.43": {
     "fa-IR": ["بهبودهای جزیی در چاپ تراز آزمایشی، ایمپورت اطلاعات"],
     "en-US": ["Minor bug fix"]

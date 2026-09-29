@@ -333,23 +333,21 @@ export function useInvoiceModel(config) {
     } else {
       item.discountPercent = 0;
       item.discount = value;
-      // item.discountPercent =
-      //   value > 0 && item.quantity * item.price > 0
-      //     ? Math.floor((value * 100) / (item.quantity * item.price))
-      //     : 0;
     }
     item.discountValue = value;
   }
 
   async function submitForm(form, action, callBack) {
+    model.value.defaultItem = null;
     if (model.value.cashId) {
       model.value.paymentItems = [
         {
           cashId: model.value.cashId,
-          amount: totalPrice.value,
+          amount: totalPrice.value.toString(),
         },
       ];
-    }
+    } else model.value.paymentItems = null;
+
     await crudStore.submitForm(form, action, saveCallBack);
 
     function saveCallBack(responseData) {
