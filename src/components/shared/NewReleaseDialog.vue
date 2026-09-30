@@ -136,12 +136,15 @@
   const $q = useQuasar();
 
   const CURRENT_VERSION = process.env.APP_VERSION || "1.0.0";
+
   const latestVersion = computed(
-    () => props.swVersion || CURRENT_VERSION
+    () => props.swVersion || CURRENT_VERSION,
   );
 
   const RELEASE_NOTES_URL = "/release-notes.json";
+
   const releaseNotes = ref({});
+
   const latest = ref({
     version: latestVersion.value,
     items: [],
@@ -153,26 +156,19 @@
       "New version {version} is available";
 
     const [before, after] = template.split("{version}");
-    return { before, after };
+
+    return {
+      before,
+      after,
+    };
   });
-
-  const loadReleaseNotes = async () => {
-    try {
-      const res = await fetch(RELEASE_NOTES_URL, {
-        cache: "no-store",
-      });
-      if (!res.ok) throw new Error("Failed to load release notes");
-
-      releaseNotes.value = await res.json();
-      updateLatestNotes();
-    } catch {
-      updateLatestNotes();
-    }
-  };
 
   const getLocalizedNotes = (notes) => {
     if (!notes) return [];
-    if (Array.isArray(notes)) return notes;
+
+    if (Array.isArray(notes)) {
+      return notes;
+    }
 
     return (
       notes[locale.value] || notes["fa-IR"] || notes["en-US"] || []
@@ -181,21 +177,68 @@
 
   const updateLatestNotes = () => {
     const notes = releaseNotes.value[latestVersion.value];
+
     latest.value = {
       version: latestVersion.value,
       items: getLocalizedNotes(notes),
     };
   };
 
-  const reload = async () => {
-    if ("serviceWorker" in navigator) {
-      const reg = await navigator.serviceWorker.getRegistration();
-      reg?.waiting?.postMessage({ type: "SKIP_WAITING" });
+  const loadReleaseNotes = async () => {
+    try {
+      const url = `${RELEASE_NOTES_URL}?v=${encodeURIComponent(
+        latestVersion.value,
+      )}`;
+
+      const res = await fetch(url, {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error(
+          `Failed to load release notes: ${res.status}`,
+        );
+      }
+
+      releaseNotes.value = await res.json();
+    } catch (error) {
+      console.error("Failed to load release notes:", error);
+
+      releaseNotes.value = {};
     }
+
+    updateLatestNotes();
+  };
+
+  const reload = async () => {
+    if (!("serviceWorker" in navigator)) {
+      window.location.reload();
+      return;
+    }
+
+    const reg = await navigator.serviceWorker.getRegistration();
+
+    const waiting = reg?.waiting;
+
+    if (waiting) {
+      waiting.postMessage({
+        type: "SKIP_WAITING",
+      });
+
+      return;
+    }
+
     window.location.reload();
   };
 
-  watch([locale, () => props.swVersion], updateLatestNotes);
+  watch(locale, updateLatestNotes);
+
+  watch(
+    () => props.swVersion,
+    async () => {
+      await loadReleaseNotes();
+    },
+  );
 
   onMounted(loadReleaseNotes);
 </script>

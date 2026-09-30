@@ -125,7 +125,7 @@ export const helper = {
         day || 1,
         hours || 0,
         minutes || 0,
-        seconds || 0
+        seconds || 0,
       );
       return d.getTime();
     }
@@ -213,7 +213,7 @@ export const helper = {
     // Ensure the color code is 6 characters long
     const baseColor = `#${"000000".substring(
       0,
-      6 - color.length
+      6 - color.length,
     )}${color}`;
 
     // Function to adjust the brightness of the color
@@ -222,7 +222,7 @@ export const helper = {
       const r = Math.min(255, Math.floor((rgb >> 16) * factor)); // Extract and adjust red
       const g = Math.min(
         255,
-        Math.floor(((rgb >> 8) & 0x00ff) * factor)
+        Math.floor(((rgb >> 8) & 0x00ff) * factor),
       ); // Extract and adjust green
       const b = Math.min(255, Math.floor((rgb & 0x0000ff) * factor)); // Extract and adjust blue
       return `#${((1 << 24) + (r << 16) + (g << 8) + b)
@@ -261,7 +261,7 @@ export const helper = {
       {
         degree: 135,
         proximity: 1,
-      }
+      },
     );
     const $q = useQuasar();
     return {
@@ -342,18 +342,35 @@ export const helper = {
     return darkenedHex;
   },
 
+  // getSubtotal(items, fieldName) {
+  //   if (!items || items.length === 0) return new Decimal(0);
+
+  //   return items.reduce((sum, item) => {
+  //     let raw = item[fieldName] ?? 0;
+
+  //     // تبدیل قطعی به رشته بدون کاما و فاصله
+  //     raw = String(raw).replace(/,/g, "").trim();
+
+  //     const decimalValue = new Decimal(raw);
+
+  //     return sum.plus(decimalValue);
+  //   }, new Decimal(0));
+  // },
+
   getSubtotal(items, fieldName) {
-    if (!items || items.length === 0) return new Decimal(0);
+    if (!items?.length) return new Decimal(0);
 
     return items.reduce((sum, item) => {
-      let raw = item[fieldName] ?? 0;
+      let raw = String(item[fieldName] ?? "")
+        .replace(/,/g, "")
+        .trim();
 
-      // تبدیل قطعی به رشته بدون کاما و فاصله
-      raw = String(raw).replace(/,/g, "").trim();
+      // مقدار خالی هنگام delete
+      if (!raw) {
+        return sum;
+      }
 
-      const decimalValue = new Decimal(raw);
-
-      return sum.plus(decimalValue);
+      return sum.plus(new Decimal(raw));
     }, new Decimal(0));
   },
 
@@ -398,7 +415,7 @@ export const helper = {
 
     const intWithCommas = intPart.replace(
       /\B(?=(\d{3})+(?!\d))/g,
-      ","
+      ",",
     );
     const result = intWithCommas + (decPart ? "." + decPart : "");
     return negative ? `(${result})` : result;
@@ -524,18 +541,18 @@ export const helper = {
                   ? col.field(row)
                   : row[col.field === void 0 ? col.name : col.field],
                 col.format,
-                row
-              )
+                row,
+              ),
             )
-            .join(",")
-        )
+            .join(","),
+        ),
       )
       .join("\r\n");
 
     const status = exportFile(
       "landa-sme.csv",
       "\ufeff" + content,
-      "text/csv"
+      "text/csv",
     );
 
     const $q = useQuasar();
@@ -601,7 +618,7 @@ export const helper = {
 
       return input.replace(
         /[۰-۹]/g,
-        (match) => persianToEnglishMap[match]
+        (match) => persianToEnglishMap[match],
       );
     }
     const convertedPhoneNumber = faToEnNumbers(phoneNumber);
@@ -609,18 +626,18 @@ export const helper = {
     if (convertedPhoneNumber.length === 8) {
       return `${convertedPhoneNumber.slice(
         0,
-        3
+        3,
       )} ${convertedPhoneNumber.slice(
         3,
-        6
+        6,
       )} ${convertedPhoneNumber.slice(6, 8)}`;
     } else if (convertedPhoneNumber.length === 11) {
       return `${convertedPhoneNumber.slice(
         0,
-        4
+        4,
       )} ${convertedPhoneNumber.slice(
         4,
-        7
+        7,
       )} ${convertedPhoneNumber.slice(7, 11)}`;
     } else {
       const formattedNumber = [];
@@ -652,7 +669,7 @@ export const helper = {
         const r = (Math.random() * 16) | 0;
         const v = c === "x" ? r : (r & 0x3) | 0x8;
         return v.toString(16);
-      }
+      },
     );
   },
 
@@ -718,10 +735,10 @@ export const helper = {
     const printWindow = iframe.contentWindow;
 
     printWindow.document.write(
-      `<html><head><title>landa-SME Print</title>`
+      `<html><head><title>landa-SME Print</title>`,
     );
     printWindow.document.write(
-      `<style>body { direction: ${direction}; }</style>`
+      `<style>body { direction: ${direction}; }</style>`,
     );
     printWindow.document.write("</head><body>");
     printWindow.document.write('<div class="printable"></div>');
@@ -733,7 +750,7 @@ export const helper = {
     printableContainer.appendChild(clonedElement);
 
     const styles = document.querySelectorAll(
-      'style, link[rel="stylesheet"]'
+      'style, link[rel="stylesheet"]',
     );
     styles.forEach((style) => {
       printWindow.document.head.appendChild(style.cloneNode(true));
@@ -863,8 +880,8 @@ export const helper = {
             .replace(/^ +/, "")
             .replace(
               /=.*/,
-              `=;expires=${new Date().toUTCString()};path=/`
-            ))
+              `=;expires=${new Date().toUTCString()};path=/`,
+            )),
       );
   },
 };

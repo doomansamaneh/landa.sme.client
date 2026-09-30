@@ -59,8 +59,8 @@ export default defineConfig((ctx) => {
     },
 
     pwa: {
-      //disable: true,
       workboxMode: "InjectManifest",
+
       injectManifest: {
         swSrc: "src-pwa/custom-service-worker.js",
       },
@@ -69,7 +69,7 @@ export default defineConfig((ctx) => {
         esbuildConf.define = {
           ...esbuildConf.define,
           "process.env.APP_VERSION": JSON.stringify(
-            require("./package.json").version
+            require("./package.json").version,
           ),
         };
       },
@@ -77,6 +77,11 @@ export default defineConfig((ctx) => {
       extendInjectManifestOptions(cfg) {
         cfg.additionalManifestEntries =
           cfg.additionalManifestEntries || [];
+
+        // cfg.exclude = [
+        //   ...(cfg.exclude || []),
+        //   /release-notes\.json$/,
+        // ];
       },
     },
 

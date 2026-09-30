@@ -26,10 +26,7 @@
       >
         <div v-show="slide === 1">
           <div class="row items-center justify-center">
-            <q-img
-              class="q-mb-md"
-              src="src/assets/about-us-header.png"
-            />
+            <q-img class="q-mb-md" src="/about-us-header.png" />
             <div class="text-center text-body1">
               {{ $t("page.buttons.guide.slide1") }}
             </div>

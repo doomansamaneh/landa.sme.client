@@ -1,6 +1,6 @@
 import { precacheAndRoute } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
-import { CacheFirst } from "workbox-strategies";
+import { CacheFirst, NetworkOnly } from "workbox-strategies";
 import { ExpirationPlugin } from "workbox-expiration";
 
 self.__WB_DISABLE_DEV_LOGS = true;
@@ -9,6 +9,12 @@ self.__WB_DISABLE_DEV_LOGS = true;
 // Precache build assets
 // --------------------------------------------------
 precacheAndRoute(self.__WB_MANIFEST);
+
+// release notes always from network
+registerRoute(
+  ({ url }) => url.pathname === "/release-notes.json",
+  new NetworkOnly(),
+);
 
 // --------------------------------------------------
 // Runtime cache: images & fonts
@@ -23,7 +29,7 @@ registerRoute(
         maxAgeSeconds: 30 * 24 * 60 * 60,
       }),
     ],
-  })
+  }),
 );
 
 // --------------------------------------------------
@@ -32,14 +38,16 @@ registerRoute(
 const APP_VERSION = process.env.APP_VERSION || "1.0.0";
 
 // --------------------------------------------------
-// Install: activate immediately
+// Install
 // --------------------------------------------------
+// عمداً skipWaiting نمی‌کنیم.
+// نسخه جدید در waiting می‌ماند تا کاربر Update را تأیید کند.
 self.addEventListener("install", () => {
-  self.skipWaiting();
+  // Do nothing
 });
 
 // --------------------------------------------------
-// Activate: claim clients & notify version
+// Activate
 // --------------------------------------------------
 self.addEventListener("activate", (event) => {
   event.waitUntil(
@@ -56,7 +64,7 @@ self.addEventListener("activate", (event) => {
           version: APP_VERSION,
         });
       }
-    })()
+    })(),
   );
 });
 
@@ -69,5 +77,12 @@ self.addEventListener("message", (event) => {
       type: "SW_VERSION_INFO",
       version: APP_VERSION,
     });
+
+    return;
+  }
+
+  // کاربر Update را تأیید کرده
+  if (event.data?.type === "SKIP_WAITING") {
+    self.skipWaiting();
   }
 });

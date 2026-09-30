@@ -12,7 +12,7 @@
       <div>
         <div class="row items-center q-gutter-sm">
           <div class="col-auto">
-            {{ $t("shared.labels.nationalNo") }}:
+            {{ $t("shared.columns.nationalNo") }}:
           </div>
           <div class="col text-body2 text-weight-700">
             {{ model.nationalNo }}
@@ -25,7 +25,9 @@
       </div>
       <div>
         <div class="row items-center q-gutter-sm">
-          <div class="col-auto">{{ $t("shared.labels.taxNo") }}:</div>
+          <div class="col-auto">
+            {{ $t("shared.columns.taxNo") }}:
+          </div>
           <div class="col text-body2">
             {{ model.taxNo }}
           </div>
@@ -108,7 +110,7 @@
   const formStore = useFormActions(
     "crm/customerBusiness",
     model,
-    true
+    true,
   );
 
   const action = ref(formAction.create);
@@ -143,6 +145,6 @@
         await loadData();
       }
     },
-    { immediate: true }
+    { immediate: true },
   );
 </script>

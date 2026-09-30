@@ -62,7 +62,7 @@
       :options="
         helper.getEnumOptions(
           taxApiInvoicePattern,
-          'taxApiInvoicePattern'
+          'taxApiInvoicePattern',
         )
       "
       v-model="

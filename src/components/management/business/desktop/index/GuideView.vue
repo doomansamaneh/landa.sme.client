@@ -13,7 +13,7 @@
       ref="carousel"
     >
       <q-carousel-slide :name="1" class="column no-wrap flex-center">
-        <q-img src="src/assets/about-us-header.png" />
+        <q-img src="/about-us-header.png" />
         <div class="text-center q-mt-lg q-px-xl">
           {{ $t("page.buttons.guide.slide1") }}
         </div>

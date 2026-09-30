@@ -72,7 +72,7 @@
               >
                 {{
                   helper.formatNumberReadable(
-                    dataStore.data?.value?.amount
+                    dataStore.data?.value?.amount,
                   )
                 }}
 
@@ -112,14 +112,14 @@
               >
                 {{
                   helper.formatNumberReadable(
-                    dataStore.data?.value?.payedAmount
+                    dataStore.data?.value?.payedAmount,
                   )
                 }}
 
                 <q-tooltip class="custom-tooltip text-body1">
                   {{
                     helper.formatNumber(
-                      dataStore.data?.value?.payedAmount
+                      dataStore.data?.value?.payedAmount,
                     )
                   }}
                 </q-tooltip>
@@ -164,14 +164,14 @@
               >
                 {{
                   helper.formatNumberReadable(
-                    dataStore.data?.value?.remainedAmount
+                    dataStore.data?.value?.remainedAmount,
                   )
                 }}
 
                 <q-tooltip class="custom-tooltip text-body1">
                   {{
                     helper.formatNumber(
-                      dataStore.data?.value?.remainedAmount
+                      dataStore.data?.value?.remainedAmount,
                     )
                   }}
                 </q-tooltip>
@@ -221,7 +221,7 @@
                 {{
                   helper.formatNumberReadable(
                     dataStore.data?.value?.remainedAmountAll -
-                      dataStore.data?.value?.remainedAmount
+                      dataStore.data?.value?.remainedAmount,
                   )
                 }}
 
@@ -229,7 +229,7 @@
                   {{
                     helper.formatNumber(
                       dataStore.data?.value?.remainedAmountAll -
-                        dataStore.data?.value?.remainedAmount
+                        dataStore.data?.value?.remainedAmount,
                     )
                   }}
                 </q-tooltip>
@@ -263,7 +263,7 @@
   const dataStore = useInvoiceSummary();
 
   const isShakingComputed = computed(
-    () => draggable.state.isShaking.value
+    () => draggable.state.isShaking.value,
   );
 </script>
 
@@ -284,7 +284,7 @@
   .mouse-icon {
     width: 18px;
     height: 18px;
-    background: url("src/assets/mouse.png") no-repeat center;
+    background: url("/mouse.png") no-repeat center;
     background-size: contain;
     position: absolute;
     right: 4px;
