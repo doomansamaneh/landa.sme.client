@@ -8,16 +8,34 @@
 </template>
 
 <script setup>
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref, onMounted } from "vue";
 
-import CreateForm from "src/components/areas/_shared/baseInfo/shared/forms/CreateForm.vue";
+  import { useFormActions } from "src/composables/useFormActions";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  import CreateForm from "src/components/areas/_shared/baseInfo/shared/forms/CreateForm.vue";
 
-const formStore = useBaseInfoModel({
-  baseRoute: "cmn/productGroup",
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
+
+  const baseRoute = "cmn/productGroup";
+  const actionStore = useFormActions(baseRoute);
+  const model = ref({ isActive: true });
+
+  const formStore = useBaseInfoModel({
+    baseRoute: baseRoute,
+    model: model,
+    afterGetByIdCallback: async () => {
+      if (props.action === "create") {
+        getNewCode();
+      }
+    },
+  });
+
+  const getNewCode = async () => {
+    var response = await actionStore.customPostAction(`getNewCode`);
+    model.value.code = response.data;
+  };
 </script>

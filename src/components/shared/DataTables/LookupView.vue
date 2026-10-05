@@ -540,7 +540,7 @@
       if (props.textTemplate) {
         selectedText.value = props.textTemplate.replace(
           /{{\s*([\w.]+)\s*}}/g,
-          (_, key) => row[key] ?? ""
+          (_, key) => row[key] ?? "",
         );
       } else selectedText.value = row.title;
     }
@@ -548,6 +548,11 @@
 
   function setCustomText(displayText) {
     selectedText.value = displayText;
+  }
+
+  function syncFilter() {
+    tableStore.state.value.filterExpression =
+      props.filterExpression ?? [];
   }
 
   async function handlePopup() {
@@ -611,13 +616,18 @@
   }
 
   async function showPopup() {
+    syncFilter();
+
     await reloadData();
     await nextTick();
+
     popup.value?.show();
   }
 
   async function showDialog() {
+    syncFilter();
     reloadData();
+
     lookupDialog.value?.show();
   }
 

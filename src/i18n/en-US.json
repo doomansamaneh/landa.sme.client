@@ -486,6 +486,8 @@
       "deleteClosingBookMessage": "Deleting the closing balance allows you to create, edit, or delete documents for the current fiscal year again. After corrections, the closing balance must be reissued.",
       "closeAccount": "Close Profit & Loss Accounts",
       "closeAccountMessage": "Before issuing the closing balance, temporary profit & loss accounts must be closed by calculating income and expenses for the current year.",
+      "regenerateProductCodes": "Regenerate Product/Service Codes",
+      "regenerateProductCodesMessage": "This operation will regenerate product groups with codes starting from 100, 101, 102, etc., and products/services based on their group code, such as 1000001, 1000002, 1010001, 1010002, etc. Existing codes will be changed. Do you want to continue?",
       "voucherTypeIds": "Voucher Type",
       "downloadTax": "Download Tax File",
       "downloadInsurrance": "Download Insurance File",

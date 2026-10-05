@@ -113,7 +113,7 @@ export const reviewInvoiceItemColumns = [
   { ...customerName },
   { ...productCode },
   { ...productTitle },
-  //{ ...itemComment },
+  { ...itemComment },
   { ...productUnitTitle },
   { ...price },
   { ...quantity },

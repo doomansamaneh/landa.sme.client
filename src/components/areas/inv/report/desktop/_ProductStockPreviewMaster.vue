@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-auto q-mr-sm">
         <span class="text-body3">
-          {{ $t("shared.labels.group") }}:
+          {{ $t("shared.labels.code") }}:
         </span>
       </div>
-      <div class="text-body3">
-        {{ item?.productGroupTitle }}
+      <div class="text-body2 text-bold">
+        {{ item?.code }}
       </div>
     </div>
 
@@ -18,7 +18,18 @@
         </span>
       </div>
       <div class="text-body2 text-bold">
-        {{ item?.code }} / {{ item?.title }}
+        {{ item?.title }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-auto q-mr-sm">
+        <span class="text-body3">
+          {{ $t("shared.labels.group") }}:
+        </span>
+      </div>
+      <div class="text-body3">
+        {{ item?.productGroupTitle }}
       </div>
     </div>
 

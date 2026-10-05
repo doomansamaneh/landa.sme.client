@@ -64,15 +64,14 @@
                 :placeholder="$t('shared.columns.slTitle')"
                 required
                 clearable
-                @rowSelected="slChanged($event, row, index)"
               />
             </td>
             <td>
               <dl-lookup
-                :ref="setDlRef"
                 v-model:selectedId="row.dlId"
                 v-model:selectedText="row.dlDisplay"
                 :placeholder="$t('shared.columns.dlTitle')"
+                :filter-expression="getDlFilters(row)"
               />
             </td>
             <td>
@@ -237,7 +236,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, reactive } from "vue";
+  import { reactive } from "vue";
   import { sqlOperator } from "src/constants";
   import { helper } from "src/helpers";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
@@ -255,14 +254,7 @@
 
   const configStore = useAppConfigModel();
 
-  const dlRefs = ref([]);
   const expandedRows = reactive({});
-
-  const setDlRef = (el) => {
-    if (el) {
-      dlRefs.value.push(el);
-    }
-  };
 
   const toggleRowDetails = (index) => {
     expandedRows[index] = !expandedRows[index];
@@ -293,25 +285,18 @@
     configStore.model.value.companySetting.accounting.dl3Types,
   );
 
-  const slChanged = (sl, row, index) => {
-    const dlFilters = getDlFilters(row);
-    if (dlRefs.value[index]) {
-      dlRefs.value[index].lookup.tableStore.setFilterExpression(
-        dlFilters,
-      );
-    }
-  };
-
   const getDlFilters = (row) => {
-    const filters = [
-      {
+    const filters = [];
+
+    if (row.slId) {
+      filters.push({
         fieldName: "slId",
         operator: sqlOperator.equal,
         value: row.slId,
-      },
-    ];
+      });
+    }
 
-    if (dl1Filters) {
+    if (dl1Filters?.length) {
       filters.push(...dl1Filters);
     }
 

@@ -184,6 +184,30 @@
         </q-card-section>
       </q-card>
     </div>
+
+    <div class="col-md col-sm-6 col-xs-12">
+      <q-card
+        v-ripple
+        class="fit bordered q-radius-lg q-hoverable cursor-pointer"
+        @click="operationStore.regenerateProductCodes()"
+      >
+        <span class="q-focus-helper" />
+
+        <q-card-section class="q-pa-lg">
+          <q-avatar size="46px" class="text-white bg-orange shadow">
+            <q-icon name="o_autorenew" size="32px" color="white" />
+          </q-avatar>
+
+          <div class="q-mt-md text-subtitle1 text-weight-700">
+            {{ $t("shared.labels.regenerateProductCodes") }}
+          </div>
+
+          <div class="text-body2 line-height-xs q-mt-sm">
+            {{ $t("shared.labels.regenerateProductCodesMessage") }}
+          </div>
+        </q-card-section>
+      </q-card>
+    </div>
   </div>
 </template>
 <script setup>

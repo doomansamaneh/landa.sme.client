@@ -73,6 +73,7 @@ export const productFlowColumns = [
 
 export const productStockItemColumns = [
   productCode,
+  dlCode,
   productTitle,
   voucherNo,
   date,

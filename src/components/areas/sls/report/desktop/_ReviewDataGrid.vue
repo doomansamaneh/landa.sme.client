@@ -14,10 +14,9 @@
   >
     <template #cell-productTitle="{ item }">
       {{ item.productTitle }}
-      <small v-if="item.summay || item.itemComment">
+      <small v-if="item.summay">
         (
-        <span class="q-pr-xs">{{ item.summary }} /</span>
-        <span v-if="item.itemComment">{{ item.itemComment }}</span>
+        <span class="q-pr-xs">{{ item.summary }}</span>
         )
       </small>
     </template>
@@ -35,7 +34,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "quantity")
+              helper.getSubtotal(selectedRows, "quantity"),
             )
           }}
         </b>
@@ -46,7 +45,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "vatAmount")
+              helper.getSubtotal(selectedRows, "vatAmount"),
             )
           }}
         </b>
@@ -55,7 +54,7 @@
         <b>
           {{
             helper.formatNumber(
-              helper.getSubtotal(selectedRows, "amount")
+              helper.getSubtotal(selectedRows, "amount"),
             )
           }}
         </b>
@@ -111,18 +110,18 @@
       helper.findIndex(
         props.tableStore.columns.value,
         "name",
-        "quantity"
+        "quantity",
       ) +
       1 + //numbered column
-      1 //multi check column
+      1, //multi check column
   );
 
   const shouldShowFooter = computed(() => {
     const footerColumns = ["quantity", "vatAmount", "amount"];
     return footerColumns.some((colName) =>
       props.tableStore.columns.value.find(
-        (col) => col.name === colName && !col.hidden
-      )
+        (col) => col.name === colName && !col.hidden,
+      ),
     );
   });
 </script>

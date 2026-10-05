@@ -14,9 +14,19 @@
 
     <div class="row q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <bank-branch-lookup
-          v-model:selectedId="formStore.model.value.bankBranchId"
-          v-model:selectedText="formStore.model.value.bankBranchTitle"
+        <bank-lookup
+          v-model:selectedId="formStore.model.value.bankId"
+          v-model:selectedText="formStore.model.value.bankTitle"
+          :label="$t('shared.labels.bankTitle')"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="row q-mb-md">
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <custom-input
+          v-model="formStore.model.value.bankBranchTitle"
           :label="$t('shared.labels.bankBranch')"
           required
         />
@@ -96,7 +106,7 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
-  import BankBranchLookup from "src/components/shared/lookups/BankBranchLookup.vue";
+  import BankLookup from "src/components/shared/lookups/BankLookup.vue";
   import AccountTypeLookup from "src/components/shared/lookups/BankAccountTypeLookup.vue";
 
   const { t } = useI18n();
@@ -125,7 +135,7 @@
     return await formStore.submitForm(
       form.value,
       props.action,
-      callBack
+      callBack,
     );
   }
 

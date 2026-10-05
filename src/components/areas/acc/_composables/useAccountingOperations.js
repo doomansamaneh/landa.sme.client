@@ -41,7 +41,7 @@ export function useAccountingOperations() {
     const response = await fetchWrapper.get(
       `acc/operation/getOperationStatus`,
       null,
-      true
+      true,
     );
     operationStatusModel.value = response.data.data;
   }
@@ -65,7 +65,7 @@ export function useAccountingOperations() {
   async function reorder(model, callBack) {
     const response = await fetchWrapper.post(
       `acc/operation/reorder`,
-      model.value
+      model.value,
     );
     notify(response.data);
     if (callBack) callBack();
@@ -78,7 +78,7 @@ export function useAccountingOperations() {
       ok: t("shared.labels.calculateCogs"),
       onOk: async () => {
         const response = await fetchWrapper.post(
-          `acc/operation/calculateCogs`
+          `acc/operation/calculateCogs`,
         );
         notify(response.data);
         if (callBack) callBack();
@@ -93,7 +93,7 @@ export function useAccountingOperations() {
       ok: t("shared.labels.openBook"),
       onOk: async () => {
         const response = await fetchWrapper.post(
-          `acc/operation/openBook`
+          `acc/operation/openBook`,
         );
         notify(response.data);
         if (callBack) callBack(response.data);
@@ -108,7 +108,7 @@ export function useAccountingOperations() {
       ok: t("shared.labels.closeBook"),
       onOk: async () => {
         const response = await fetchWrapper.post(
-          `acc/operation/closeBook`
+          `acc/operation/closeBook`,
         );
         notify(response.data);
         if (callBack) callBack();
@@ -124,7 +124,23 @@ export function useAccountingOperations() {
       okColor: "deep-orange-7",
       onOk: async () => {
         const response = await fetchWrapper.post(
-          `acc/operation/deleteClosingBook`
+          `acc/operation/deleteClosingBook`,
+        );
+        notify(response.data);
+        if (callBack) callBack();
+      },
+    });
+  }
+
+  async function regenerateProductCodes(callBack) {
+    confirmDialog({
+      title: t("shared.labels.regenerateProductCodes"),
+      message: t("shared.labels.regenerateProductCodesMessage"),
+      ok: t("shared.labels.regenerateProductCodes"),
+      okColor: "deep-orange-7",
+      onOk: async () => {
+        const response = await fetchWrapper.post(
+          `acc/operation/regenerateProductCodes`,
         );
         notify(response.data);
         if (callBack) callBack();
@@ -134,7 +150,7 @@ export function useAccountingOperations() {
 
   async function getCloseAccountModel() {
     const response = await fetchWrapper.get(
-      "acc/operation/getCloseAccountModel"
+      "acc/operation/getCloseAccountModel",
     );
     model.value = response.data.data;
     model.value.closeAccounts = [
@@ -148,11 +164,11 @@ export function useAccountingOperations() {
     model.value.accountTypeIdList = model.value.closeAccounts.map(
       (item) => ({
         id: item,
-      })
+      }),
     );
     const response = await fetchWrapper.post(
       `acc/operation/closeAccount`,
-      model.value
+      model.value,
     );
     notify(response.data);
     if (callBack) callBack(response);
@@ -179,5 +195,6 @@ export function useAccountingOperations() {
     deleteClosingBook,
     getCloseAccountModel,
     getOperationStatus,
+    regenerateProductCodes,
   };
 }

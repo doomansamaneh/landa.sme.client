@@ -135,6 +135,10 @@
   const getItemRoute = (item) => {
     if (item.customerId)
       return `/crm/customer/preview/${item.customerId}`;
+
+    if (item.productId)
+      return `/cmn/product/preview/${item.productId}`;
+
     return `/acc/accountDL/preview/${item.id}`;
   };
 
